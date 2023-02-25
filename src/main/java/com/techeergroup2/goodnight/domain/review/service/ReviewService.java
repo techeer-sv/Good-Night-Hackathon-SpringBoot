@@ -35,4 +35,13 @@ public class ReviewService {
         return reviewRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("No review is found. id=" + id)).toResponse();
     }
+
+    public ReviewCreateResponse updateReview(Long id, ReviewCreateRequest request) {
+        Review review = reviewRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("No review is found. id=" + id));
+        review.updateTitle(request.getTitle());
+        review.updateContent(request.getContent());
+        reviewRepository.save(review);
+        return review.toResponse();
+    }
 }
