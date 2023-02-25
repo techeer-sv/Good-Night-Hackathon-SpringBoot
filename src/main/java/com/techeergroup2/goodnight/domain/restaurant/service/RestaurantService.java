@@ -7,10 +7,8 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRequest
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateResponse;
 import com.techeergroup2.goodnight.domain.restaurant.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -42,5 +40,9 @@ public class RestaurantService {
 
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
+    }
+
+    public List<Restaurant> getAllRestaurantsByCategory(String category) {
+        return restaurantRepository.findAllByCategory(category);
     }
 }

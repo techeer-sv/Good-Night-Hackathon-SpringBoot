@@ -8,6 +8,7 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRespons
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateRequest;
 import com.techeergroup2.goodnight.domain.restaurant.service.RestaurantService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,8 +52,16 @@ public class RestaurantController {
     }
 
 //    READ ALL RESTAURANTS
-    @GetMapping
-    public List<Restaurant> getAllRestaurants() {
+    @GetMapping("/all")
+    public List<Restaurant> getAllRestaurants()
+    {
         return restaurantService.getAllRestaurants();
     }
+
+    @GetMapping()
+    public List<Restaurant> getAllRestaurantsByCategory(@RequestParam String category)
+    {
+        return restaurantService.getAllRestaurantsByCategory(category);
+    }
+
 }
