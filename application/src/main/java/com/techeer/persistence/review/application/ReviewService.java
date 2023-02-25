@@ -4,6 +4,7 @@ import com.techeer.persistence.restaurant.application.RestaurantService;
 import com.techeer.persistence.restaurant.entity.Restaurant;
 import com.techeer.persistence.review.dao.ReviewRepository;
 
+import com.techeer.persistence.review.dto.request.PatchReviewReq;
 import com.techeer.persistence.review.dto.request.ReviewReq;
 import com.techeer.persistence.review.dto.response.ReviewDTO;
 import com.techeer.persistence.review.entity.Review;
@@ -43,6 +44,18 @@ public class ReviewService {
 
   public ReviewDTO findById(long id) {
     Review review = reviewRepository.findById(id).orElseThrow();
+
+    return new ReviewDTO(review, review.getRestaurant());
+  }
+
+
+  public ReviewDTO patchById(long id, PatchReviewReq patchReviewReq) {
+    Review review = reviewRepository.findById(id).orElseThrow();
+
+    review.setTitle(patchReviewReq.getTitle());
+    review.setDescription(patchReviewReq.getDescription());
+
+    reviewRepository.save(review);
 
     return new ReviewDTO(review, review.getRestaurant());
   }

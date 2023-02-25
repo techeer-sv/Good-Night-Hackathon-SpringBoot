@@ -1,6 +1,7 @@
 package com.techeer.controller.review;
 
 import com.techeer.persistence.review.application.ReviewService;
+import com.techeer.persistence.review.dto.request.PatchReviewReq;
 import com.techeer.persistence.review.dto.request.ReviewReq;
 import com.techeer.persistence.review.dto.response.ReviewDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,5 +49,13 @@ public class ReviewController {
     @GetMapping("/{id}")
     public ResponseEntity<ReviewDTO> getReview(@PathVariable long id) {
         return new ResponseEntity<>(reviewService.findById(id), HttpStatus.OK);
+    }
+
+    @Operation(operationId = "patchReview", description = "리뷰 수정")
+    @PatchMapping("/{id}")
+    public ResponseEntity<ReviewDTO> patchReview(
+            @PathVariable long id,
+            @RequestBody PatchReviewReq patchReviewReq) {
+        return new ResponseEntity<>(reviewService.patchById(id, patchReviewReq), HttpStatus.OK);
     }
 }
