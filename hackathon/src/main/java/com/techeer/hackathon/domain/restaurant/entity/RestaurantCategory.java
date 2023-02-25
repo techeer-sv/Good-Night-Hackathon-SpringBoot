@@ -11,4 +11,11 @@ public enum RestaurantCategory {
     JAPANESE_RESTAURANT("일식");
 
     private final String category;
+
+    public static Boolean isValidCategory(String category) {
+        for (RestaurantCategory cat : RestaurantCategory.values()) {
+            if(!cat.category.equals(category)) return false;
+        }
+        return true;
+    }
 }

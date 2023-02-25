@@ -2,6 +2,7 @@ package com.techeer.hackathon.domain.restaurant.service;
 
 import com.techeer.hackathon.domain.restaurant.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.dto.RestaurantCreate;
+import com.techeer.hackathon.domain.restaurant.error.InvalidCategoryException;
 import com.techeer.hackathon.domain.restaurant.error.RestaurantDuplicateException;
 import com.techeer.hackathon.domain.restaurant.repository.RestaurantRepository;
 import lombok.AccessLevel;
@@ -17,6 +18,9 @@ public class RestaurantService {
     public void createRestaurant(RestaurantCreate restaurantCreate) {
         if(restaurantRepository.existsByName(restaurantCreate.getName())) {
             throw new RestaurantDuplicateException();
+        }
+        if(restaurantCreate.getCategory() == null) {
+            throw new InvalidCategoryException();
         }
         restaurantRepository.save(restaurantMapper.toEntity(restaurantCreate));
     }
