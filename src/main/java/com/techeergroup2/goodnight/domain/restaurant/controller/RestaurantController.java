@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RequestMapping("/api/v1/restaurants")
@@ -52,14 +53,14 @@ public class RestaurantController {
     }
 
 //    READ ALL RESTAURANTS
-    @GetMapping("/all")
-    public List<Restaurant> getAllRestaurants()
-    {
-        return restaurantService.getAllRestaurants();
-    }
+//    @GetMapping("/all")
+//    public List<Restaurant> getAllRestaurants()
+//    {
+//        return restaurantService.getAllRestaurants();
+//    }
 
     @GetMapping()
-    public List<Restaurant> getAllRestaurantsByCategory(@RequestParam String category)
+    public List<Restaurant> getAllRestaurantsByCategory(@RequestParam Optional<String> category)
     {
         return restaurantService.getAllRestaurantsByCategory(category);
     }

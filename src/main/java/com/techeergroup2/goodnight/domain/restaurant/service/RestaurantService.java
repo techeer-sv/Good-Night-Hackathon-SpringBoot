@@ -7,10 +7,10 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRequest
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateResponse;
 import com.techeergroup2.goodnight.domain.restaurant.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -42,7 +42,10 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    public List<Restaurant> getAllRestaurantsByCategory(String category) {
-        return restaurantRepository.findAllByCategory(category);
+    public List<Restaurant> getAllRestaurantsByCategory(Optional<String> category) {
+        if (category.isPresent()) {
+            return restaurantRepository.findAllByCategory(category.get());
+        }
+        return restaurantRepository.findAll();
     }
 }
