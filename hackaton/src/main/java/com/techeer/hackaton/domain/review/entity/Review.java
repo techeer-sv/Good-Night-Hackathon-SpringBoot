@@ -2,6 +2,7 @@ package com.techeer.hackaton.domain.review.entity;
 
 
 import com.techeer.hackaton.domain.restaurant.entity.Restaurant;
+import com.techeer.hackaton.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,12 +12,13 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "review")
-public class Review {
+public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
     private Long id;
 
     @Column(name = "title", nullable = false)

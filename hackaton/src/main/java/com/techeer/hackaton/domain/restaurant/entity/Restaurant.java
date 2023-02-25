@@ -20,6 +20,7 @@ import java.util.List;
 public class Restaurant extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "restaurant_id")
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -29,9 +30,8 @@ public class Restaurant extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RestaurantCategory category;
 
-//    @OneToMany(mappedBy = "id")
-//    @Builder.Default
-//    private List<Review> reviewList = new ArrayList<>();
+    @OneToMany(mappedBy = "restaurant")
+    private List<Review> reviewList = new ArrayList<>();
 
     @Builder
     public Restaurant(String name, RestaurantCategory category) {
