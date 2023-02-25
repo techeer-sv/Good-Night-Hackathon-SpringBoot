@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Builder
 @AllArgsConstructor
 
-public class inquiryRestaurant {
+public class inquiryRestaurantDTO {
+
+    private Long id;
     private String name;
     private Restaurant category;
-    private LocalDateTime createData;
+
 }

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -12,9 +11,10 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 
-public class registerRestaurant {
+public class registerRestaurantDTO {
     private final LocalDateTime createDate;
     @NotNull
     private final String name;
+    @NotNull
     private final String category;
 }
