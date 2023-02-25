@@ -32,9 +32,10 @@ public class Review extends BaseEntity {
     private Restaurant restaurant;
 
     @Builder
-    public Review(String title, String content) {
+    public Review(String title, String content, Restaurant restaurant) {
       this.title = title;
       this.content = content;
+      this.restaurant = restaurant;
     }
 
     public void deleteReview() {

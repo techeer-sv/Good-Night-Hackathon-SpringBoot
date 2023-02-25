@@ -16,7 +16,7 @@ import java.util.List;
 public class RestaurantController {
     private final RestaurantService restaurantService;
 
-    @PostMapping("/restaurant")
+    @PostMapping("/restaurants")
     public ResponseEntity<RestaurantInfo> createRestaurant(@RequestBody RestaurantCreateRequest restaurantCreateRequest) {
         restaurantService.createRestaurant(restaurantCreateRequest);
         return ResponseEntity.ok(RestaurantInfo.builder()
@@ -26,14 +26,14 @@ public class RestaurantController {
                 .build());
     }
 
-    @GetMapping("/restaurant/{id}")
+    @GetMapping("/restaurants/{id}")
     public ResponseEntity<RestaurantInfo> getRestaurant(@PathVariable Long id) {
         RestaurantInfo restaurantInfo = restaurantService.getRestaurantDetail(id);
 
         return ResponseEntity.ok(restaurantInfo);
     }
 
-    @GetMapping("/restaurant/list")
+    @GetMapping("/restaurants/list")
     public ResponseEntity<List<RestaurantInfo>> getRestaurantListByPagination(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -41,7 +41,7 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantInfoList);
     }
 
-    @GetMapping("/restaurant/category/list")
+    @GetMapping("/restaurants/category_list")
     public ResponseEntity<List<RestaurantInfo>> getRestaurantsByCategoryWithPagination(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -51,13 +51,13 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantInfoList);
     }
 
-    @PutMapping("/restaurant")
+    @PutMapping("/restaurants")
     public ResponseEntity<RestaurantInfo> updateRestaurant(@RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
         RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
     }
 
-    @DeleteMapping("/restaurant/{id}")
+    @DeleteMapping("/restaurants/{id}")
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.ok("삭제되었습니다.");

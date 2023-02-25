@@ -11,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-//    @Query("select l from Location l where l.post.id = :id and l.isActive = true")
     @Query("select r from Restaurant r where r.id = :id and r.isActive = true")
     Optional<Restaurant> findById(@Param("id") Long id);
 

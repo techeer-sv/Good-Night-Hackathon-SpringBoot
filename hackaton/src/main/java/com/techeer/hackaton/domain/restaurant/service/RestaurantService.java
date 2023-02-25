@@ -9,7 +9,6 @@ import com.techeer.hackaton.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,7 @@ public class RestaurantService {
 
     @Transactional
     public void createRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
-        Restaurant restaurant = mapRestaurantEntityCreateRequestToRestaurant(restaurantCreateRequest);
+        Restaurant restaurant = mapRestaurantCreateRequestToRestaurantEntity(restaurantCreateRequest);
         restaurantRepository.save(restaurant);
     }
 
@@ -74,7 +73,7 @@ public class RestaurantService {
         restaurantRepository.save(foundRestaurant);
     }
 
-    public Restaurant mapRestaurantEntityCreateRequestToRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
+    public Restaurant mapRestaurantCreateRequestToRestaurantEntity(RestaurantCreateRequest restaurantCreateRequest) {
         return Restaurant.builder()
                 .category(restaurantCreateRequest.getCategory())
                 .name(restaurantCreateRequest.getName())
