@@ -8,10 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
-    @Query()
+public interface ReviewRepository extends JpaRepository<Review, Long> {
+    @Query("select r from Review r where r.isActive is true")
     Page<Review> findReviewsWithPagination(Pageable pageable);
-
-    @Query("select r from Review r where r.id= :id")
-    Optional<Review> findReviewsById(int id);
+    @Query("select r from Review r where r.id= :id and r.isActive is true")
+    Optional<Review> findReviewsById(Long id);
 }
