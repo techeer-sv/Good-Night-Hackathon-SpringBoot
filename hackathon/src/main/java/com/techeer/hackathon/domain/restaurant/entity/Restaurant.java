@@ -22,6 +22,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Restaurant {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     // Review 와 1:N 관계
@@ -35,7 +36,7 @@ public class Restaurant {
     @Column(nullable = false)
     private RestaurantCategory category;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
+    @Column(columnDefinition = "boolean default false")
     private Boolean isDeleted;
 
     @CreatedDate
