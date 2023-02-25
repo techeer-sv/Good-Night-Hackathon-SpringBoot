@@ -12,6 +12,6 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     @Query()
     Page<Review> findReviewsWithPagination(Pageable pageable);
 
-    @Query("select r from Review r where r.id= :id and r.isActivated is true")
+    @Query("select r from Review r where r.id= :id")
     Optional<Review> findReviewsById(int id);
 }
