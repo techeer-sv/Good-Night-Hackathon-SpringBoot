@@ -40,4 +40,10 @@ public class ReviewService {
 
     return reviews.map(review -> new ReviewDTO(review, review.getRestaurant()));
   }
+
+  public ReviewDTO findById(long id) {
+    Review review = reviewRepository.findById(id).orElseThrow();
+
+    return new ReviewDTO(review, review.getRestaurant());
+  }
 }

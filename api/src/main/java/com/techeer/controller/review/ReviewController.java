@@ -43,4 +43,10 @@ public class ReviewController {
     public ResponseEntity<ReviewDTO> create(@RequestBody final ReviewReq reviewReq) {
         return new ResponseEntity<>(reviewService.create(reviewReq), HttpStatus.CREATED);
     }
+
+    @Operation(operationId = "getReview", description = "리뷰 조회")
+    @GetMapping("/{id}")
+    public ResponseEntity<ReviewDTO> getReview(@PathVariable long id) {
+        return new ResponseEntity<>(reviewService.findById(id), HttpStatus.OK);
+    }
 }
