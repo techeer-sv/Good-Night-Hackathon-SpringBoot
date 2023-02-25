@@ -1,5 +1,7 @@
 package com.project.hackathon.domain.restaurant.entity;
 
+import com.project.hackathon.domain.review.entity.Review;
+import com.project.hackathon.global.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,19 +13,16 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "restaurant")
-public class Restaurant{
+public class Restaurant extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
-    // 레스토랑 명
-//    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
-//    @JoinColumn(name="title")
-//    private List<Restaurant> title = new ArrayList<>();
-
-    @Column(name = "title", nullable = false)
-    private String title;
+    // 레스토랑명
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
+    @JoinColumn(name="title")
+    private ArrayList<Review> title = new ArrayList<>();
 
     // 레스토랑 카테고리
     @Column(name = "category", nullable = false)
@@ -40,7 +39,7 @@ public class Restaurant{
 
     @Builder
     public Restaurant(
-            String title,
+            ArrayList title,
             Category category,
             LocalDateTime createdAt) {
         this.title = title;

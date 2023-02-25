@@ -1,6 +1,7 @@
 package com.project.hackathon.domain.review.entity;
 
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
+import com.project.hackathon.global.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "review")
-public class Review{
+public class Review extends BaseEntity {
 
     @Id // 이 멤버변수는 primary key라는 것을 나타내며 없으면 에러남
     @GeneratedValue

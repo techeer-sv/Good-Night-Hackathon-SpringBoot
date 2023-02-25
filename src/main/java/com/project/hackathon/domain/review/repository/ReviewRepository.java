@@ -1,6 +1,7 @@
 package com.project.hackathon.domain.review.repository;
 
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
+import com.project.hackathon.domain.review.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,21 +10,21 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ReviewRepository extends JpaRepository<Restaurant, Long> {
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    @Query("select p from Review p where p.id = :id")
-    Optional<Restaurant> findReviewById(@Param("id") Long id);
+    @Query("select r from Review r where r.id = :id and r.isActive = true")
+    Optional<Review> findReviewById(@Param("id") Long id);
 
-    @Query("select u from Review u where u.title = :title")
-    Optional<Restaurant> findReviewByTitle(@Param("title") String title);
+    @Query("select r from Review r where r.title like :title and r.isActive = true")
+    Optional<Review> findReviewByTitle(@Param("title") String title);
 
-    @Query("select u from Review u where u.content = :content")
-    Optional<Restaurant> findReviewByContent(@Param("content") String content);
+    @Query("select r from Review r where r.content like :content and r.isActive = true")
+    Optional<Review> findReviewByContent(@Param("content") String content);
 
-    @Query("select p from Review p")
-    Page<Restaurant> findReviewWithPagination(Pageable pageable);
+    @Query("select r from Review r where r.isActive = true")
+    Page<Review> findReviewWithPagination(Pageable pageable);
 
-    @Query("select p from Review p where p.title like %:keyword%")
-    Page<Restaurant> findContainingTitleReviewWithPagination(
+    @Query("select r from Review r where r.isActive = true and r.title like %:keyword%")
+    Page<Review> findContainingTitleReviewWithPagination(
             Pageable pageable, @Param("keyword") String keyword);
 }
