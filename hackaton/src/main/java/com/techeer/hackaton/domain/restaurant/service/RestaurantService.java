@@ -2,6 +2,7 @@ package com.techeer.hackaton.domain.restaurant.service;
 
 import com.techeer.hackaton.domain.restaurant.dto.RestaurantCreateRequest;
 import com.techeer.hackaton.domain.restaurant.dto.RestaurantInfo;
+import com.techeer.hackaton.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.techeer.hackaton.domain.restaurant.entity.Restaurant;
 import com.techeer.hackaton.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +26,24 @@ public class RestaurantService {
     }
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     public RestaurantInfo getRestaurantDetail(Long id) {
         Restaurant foundRestaurant = restaurantRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
         return mapRestaurantEntityToRestaurantInfo(foundRestaurant);
+    }
+
+    @Transactional
+    public RestaurantInfo updateRestaurant(RestaurantUpdateRequest restaurantUpdateRequest) {
+        Restaurant foundRestaurant = restaurantRepository.findById(restaurantUpdateRequest.getId())
+                .orElseThrow(EntityNotFoundException::new);
+
+        foundRestaurant.update(restaurantUpdateRequest);
+
+        Restaurant savedRestaurant = restaurantRepository.save(foundRestaurant);
+
+        return mapRestaurantEntityToRestaurantInfo(savedRestaurant);
     }
 
     public Restaurant mapRestaurantEntityCreateRequestToRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
@@ -42,6 +55,7 @@ public class RestaurantService {
 
     public RestaurantInfo mapRestaurantEntityToRestaurantInfo(Restaurant restaurant) {
         return RestaurantInfo.builder()
+                .createdDate(restaurant.getCreatedAt())
                 .category(restaurant.getCategory())
                 .name(restaurant.getName())
                 .build();

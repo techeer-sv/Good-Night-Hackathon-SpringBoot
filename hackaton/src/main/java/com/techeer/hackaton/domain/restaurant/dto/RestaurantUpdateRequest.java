@@ -5,17 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-
 @Getter
 @Builder
 @AllArgsConstructor
-public class RestaurantCreateRequest {
-    private final LocalDateTime createDate;
-
-    private final String name;
-
+public class RestaurantUpdateRequest {
+    private final Long id;
     private final RestaurantCategory category;
 }

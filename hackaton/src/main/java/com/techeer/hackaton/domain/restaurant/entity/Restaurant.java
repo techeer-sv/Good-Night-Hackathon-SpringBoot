@@ -1,5 +1,6 @@
 package com.techeer.hackaton.domain.restaurant.entity;
 
+import com.techeer.hackaton.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.techeer.hackaton.domain.review.entity.Review;
 import com.techeer.hackaton.global.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -36,5 +37,9 @@ public class Restaurant extends BaseEntity {
     public Restaurant(String name, RestaurantCategory category) {
         this.name = name;
         this.category = category;
+    }
+
+    public void update(RestaurantUpdateRequest restaurantUpdateRequest){
+        this.category = restaurantUpdateRequest.getCategory();
     }
 }

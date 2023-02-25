@@ -2,6 +2,7 @@ package com.techeer.hackaton.domain.restaurant.controller;
 
 import com.techeer.hackaton.domain.restaurant.dto.RestaurantCreateRequest;
 import com.techeer.hackaton.domain.restaurant.dto.RestaurantInfo;
+import com.techeer.hackaton.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.techeer.hackaton.domain.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,10 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
 
     @PostMapping("/restaurant")
-    public ResponseEntity<RestaurantInfo> createRestaurant(@Valid @RequestBody RestaurantCreateRequest restaurantCreateRequest) {
+    public ResponseEntity<RestaurantInfo> createRestaurant(@RequestBody RestaurantCreateRequest restaurantCreateRequest) {
         restaurantService.createRestaurant(restaurantCreateRequest);
         return ResponseEntity.ok(RestaurantInfo.builder()
+                        .createdDate(restaurantCreateRequest.getCreateDate())
                         .category(restaurantCreateRequest.getCategory())
                         .name(restaurantCreateRequest.getName())
                 .build());
@@ -28,6 +30,12 @@ public class RestaurantController {
     public ResponseEntity<RestaurantInfo> getRestaurant(@PathVariable Long id) {
         RestaurantInfo restaurantInfo = restaurantService.getRestaurantDetail(id);
 
+        return ResponseEntity.ok(restaurantInfo);
+    }
+
+    @PutMapping("/restaurant")
+    public ResponseEntity<RestaurantInfo> updateRestaurant(@RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
+        RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
     }
 }
