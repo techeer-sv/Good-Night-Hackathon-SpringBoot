@@ -61,6 +61,14 @@ public class RestaurantService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void deleteRestaurant(Long id){
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        restaurant.deleteRestaurant();
+        restaurantRepository.save(restaurant);
+    }
+
 
     public RestaurantInfo mapRestaurantEntityToRestaurantInfo(Restaurant restaurant){
         return RestaurantInfo.builder()

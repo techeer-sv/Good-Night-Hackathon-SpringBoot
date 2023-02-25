@@ -54,4 +54,10 @@ public class RestaurantController {
         List<RestaurantInfo> restaurantInfoList = restaurantService.getRestaurantListCategory(category);
         return ResponseEntity.ok(restaurantInfoList);
     }
+
+    @DeleteMapping("/restaurants/{id}")
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id){
+        restaurantService.deleteRestaurant(id);
+        return ResponseEntity.ok("레스토랑이 삭제되었습니다.");
+    }
 }
