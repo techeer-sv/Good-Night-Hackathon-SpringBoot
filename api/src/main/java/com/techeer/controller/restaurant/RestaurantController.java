@@ -75,4 +75,10 @@ public class RestaurantController {
           @RequestBody final PatchRestaurantReq patchRestaurantReq) {
     return new ResponseEntity<>(restaurantService.patchById(id, patchRestaurantReq), HttpStatus.OK);
   }
+
+  @Operation(summary = "deleteRestaurantById", description = "레스토랑 삭제")
+  @DeleteMapping("/{id}")
+  public void deleteRestaurantById(@PathVariable final long id) {
+    restaurantService.deleteById(id);
+  }
 }

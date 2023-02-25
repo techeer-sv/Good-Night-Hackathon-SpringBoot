@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -50,4 +52,13 @@ public class RestaurantService {
     return new RestaurantDTO(restaurant);
   }
 
+
+  public void deleteById(long id) {
+    Restaurant restaurant = this.findByIdInner(id);
+
+    restaurant.setIsDeleted(true);
+    restaurant.setDeletedAt(LocalDateTime.now());
+
+    restaurantRepository.save(restaurant);
+  }
 }

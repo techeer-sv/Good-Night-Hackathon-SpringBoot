@@ -7,6 +7,7 @@ import javax.persistence.*;
 import com.techeer.persistence.review.entity.Review;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,13 @@ public class Restaurant extends BaseEntity {
 
   public void setCategoryName(String categoryName) {
     this.categoryName = categoryName;
+  }
+
+  public void setIsDeleted(boolean isDeleted) {
+    this.isDeleted = isDeleted;
+  }
+
+  public void setDeletedAt(LocalDateTime deletedAt) {
+    this.deletedAt = deletedAt;
   }
 }

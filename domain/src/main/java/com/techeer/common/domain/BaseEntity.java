@@ -21,9 +21,9 @@ public class BaseEntity {
   @LastModifiedDate
   private LocalDateTime updatedAt;
 
-  private LocalDateTime deletedAt;
+  protected LocalDateTime deletedAt;
 
   @Column()
-  private boolean isDeleted;
+  protected boolean isDeleted;
 
 }
