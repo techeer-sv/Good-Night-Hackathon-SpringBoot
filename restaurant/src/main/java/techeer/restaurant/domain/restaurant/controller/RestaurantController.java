@@ -2,10 +2,7 @@ package techeer.restaurant.domain.restaurant.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import techeer.restaurant.domain.restaurant.dto.RestaurantCreateRequest;
 import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.service.RestaurantService;
@@ -28,4 +25,10 @@ public class RestaurantController {
         return ResponseEntity.ok(ResultResponse.of(ResultCode.RESTAURANT_CREATE_SUCCESS, restaurantInfo));
 
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> findRestaurantById(@PathVariable Long id) {
+        RestaurantInfo restaurantInfo = restaurantService.findRestaurantInfoById(id);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_ONE_RESTAURANT_SUCCESS, restaurantInfo));
+    }
+
 }

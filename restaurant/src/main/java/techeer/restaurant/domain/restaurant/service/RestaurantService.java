@@ -7,6 +7,8 @@ import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.domain.restaurant.repository.RestaurantRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RestaurantService {
@@ -35,5 +37,16 @@ public class RestaurantService {
                 .name(restaurantCreateRequest.getName())
                 .category(restaurantCreateRequest.getCategory())
                 .build();
+    }
+
+
+    public RestaurantInfo findRestaurantInfoById(Long id) {
+        Restaurant foundRestaurant = findRestaurantById(id);
+        restaurantRepository.save(foundRestaurant);
+        return mapRestaurantEntityToRestaurantInfoResponse(foundRestaurant);
+    }
+
+    private Restaurant findRestaurantById(Long id) {
+        return restaurantRepository.findRestaurantById(id);
     }
 }
