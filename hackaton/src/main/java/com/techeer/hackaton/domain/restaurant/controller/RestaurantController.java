@@ -38,4 +38,10 @@ public class RestaurantController {
         RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
     }
+
+    @DeleteMapping("/restaurant/{id}")
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
+        return ResponseEntity.ok("삭제되었습니다.");
+    }
 }

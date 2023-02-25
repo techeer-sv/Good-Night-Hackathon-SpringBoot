@@ -29,7 +29,7 @@ public class Restaurant extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RestaurantCategory category;
 
-//    @OneToMany(mappedBy = "restaurant")
+//    @OneToMany(mappedBy = "id")
 //    @Builder.Default
 //    private List<Review> reviewList = new ArrayList<>();
 
@@ -41,5 +41,9 @@ public class Restaurant extends BaseEntity {
 
     public void update(RestaurantUpdateRequest restaurantUpdateRequest){
         this.category = restaurantUpdateRequest.getCategory();
+    }
+
+    public void deleteRestaurant() {
+        this.delete();
     }
 }
