@@ -9,6 +9,10 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,6 +28,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id=?")
+@FilterDef(name = "deletedRestaurantFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
+@Filter(name = "deletedRestaurantFilter", condition = "deleted = :isDeleted")
 public class Restaurant {
 
     @Id
@@ -33,6 +40,8 @@ public class Restaurant {
     private String name;
 
     private String category;
+
+    private boolean deleted = Boolean.FALSE;
 
     public Restaurant(String name, String category) {
         this.name = name;

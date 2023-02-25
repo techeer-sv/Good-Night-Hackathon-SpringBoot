@@ -7,6 +7,7 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRequest
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateResponse;
 import com.techeergroup2.goodnight.domain.restaurant.service.RestaurantService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,9 +38,15 @@ public class RestaurantController {
         return restaurantService.getRestaurant(id);
     }
 
-//
+//UPDATE
     @PutMapping("/{id}")
     public RestaurantUpdateResponse updateRestaurant(@PathVariable Long id, @RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
         return restaurantService.updateRestaurant(id, restaurantUpdateRequest);
+    }
+
+//DELETE
+    @DeleteMapping("/{id}")
+    public void deleteRestaurant(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
     }
 }
