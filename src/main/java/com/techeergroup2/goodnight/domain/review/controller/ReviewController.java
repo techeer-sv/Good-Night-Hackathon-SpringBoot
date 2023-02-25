@@ -7,6 +7,7 @@ import com.techeergroup2.goodnight.domain.review.service.ReviewService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,10 @@ public class ReviewController {
         return reviewService.updateReview(id, request);
     }
 
+//    DELETE
+    @DeleteMapping ("{id}")
+    public void deleteReview(@PathVariable Long id) {
+        reviewService.deleteReview(id);
+    }
 
 }

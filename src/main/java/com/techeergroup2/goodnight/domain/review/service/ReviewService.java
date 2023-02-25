@@ -44,4 +44,10 @@ public class ReviewService {
         reviewRepository.save(review);
         return review.toResponse();
     }
+
+    public void deleteReview(Long id) {
+        reviewRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("No review is found. id=" + id));
+        reviewRepository.deleteById(id);
+    }
 }
