@@ -7,13 +7,20 @@ import com.techeer.persistence.restaurant.dto.response.RestaurantDTO;
 import com.techeer.persistence.restaurant.entity.Restaurant;
 import com.techeer.persistence.restaurant.exception.RestaurantIdNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantService {
   private final RestaurantRepository restaurantRepository;
+
+  public Page<RestaurantDTO> getRestaurants(Pageable pageable) {
+    Page<Restaurant> restaurants = restaurantRepository.findAll(pageable);
+
+    return restaurants.map(RestaurantDTO::new);
+  }
 
   public RestaurantDTO create(CreateRestaurantReq createRestaurantReq) {
     Restaurant restaurant = createRestaurantReq.toEntity();
