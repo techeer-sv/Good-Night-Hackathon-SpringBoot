@@ -5,6 +5,7 @@ import com.techeergroup2.goodnight.domain.restaurant.repository.RestaurantReposi
 import com.techeergroup2.goodnight.domain.review.domain.Review;
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateRequest;
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateResponse;
+import com.techeergroup2.goodnight.domain.review.dto.ReviewGetResponse;
 import com.techeergroup2.goodnight.domain.review.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,10 @@ public class ReviewService {
 
         reviewRepository.save(review);
         return review.toResponse();
+    }
+
+    public ReviewCreateResponse getReview(Long id) {
+        return reviewRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("No review is found. id=" + id)).toResponse();
     }
 }
