@@ -13,10 +13,9 @@ public enum RestaurantCategory {
     private final String category;
 
     public static Boolean isValidCategory(String category) {
-        System.out.println(category);
         for (RestaurantCategory cat : RestaurantCategory.values()) {
             System.out.println(cat.getCategory());
-            if(cat.getCategory().equals(category)) return true;
+            if(cat.toString().equals(category)) return true;
         }
         return false;
     }
