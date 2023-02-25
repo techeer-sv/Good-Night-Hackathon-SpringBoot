@@ -13,5 +13,5 @@ import java.time.LocalDateTime;
 public class RestaurantInfo {
     private String name;
     private RestaurantCategory category;
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 }
