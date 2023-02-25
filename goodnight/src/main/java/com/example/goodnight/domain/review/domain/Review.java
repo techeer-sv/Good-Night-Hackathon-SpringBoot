@@ -23,12 +23,12 @@ public class Review {
 
     @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
-    private Long restaurantId;
+    private Restaurant restaurant;
 
     @Builder
-    public Review(String title, String content, Long restaurantId) {
+    public Review(String title, String content, Restaurant restaurant) {
         this.title = title;
         this.content = content;
-        this.restaurantId = restaurantId;
+        this.restaurant = restaurant;
     }
 }

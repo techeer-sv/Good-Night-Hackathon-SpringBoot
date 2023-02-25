@@ -26,6 +26,11 @@ public class RestaurantService {
         return dto;
     }
 
+    public Restaurant findById(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(null);
+        return restaurant;
+    }
+
     public List<Restaurant> findAll() {
         return restaurantRepository.findAll();
     }

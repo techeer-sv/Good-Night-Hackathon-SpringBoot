@@ -28,7 +28,7 @@ public class Restaurant extends BaseEntity {
     @Column(name = "is_activated", nullable = false)
     private boolean isActivated;
 
-    @OneToMany(mappedBy = "restaurantId")
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
 
     @Builder
