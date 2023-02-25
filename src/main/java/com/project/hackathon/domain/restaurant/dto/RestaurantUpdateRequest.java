@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RestaurantUpdateRequest {
     @NotNull(message = "레스토랑 Id는 공백이 올 수 없습니다.")
-    private final String id;
+    private final Long id;
 
     @NotBlank(message = "레스토랑 제목은 빈칸일 수 없습니다.")
     private final String title;
