@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 레스토랑 삭제 api 생성&#10;- delete: /restaurant/{id}">
+    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 조회 api 생성&#10;- get: /review/{id}">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadME.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadME.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/gilyeon/hackathon/HackathonApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/gilyeon/hackathon/HackathonApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/entity/Review.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677352694964</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: 리뷰 조회 api 생성&#10;- get: /review/{id}">
+      <created>1677356662781</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1677356662781</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,6 +229,7 @@
     <MESSAGE value="docs: update 기능 요구사항" />
     <MESSAGE value="feat: 레스토랑 등록, 레스토랑 수정, 레스토랑 조회 api 생성&#10;- post: /restaurant&#10;- get: /restaurant/{id}&#10;- put: /restaurant" />
     <MESSAGE value="feat: 레스토랑 삭제 api 생성&#10;- delete: /restaurant/{id}" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 레스토랑 삭제 api 생성&#10;- delete: /restaurant/{id}" />
+    <MESSAGE value="feat: 리뷰 조회 api 생성&#10;- get: /review/{id}" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 조회 api 생성&#10;- get: /review/{id}" />
   </component>
 </project>

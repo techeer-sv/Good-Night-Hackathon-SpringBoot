@@ -1,5 +1,7 @@
 package com.gilyeon.hackathon.domain.review;
 
+import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
+import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
 import com.gilyeon.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import com.gilyeon.hackathon.domain.review.entity.Review;
@@ -20,6 +22,12 @@ public class ReviewService {
                 .orElseThrow(EntityNotFoundException::new);
 
         return mapReviewEntityToReviewInfo(findReview);
+    }
+
+    @Transactional
+    public void createReview(ReviewCreateRequest reviewCreateRequest) {
+        Review review = mapReviewEntityCreateRequestToReview(reviewCreateRequest);
+        reviewRepository.save(review);
     }
 
     public Review mapReviewEntityCreateRequestToReview(ReviewCreateRequest reviewCreateRequest) {
