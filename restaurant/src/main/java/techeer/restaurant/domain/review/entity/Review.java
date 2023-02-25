@@ -2,6 +2,7 @@ package techeer.restaurant.domain.review.entity;
 
 import lombok.Getter;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
+import techeer.restaurant.global.domain.BaseEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter
 @Table(name = "review")
-public class Review {
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue

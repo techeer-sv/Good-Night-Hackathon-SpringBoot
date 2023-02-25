@@ -2,6 +2,7 @@ package techeer.restaurant.domain.restaurant.entity;
 
 import lombok.Getter;
 import techeer.restaurant.domain.review.entity.Review;
+import techeer.restaurant.global.domain.BaseEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Table(name = "restaurant")
-public class Restaurant {
+public class Restaurant extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "restaurant_id", nullable = false)
@@ -25,8 +26,5 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
-
-    @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted;
 
 }
