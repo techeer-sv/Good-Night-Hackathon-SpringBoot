@@ -1,6 +1,7 @@
 package com.gilyeon.hackathon.domain.review.entity;
 
 import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "REVIEW")
 public class Review {
