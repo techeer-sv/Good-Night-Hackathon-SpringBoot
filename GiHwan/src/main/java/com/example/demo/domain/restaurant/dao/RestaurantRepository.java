@@ -16,6 +16,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Query("select r from Restaurant r where r.isActive is true")
     List<Restaurant> findAll();
 
-//    @Query("select r from Restaurant r where r.category = :category and r.isActive is true")
-//    Page<Restaurant> findRestaurantsByCategoryWithPagination(Pageable pageable, RestaurantCategory category);
+    @Query("select r from Restaurant r where r.category = :category and r.isActive is true")
+    List<Restaurant> findAllByCategory(RestaurantCategory category);
 }

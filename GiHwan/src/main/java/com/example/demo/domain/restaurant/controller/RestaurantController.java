@@ -4,6 +4,7 @@ import com.example.demo.domain.restaurant.dto.RestaurantCreateRequest;
 import com.example.demo.domain.restaurant.dto.RestaurantInfo;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.example.demo.domain.restaurant.entity.Restaurant;
+import com.example.demo.domain.restaurant.entity.RestaurantCategory;
 import com.example.demo.domain.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,14 @@ public class RestaurantController {
     @GetMapping("/restaurants/list")
     public ResponseEntity<List<RestaurantInfo>> getRestaurantsList(){
         List<RestaurantInfo> restaurantInfoList = restaurantService.getRestaurantList();
+        return ResponseEntity.ok(restaurantInfoList);
+    }
+
+    @GetMapping("/restaurants/category_list")
+    public ResponseEntity<List<RestaurantInfo>> getRestaurantsListCategory(
+            @RequestParam RestaurantCategory category
+            ){
+        List<RestaurantInfo> restaurantInfoList = restaurantService.getRestaurantListCategory(category);
         return ResponseEntity.ok(restaurantInfoList);
     }
 }

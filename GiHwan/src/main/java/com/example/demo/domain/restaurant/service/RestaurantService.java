@@ -4,6 +4,7 @@ import com.example.demo.domain.restaurant.dao.RestaurantRepository;
 import com.example.demo.domain.restaurant.dto.RestaurantCreateRequest;
 import com.example.demo.domain.restaurant.dto.RestaurantInfo;
 import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequest;
+import com.example.demo.domain.restaurant.entity.RestaurantCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +54,12 @@ public class RestaurantService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<RestaurantInfo> getRestaurantListCategory(RestaurantCategory category){
+        return restaurantRepository.findAllByCategory(category).stream()
+                .map(this::mapRestaurantEntityToRestaurantInfo)
+                .collect(Collectors.toList());
+    }
 
 
     public RestaurantInfo mapRestaurantEntityToRestaurantInfo(Restaurant restaurant){
