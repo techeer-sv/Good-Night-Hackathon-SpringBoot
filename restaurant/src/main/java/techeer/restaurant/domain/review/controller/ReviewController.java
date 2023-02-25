@@ -3,6 +3,7 @@ package techeer.restaurant.domain.review.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.entity.Category;
 import techeer.restaurant.domain.review.dto.ReviewInfo;
 import techeer.restaurant.domain.review.dto.ReviewRequest;
@@ -32,6 +33,12 @@ public class ReviewController {
         return ResponseEntity.ok(ResultResponse.of(CREATE_REVIEW_SUCCESS, reviewInfo));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> findReviewById(@PathVariable Long id) {
+        ReviewInfo reviewInfo = reviewService.findReviewInfoById(id);
+        return ResponseEntity.ok(ResultResponse.of(GET_ONE_REVIEW_SUCCESS, reviewInfo));
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity<ResultResponse> updateReview(
             @PathVariable Long id,
@@ -46,6 +53,5 @@ public class ReviewController {
         reviewService.deleteReview(id);
         return ResponseEntity.ok(ResultResponse.of(DELETE_REVIEW_SUCCESS, ""));
     }
-
 
 }

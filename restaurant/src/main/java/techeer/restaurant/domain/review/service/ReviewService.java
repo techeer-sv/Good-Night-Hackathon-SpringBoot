@@ -3,6 +3,7 @@ package techeer.restaurant.domain.review.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.domain.restaurant.repository.RestaurantRepository;
 import techeer.restaurant.domain.review.dto.ReviewInfo;
@@ -55,5 +56,15 @@ public class ReviewService {
         review.updateTitle(request.getTitle());
         review.updateContent(request.getContent());
         reviewRepository.save(review);
+    }
+
+    public ReviewInfo findReviewInfoById(Long id) {
+        Review review = findReviewById(id);
+        reviewRepository.save(review);
+        return mapReviewEntityToReviewInfoResponse(review);
+    }
+
+    public Review findReviewById(Long id) {
+        return reviewRepository.findReviewById(id);
     }
 }
