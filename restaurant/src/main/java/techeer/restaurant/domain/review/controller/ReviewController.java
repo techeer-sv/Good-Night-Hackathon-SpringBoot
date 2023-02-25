@@ -12,7 +12,7 @@ import techeer.restaurant.global.domain.response.code.ResultCode;
 
 import javax.validation.Valid;
 
-import static techeer.restaurant.global.domain.response.code.ResultCode.CREATE_REVIEW_SUCCESS;
+import static techeer.restaurant.global.domain.response.code.ResultCode.*;
 
 @RequestMapping("/api/v1/review")
 @RestController
@@ -26,6 +26,12 @@ public class ReviewController {
     ) {
         ReviewInfo reviewInfo = reviewService.createReview(request);
         return ResponseEntity.ok(ResultResponse.of(CREATE_REVIEW_SUCCESS, reviewInfo));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResultResponse> deleteRestaurant(@PathVariable Long id) {
+        reviewService.deleteReview(id);
+        return ResponseEntity.ok(ResultResponse.of(DELETE_REVIEW_SUCCESS, ""));
     }
 
 

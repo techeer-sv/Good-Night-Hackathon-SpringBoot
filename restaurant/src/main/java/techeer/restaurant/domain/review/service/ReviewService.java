@@ -44,4 +44,8 @@ public class ReviewService {
                 .restaurant(review.getRestaurant().getName())
                 .build();
     }
+
+    public void deleteReview(Long id) {
+        reviewRepository.deleteById(id);
+    }
 }
