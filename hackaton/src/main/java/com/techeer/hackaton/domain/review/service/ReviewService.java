@@ -51,6 +51,14 @@ public class ReviewService {
         return mapReviewEntityToReviewInfo(savedReview);
     }
 
+    @Transactional
+    public void deleteReview(Long id) {
+        Review foundReview = reviewRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        reviewRepository.delete(foundReview);
+    }
+
     public Review mapReviewCreateRequestToReviewEntity(ReviewCreateRequest reviewCreateRequest, Restaurant restaurant) {
         return Review.builder()
                 .title(reviewCreateRequest.getTitle())

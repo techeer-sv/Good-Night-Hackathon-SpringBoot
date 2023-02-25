@@ -60,6 +60,6 @@ public class RestaurantController {
     @DeleteMapping("/restaurants/{id}")
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
-        return ResponseEntity.ok("삭제되었습니다.");
+        return ResponseEntity.ok("레스토랑이 삭제되었습니다.");
     }
 }
