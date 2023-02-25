@@ -16,10 +16,10 @@ public class Review extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REVIEW_ID")
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id" , nullable = false)
     private Restaurant restaurant;
     // 제목
     @Column(name = "title",nullable = false, length = 100)
@@ -31,7 +31,8 @@ public class Review extends BaseTimeEntity {
     private String content;
 
     @Builder
-    public Review (String title, String content) {
+    public Review (Restaurant restaurant, String title, String content) {
+        this.restaurant = restaurant;
         this.title = title;
         this.content = content;
     }
