@@ -1,7 +1,7 @@
 db.type: mysql
 db.host: localhost
-db.port: 3306
-db.database:
+db.port: 33080
+db.database: good-night-dev-db
 db.timezone: Asia/Seoul
 
 
@@ -12,6 +12,8 @@ spring:
   application:
     name: api
     debug: true
+  jpa:
+    generate-ddl: true
 
 spring.datasource:
   username: user
@@ -24,7 +26,7 @@ spring.jpa:
   show-sql: false
   hibernate:
     dialect: org.hibernate.dialect.MySQL57InnoDBDialect
-    ddl-auto: create
+    ddl-auto: update
 
 
 server:
