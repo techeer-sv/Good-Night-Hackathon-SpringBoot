@@ -69,8 +69,8 @@
 
 # 기여해주신 분
 
-- 김기현 ✨
-- 김영준 ✨
-- 정길연 ✨
-- 최세연 ✨
-- 최우석 ✨
+- [김기현](https://github.com/kim1387) ✨
+- [김영준](https://github.com/0BVer) ✨
+- [정길연](https://github.com/gilyeon00) ✨
+- [최세연](https://github.com/barabobBOB) ✨
+- [최우석](https://github.com/Sith-call) ✨
