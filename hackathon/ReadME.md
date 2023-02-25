@@ -6,5 +6,8 @@
   - global엔 BaseEntity, SwaggerConfig 생성
 
 ## 기능 요구 사항
-- [ ] BaseEntity 세팅
-- [ ] Restaurant, Review table 생성
+- [x] BaseEntity 세팅
+  - 모든 Entity에 공통적으로 들어가는 속성 - 생성일, 수정일
+- [x] Restaurant, Review entity 설계
+  - RestaurantCategory은 enum으로 생성
+  - 1:N 관계로 join
