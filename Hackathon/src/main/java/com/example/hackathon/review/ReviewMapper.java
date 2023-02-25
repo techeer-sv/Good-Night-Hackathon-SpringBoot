@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class ReviewMapper {
     public Review toEntity (ReviewCreateDTO request) {
         return Review.builder()
+                .restaurant(request.getRestaurant())
                 .title(request.getTitle())
                 .content(request.getContent())
                 .build();
