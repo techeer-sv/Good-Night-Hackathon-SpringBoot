@@ -29,7 +29,7 @@ public class ReviewController {
     @Resource(name = "reviewService")
     private final ReviewService reviewService;
 
-    @Operation(operationId = "getReviews", description = "리뷰 목록 조회")
+    @Operation(summary = "getReviews", description = "리뷰 목록 조회")
     @GetMapping()
     public ResponseEntity<Page<ReviewDTO>> getReviews(
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable,
@@ -39,19 +39,19 @@ public class ReviewController {
     }
 
 
-    @Operation(operationId = "createReview", description = "리뷰 생성")
+    @Operation(summary = "createReview", description = "리뷰 생성")
     @PostMapping()
     public ResponseEntity<ReviewDTO> create(@RequestBody final ReviewReq reviewReq) {
         return new ResponseEntity<>(reviewService.create(reviewReq), HttpStatus.CREATED);
     }
 
-    @Operation(operationId = "getReview", description = "리뷰 조회")
+    @Operation(summary = "getReviewById", description = "리뷰 조회")
     @GetMapping("/{id}")
     public ResponseEntity<ReviewDTO> getReview(@PathVariable long id) {
         return new ResponseEntity<>(reviewService.findById(id), HttpStatus.OK);
     }
 
-    @Operation(operationId = "patchReview", description = "리뷰 수정")
+    @Operation(summary = "patchReviewById", description = "리뷰 수정")
     @PatchMapping("/{id}")
     public ResponseEntity<ReviewDTO> patchReview(
             @PathVariable long id,
@@ -59,7 +59,7 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.patchById(id, patchReviewReq), HttpStatus.OK);
     }
 
-    @Operation(operationId = "deleteReview", description = "리뷰 삭제")
+    @Operation(summary = "deleteReviewById", description = "리뷰 삭제")
     @DeleteMapping("/{id}")
     public void deleteReview(@PathVariable long id) {
         reviewService.deleteById(id);
