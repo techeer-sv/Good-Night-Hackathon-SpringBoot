@@ -1,20 +1,20 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/restaurant
+    username: root
+    password: qorgksruf123
+
   jpa:
-    database: "mysql"
-    show-sql: "true"
     hibernate:
-      ddl-auto: "update"
+      ddl-auto : create #update
     properties:
       hibernate:
         format_sql: true
-    generate-ddl: true
+        use_sql_comments: true
+    show_sql: true
 
-  datasource:
-    driver-class-name: "com.mysql.cj.jdbc.Driver"
-    url: "jdbc:mysql://localhost:3306/test_db?useSSL=false&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&autoReconnect=true&createDatabaseIfNotExist=true"
-    username: "root"
-    password: "0000"
-
-  flyway:
-    enabled: false
-    baseline-on-migrate: true
+logging:
+  level:
+    org:
+      hibernate: info
