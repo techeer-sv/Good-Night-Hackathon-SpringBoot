@@ -28,7 +28,7 @@ public class RestaurantController {
   @Resource(name = "restaurantService")
   private final RestaurantService restaurantService;
 
-  @Operation(summary = "createRestaurant", description = "레스토랑 생성")
+  @Operation(summary = "createRestaurant", description = "레스토랑 등록")
   @ApiResponses({
           @ApiResponse(responseCode = "201", description = "CREATED",
                   content = @Content(schema = @Schema(implementation = RestaurantDTO.class)))
@@ -38,5 +38,16 @@ public class RestaurantController {
           @RequestBody final CreateRestaurantReq createRestaurantReq
   ) {
     return new ResponseEntity<>(restaurantService.create(createRestaurantReq), HttpStatus.CREATED);
+  }
+
+  @Operation(summary = "getRestaurantById", description = "레스토랑 조회")
+  @ApiResponses({
+          @ApiResponse(responseCode = "200", description = "OK",
+                  content = @Content(schema = @Schema(implementation = RestaurantDTO.class))),
+          @ApiResponse(responseCode = "-200", description = "RESTAURANT_ID_NOT_FOUND"),
+  })
+  @GetMapping("/{id}")
+  public ResponseEntity<RestaurantDTO> getRestaurantById(@PathVariable final long id) {
+    return new ResponseEntity<>(restaurantService.findById(id), HttpStatus.OK);
   }
 }
