@@ -1,6 +1,9 @@
 package techeer.restaurant.domain.review.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.global.domain.BaseEntity;
 
@@ -10,11 +13,13 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "review")
 public class Review extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id", nullable = false)
     private Long id;
 
@@ -27,5 +32,13 @@ public class Review extends BaseEntity {
 
     @Column(name = "content", nullable = false)
     private String content;
+
+    @Builder
+    public Review(String title, String content, Restaurant restaurant) {
+        this.title = title;
+        this.content = content;
+        this.restaurant = restaurant;
+        this.isActive = true;
+    }
 
 }

@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name = "restaurant")
 public class Restaurant extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "restaurant_id", nullable = false)
     private Long id;
 
