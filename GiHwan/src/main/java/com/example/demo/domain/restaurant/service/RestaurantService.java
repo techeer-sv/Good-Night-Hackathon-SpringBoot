@@ -36,11 +36,13 @@ public class RestaurantService {
         return mapRestaurantEntityToRestaurantInfo(savedRestaurant);
     }
 
-//    @Transactional(readOnly = true)
-//    public RestaurantInfo getRestaurantDetail(Long id){
-//        Restaurant restaurant = restaurantRepository.findById(id)
-//                .orElseThrow(EntityNotFoundException::new);
-//    }
+    @Transactional(readOnly = true)
+    public RestaurantInfo getRestaurantDetail(Long id){
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        return mapRestaurantEntityToRestaurantInfo(restaurant);
+    }
 
 
 

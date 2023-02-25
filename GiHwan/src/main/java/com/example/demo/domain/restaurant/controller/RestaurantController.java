@@ -30,4 +30,11 @@ public class RestaurantController {
         RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
     }
+
+    @GetMapping("/restaurants/{id}")
+    public ResponseEntity<RestaurantInfo> getRestaurant(@PathVariable Long id){
+        RestaurantInfo restaurantInfo = restaurantService.getRestaurantDetail(id);
+
+        return ResponseEntity.ok(restaurantInfo);
+    }
 }
