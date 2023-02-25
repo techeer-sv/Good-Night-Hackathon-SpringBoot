@@ -6,6 +6,7 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRespons
 import com.techeergroup2.goodnight.global.domain.AuditableEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,6 +27,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,8 +35,6 @@ import java.time.LocalDateTime;
 @Table(name = "restaurant")
 @SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-@FilterDef(name = "deletedRestaurantFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
-@Filter(name = "deletedRestaurantFilter", condition = "deleted = :isDeleted")
 public class Restaurant {
 
     @Id
@@ -79,4 +79,5 @@ public class Restaurant {
     public void updateCategory(String category) {
         this.category = category;
     }
+
 }

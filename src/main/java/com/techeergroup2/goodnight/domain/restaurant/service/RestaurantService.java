@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class RestaurantService {
@@ -36,5 +38,9 @@ public class RestaurantService {
     public void deleteRestaurant(Long id) {
         restaurantRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No restaurant with id " + id));
         restaurantRepository.deleteById(id);
+    }
+
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantRepository.findAll();
     }
 }

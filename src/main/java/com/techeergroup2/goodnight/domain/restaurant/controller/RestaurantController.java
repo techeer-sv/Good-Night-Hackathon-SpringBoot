@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RequestMapping("/restaurants")
 @RestController
@@ -23,10 +25,6 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping
-    public String getRestaurants() {
-        return "hello";
-    }
 //CREATE
     @PostMapping
     public RestaurantDtoResponse createRestaurant(@RequestBody CreatedRestaurantRequest createdRestaurantRequest) {
@@ -48,5 +46,11 @@ public class RestaurantController {
     @DeleteMapping("/{id}")
     public void deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
+    }
+
+//    READ ALL RESTAURANTS
+    @GetMapping
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantService.getAllRestaurants();
     }
 }
