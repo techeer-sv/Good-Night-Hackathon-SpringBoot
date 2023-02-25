@@ -14,6 +14,7 @@ import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -22,13 +23,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "restaurant")
 @SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @FilterDef(name = "deletedRestaurantFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean"))
 @Filter(name = "deletedRestaurantFilter", condition = "deleted = :isDeleted")
 public class Restaurant {
@@ -41,7 +45,7 @@ public class Restaurant {
 
     private String category;
 
-    private boolean deleted = Boolean.FALSE;
+    private Boolean deleted = Boolean.FALSE;
 
     public Restaurant(String name, String category) {
         this.name = name;

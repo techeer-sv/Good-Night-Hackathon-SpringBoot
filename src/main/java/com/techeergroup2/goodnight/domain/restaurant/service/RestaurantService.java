@@ -34,6 +34,7 @@ public class RestaurantService {
     }
 
     public void deleteRestaurant(Long id) {
+        restaurantRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No restaurant with id " + id));
         restaurantRepository.deleteById(id);
     }
 }
