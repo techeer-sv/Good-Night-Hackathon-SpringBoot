@@ -22,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Tag(name = "restaurants", description = "레스토랑 API")
 @Slf4j
@@ -37,9 +38,10 @@ public class RestaurantController {
   @GetMapping()
   public ResponseEntity<Page<RestaurantDTO>> get(
           @PageableDefault(sort ="id", direction = Sort.Direction.DESC)
-          Pageable pageable
+          Pageable pageable,
+          @RequestParam(value = "categoryName", required = false) Optional<String> categoryName
   ) {
-    return new ResponseEntity<>(restaurantService.getRestaurants(pageable), HttpStatus.OK);
+    return new ResponseEntity<>(restaurantService.getRestaurants(pageable, categoryName), HttpStatus.OK);
   }
 
 

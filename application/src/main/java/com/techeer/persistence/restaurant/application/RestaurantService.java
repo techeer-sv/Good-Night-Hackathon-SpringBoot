@@ -11,13 +11,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class RestaurantService {
   private final RestaurantRepository restaurantRepository;
 
-  public Page<RestaurantDTO> getRestaurants(Pageable pageable) {
-    Page<Restaurant> restaurants = restaurantRepository.findAll(pageable);
+  public Page<RestaurantDTO> getRestaurants(Pageable pageable, Optional<String> categoryName) {
+    Page<Restaurant> restaurants = restaurantRepository.findAllWithCategoryName(pageable, categoryName);
 
     return restaurants.map(RestaurantDTO::new);
   }
