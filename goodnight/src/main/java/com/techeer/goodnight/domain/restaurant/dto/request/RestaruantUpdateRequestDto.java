@@ -1,21 +1,12 @@
 package com.techeer.goodnight.domain.restaurant.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
-
-import java.util.UUID;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RestaruantUpdateRequestDto {
-    @NonNull
-    private UUID id;
+    private String categoryName;
 
-    @NonNull
-    private String name;
-
-    private String content;
 }

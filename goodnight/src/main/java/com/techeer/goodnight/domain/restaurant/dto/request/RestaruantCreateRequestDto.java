@@ -1,17 +1,22 @@
 package com.techeer.goodnight.domain.restaurant.dto.request;
+import com.techeer.goodnight.domain.restaurant.entity.Restaurant;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RestaruantCreateRequestDto {
-    @NonNull
+
     private String name;
 
-    @NonNull
-    private String content;
+    private String categoryName;
+
+    public Restaurant toEntity() {
+        return Restaurant.builder()
+                .name(name)
+                .categoryName(categoryName)
+                .build();
+    }
 }

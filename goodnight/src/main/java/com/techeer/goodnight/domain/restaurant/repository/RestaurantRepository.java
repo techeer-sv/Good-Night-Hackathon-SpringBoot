@@ -1,10 +1,17 @@
 package com.techeer.goodnight.domain.restaurant.repository;
-
-import com.techeer.goodnight.domain.restaurant.entity.Restaruant;
+import com.techeer.goodnight.domain.restaurant.entity.Restaurant;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-import java.util.UUID;
+@Repository
+public interface RestaurantRepository extends PagingAndSortingRepository<Restaurant, Long>,
+        JpaRepository<Restaurant, Long> {
 
-public interface RestaurantRepository extends  JpaRepository<Restaruant, UUID>  {
-    boolean existsById(UUID id);
+    @Query("select r from Restaurant r where r.categoryName = :categoryName and r.isDeleted is false")
+    Page<Restaurant> findAllWithCategoryName(Pageable pageable, Optional<String> categoryName);
 }
