@@ -14,15 +14,15 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
-    @CreatedDate protected LocalDateTime createdDate;
+    @CreatedDate protected LocalDateTime createdAt;
 
-    @LastModifiedDate private LocalDateTime updatedDate;
+    @LastModifiedDate private LocalDateTime updatedAt;
 
     @Getter
-    @Column(name = "is_activated", nullable = false)
-    protected boolean isActivated;
+    @Column(name = "is_active", nullable = false)
+    protected boolean isActive;
 
     public void activeOff() {
-        this.isActivated = false;
+        this.isActive = false;
     }
 }
