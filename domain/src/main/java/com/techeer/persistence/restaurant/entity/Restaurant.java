@@ -23,8 +23,8 @@ public class Restaurant extends BaseEntity {
   @Column
   private String name;
 
-  @Column(columnDefinition = "TEXT")
-  private String description;
+  @Column
+  private String categoryName;
 
   @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
   @NonNull
@@ -32,8 +32,8 @@ public class Restaurant extends BaseEntity {
 
 
   @Builder
-  public Restaurant(String name,  String description) {
+  public Restaurant(String name, String categoryName) {
     this.name = name;
-    this.description = description;
+    this.categoryName = categoryName;
   }
 }
