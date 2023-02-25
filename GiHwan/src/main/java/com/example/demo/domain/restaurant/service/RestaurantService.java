@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.domain.restaurant.entity.Restaurant;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -42,6 +44,13 @@ public class RestaurantService {
                 .orElseThrow(EntityNotFoundException::new);
 
         return mapRestaurantEntityToRestaurantInfo(restaurant);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantInfo> getRestaurantList(){
+        return restaurantRepository.findAll().stream()
+                .map(this::mapRestaurantEntityToRestaurantInfo)
+                .collect(Collectors.toList());
     }
 
 

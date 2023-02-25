@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
@@ -36,5 +38,11 @@ public class RestaurantController {
         RestaurantInfo restaurantInfo = restaurantService.getRestaurantDetail(id);
 
         return ResponseEntity.ok(restaurantInfo);
+    }
+
+    @GetMapping("/restaurants/list")
+    public ResponseEntity<List<RestaurantInfo>> getRestaurantsList(){
+        List<RestaurantInfo> restaurantInfoList = restaurantService.getRestaurantList();
+        return ResponseEntity.ok(restaurantInfoList);
     }
 }
