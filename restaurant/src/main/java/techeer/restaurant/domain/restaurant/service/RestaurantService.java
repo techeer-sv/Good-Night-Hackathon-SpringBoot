@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import techeer.restaurant.domain.restaurant.dto.RestaurantCreateRequest;
 import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.dto.RestaurantInfoList;
+import techeer.restaurant.domain.restaurant.entity.Category;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.domain.restaurant.repository.RestaurantRepository;
 
@@ -17,8 +18,18 @@ public class RestaurantService {
 
 
     private final RestaurantRepository restaurantRepository;
-    public RestaurantInfoList getAllRestaurants() {
+    public RestaurantInfoList findAllRestaurants() {
         List<Restaurant> restaurants = restaurantRepository.findAllRestaurant();
+        return getRestaurantInfoList(restaurants);
+    }
+
+
+    public RestaurantInfoList findAllRestaurantsByCategory(Category category) {
+        List<Restaurant> restaurants = restaurantRepository.findAllRestaurantByCategory(category);
+        return getRestaurantInfoList(restaurants);
+    }
+
+    private RestaurantInfoList getRestaurantInfoList(List<Restaurant> restaurants) {
         List<RestaurantInfo> restaurantInfos = new ArrayList<>();
         for(int i = 0; i < restaurants.size(); i++) {
             restaurantInfos.add(RestaurantInfo.builder()
@@ -31,7 +42,6 @@ public class RestaurantService {
 
         return new RestaurantInfoList(restaurantInfos);
     }
-
 
     public RestaurantInfo createRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
         Restaurant newRestaurant = convertRestaurantFromRequest(restaurantCreateRequest);
@@ -74,4 +84,6 @@ public class RestaurantService {
     private Restaurant findRestaurantById(Long id) {
         return restaurantRepository.findRestaurantById(id);
     }
+
+
 }

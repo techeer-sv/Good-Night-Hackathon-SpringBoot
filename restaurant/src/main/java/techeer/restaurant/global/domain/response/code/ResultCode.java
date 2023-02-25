@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum ResultCode {
 
     RESTAURANT_CREATE_SUCCESS("R001", "레스토랑 생성 성공"),
-    GET_ALL_RESTAURANT_SUCCESS("R003", "레스토랑 전체 조회 성공"),
+    GET_ALL_RESTAURANT_SUCCESS("R003-1", "레스토랑 전체 조회 성공"),
+
+    GET_CATEGORY_RESTAURANT_SUCCESS("R003-2", "레스토랑 카테고리 별 조회 성공"),
     GET_ONE_RESTAURANT_SUCCESS("R004", "레스토랑 단일 조회 성공"),
     DELETE_RESTAURANT_SUCCESS("R005", "레스토랑 삭제 성공"),
     ;
