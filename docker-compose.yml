@@ -19,6 +19,6 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: good-night-dev-db
     ports:
-      - '3306:3306'
+      - '33080:3306'
     volumes:
       - good-night-dev_db_vol:/var/lib/mysql
