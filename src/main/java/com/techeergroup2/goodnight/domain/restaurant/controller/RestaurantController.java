@@ -5,6 +5,7 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.CreatedRestaurantReques
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantDtoResponse;
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateResponse;
+import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateRequest;
 import com.techeergroup2.goodnight.domain.restaurant.service.RestaurantService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @AllArgsConstructor
-@RequestMapping("/restaurants")
+@RequestMapping("/api/v1/restaurants")
 @RestController
 public class RestaurantController {
 

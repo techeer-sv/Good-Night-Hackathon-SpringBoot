@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
 @Table(name = "restaurant")
 @SQLDelete(sql = "UPDATE restaurant SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-public class Restaurant {
+public class Restaurant extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,11 +52,11 @@ public class Restaurant {
         this.category = category;
     }
 
-    @CreationTimestamp
-    private LocalDateTime createDateTime;
-
-    @UpdateTimestamp
-    private LocalDateTime updateDateTime;
+//    @CreationTimestamp
+//    private LocalDateTime createDateTime;
+//
+//    @UpdateTimestamp
+//    private LocalDateTime updateDateTime;
 
 
     @Builder
@@ -64,7 +64,7 @@ public class Restaurant {
         return RestaurantDtoResponse.builder()
                 .name(name)
                 .category(category)
-                .createDateTime(createDateTime)
+                .createDateTime(super.createdAt)
                 .build();
     }
 
