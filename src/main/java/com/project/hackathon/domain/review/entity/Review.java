@@ -1,13 +1,13 @@
 package com.project.hackathon.domain.review.entity;
 
-import com.project.hackathon.domain.restaurant.entity.RestaurantCategory;
+import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import static javax.persistence.FetchType.LAZY;
 
 @Getter
 @Entity
@@ -17,7 +17,8 @@ import java.time.LocalDateTime;
 public class Review{
 
     @Id // 이 멤버변수는 primary key라는 것을 나타내며 없으면 에러남
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // id를 autoincrement로 설정
+    @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
     // 리뷰 제목
@@ -30,8 +31,9 @@ public class Review{
     private String content;
 
     // 특정 레스토랑명
-    @Column(name = "restaurant", nullable = false)
-    private String restaurant;
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "restaurant", nullable = false)
+    private Restaurant restaurant;
 
     @Column(name = "is_removed", nullable = false)
     private boolean isRemoved;
@@ -40,7 +42,7 @@ public class Review{
     public Review(
             String title,
             String content,
-            String restaurant) {
+            Restaurant restaurant) {
         this.title = title;
         this.content = content;
         this.restaurant = restaurant;

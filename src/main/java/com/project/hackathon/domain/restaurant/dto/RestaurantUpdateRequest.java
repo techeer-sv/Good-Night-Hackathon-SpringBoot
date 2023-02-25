@@ -1,6 +1,6 @@
 package com.project.hackathon.domain.restaurant.dto;
 
-import com.project.hackathon.domain.restaurant.entity.RestaurantCategory;
+import com.project.hackathon.domain.restaurant.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class RestaurantUpdateRequest {
     private final String title;
 
     @NotNull(message = "레스토랑 카테고리는 공백이 올 수 없습니다.")
-    private final RestaurantCategory restaurantCategory;
+    private final Category restaurantCategory;
 
     private final LocalDateTime createdAt;
 }
