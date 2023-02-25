@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
@@ -45,4 +47,35 @@ public class ReviewController {
         reviewService.deleteReview(id);
         return ResponseEntity.ok("리뷰가 삭제되었습니다.");
     }
+
+    @GetMapping("/reviews/list")
+    public ResponseEntity<List<ReviewInfo>> getReviewListByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<ReviewInfo> reviewInfoList = reviewService.getReviewListByPagination(page, size);
+        return ResponseEntity.ok(reviewInfoList);
+    }
+
+    @GetMapping("/reviews/search/title")
+    public ResponseEntity<List<ReviewInfo>> getReviewListWithTitleByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "") String keyword
+    ) {
+        List<ReviewInfo> reviewInfoList =
+                reviewService.getReviewListWithTitleByPagination(page, size, keyword);
+        return ResponseEntity.ok(reviewInfoList);
+    }
+
+    @GetMapping("/reviews/search/content")
+    public ResponseEntity<List<ReviewInfo>> getReviewListWithContentByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "") String keyword
+    ) {
+        List<ReviewInfo> reviewInfoList =
+                reviewService.getReviewListWithContentByPagination(page, size, keyword);
+        return ResponseEntity.ok(reviewInfoList);
+    }
+
 }
