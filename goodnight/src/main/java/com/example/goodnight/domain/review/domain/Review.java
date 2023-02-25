@@ -1,0 +1,34 @@
+package com.example.goodnight.domain.review.domain;
+
+import com.example.goodnight.domain.restaurant.domain.Restaurant;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@NoArgsConstructor
+@Table(name = "review")
+public class Review {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "content")
+    private String content;
+
+    @ManyToOne(targetEntity = Restaurant.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Long restaurantId;
+
+    @Builder
+    public Review(String title, String content, Long restaurantId) {
+        this.title = title;
+        this.content = content;
+        this.restaurantId = restaurantId;
+    }
+}
