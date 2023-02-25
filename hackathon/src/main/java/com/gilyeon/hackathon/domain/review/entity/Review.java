@@ -1,6 +1,9 @@
 package com.gilyeon.hackathon.domain.review.entity;
 
+import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
+import com.gilyeon.hackathon.domain.review.dto.ReviewUpdateRequest;
+import com.gilyeon.hackathon.global.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "REVIEW")
-public class Review {
+public class Review extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +29,21 @@ public class Review {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+//    @ManyToOne
+//    @JoinColumn(name = "restaurant_id")
+//    private Restaurant restaurant;
 
     @Builder
     public Review(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void update(ReviewUpdateRequest reviewUpdateRequest){
+        this.content = reviewUpdateRequest.getContent();
+    }
+
+    public void deleteReview() {
+        this.delete();
     }
 }

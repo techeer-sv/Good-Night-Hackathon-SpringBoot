@@ -3,7 +3,6 @@ package com.gilyeon.hackathon.domain.restaurant;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
-import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
