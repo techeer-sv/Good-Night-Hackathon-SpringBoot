@@ -2,6 +2,7 @@ package com.techeergroup2.goodnight.domain.restaurant.domain;
 
 import com.sun.istack.NotNull;
 import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantDtoResponse;
+import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateResponse;
 import com.techeergroup2.goodnight.global.domain.AuditableEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,5 +53,17 @@ public class Restaurant {
                 .category(category)
                 .createDateTime(createDateTime)
                 .build();
+    }
+
+    @Builder
+    public RestaurantUpdateResponse toUpdateDto() {
+        return RestaurantUpdateResponse.builder()
+                .name(name)
+                .category(category)
+                .build();
+    }
+
+    public void updateCategory(String category) {
+        this.category = category;
     }
 }
