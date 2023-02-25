@@ -1,7 +1,7 @@
-package com.techeer.hackathon.domain.restaurant.entity;
+package com.techeer.hackaton.domain.restaurant.entity;
 
-import com.techeer.hackathon.domain.review.entity.Review;
-import com.techeer.hackathon.global.BaseEntity;
+import com.techeer.hackaton.domain.review.entity.Review;
+import com.techeer.hackaton.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,9 +28,9 @@ public class Restaurant extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RestaurantCategory category;
 
-    @OneToMany(mappedBy = "restaurant")
-    @Builder.Default
-    private List<Review> reviewList = new ArrayList<>();
+//    @OneToMany(mappedBy = "restaurant")
+//    @Builder.Default
+//    private List<Review> reviewList = new ArrayList<>();
 
     @Builder
     public Restaurant(String name, RestaurantCategory category) {

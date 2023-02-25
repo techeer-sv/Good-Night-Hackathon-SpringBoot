@@ -1,4 +1,4 @@
-package com.techeer.hackathon.global;
+package com.techeer.hackaton.global;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

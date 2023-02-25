@@ -1,4 +1,4 @@
-package com.techeer.hackathon.domain.restaurant.entity;
+package com.techeer.hackaton.domain.restaurant.entity;
 
 public enum RestaurantCategory {
     한식,

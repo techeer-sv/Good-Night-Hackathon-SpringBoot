@@ -1,6 +1,6 @@
-package com.techeer.hackathon.domain.restaurant.dto;
+package com.techeer.hackaton.domain.restaurant.dto;
 
-import com.techeer.hackathon.domain.restaurant.entity.RestaurantCategory;
+import com.techeer.hackaton.domain.restaurant.entity.RestaurantCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
