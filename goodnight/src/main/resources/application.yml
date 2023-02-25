@@ -6,8 +6,8 @@ spring.datasource:
 
 db.type: mysql
 db.host: localhost
-db.port: 3306
-db.database:
+db.port: 33080
+db.database: good-night-dev-db
 db.timezone: Asia/Seoul
 
 spring.jpa:
@@ -15,7 +15,7 @@ spring.jpa:
   show-sql: false
   hibernate:
     dialect: org.hibernate.dialect.MySQL57InnoDBDialect
-    ddl-auto: create #??? update? ???, create? ?? ?? ???? ???
+    ddl-auto: create # must change to update, create make table all clear
 
 server:
   port: 8000
