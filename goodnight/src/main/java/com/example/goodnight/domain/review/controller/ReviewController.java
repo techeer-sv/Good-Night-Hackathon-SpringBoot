@@ -1,6 +1,7 @@
 package com.example.goodnight.domain.review.controller;
 
 import com.example.goodnight.domain.review.dto.request.ReviewDto;
+import com.example.goodnight.domain.review.dto.request.ReviewReqDto;
 import com.example.goodnight.domain.review.dto.response.ReviewResDto;
 import com.example.goodnight.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,10 @@ public class ReviewController {
         reviewService.addReview(dto);
     }
 
-
+    @PutMapping("/api/v1/reviews")
+    public void updateReview(@RequestBody ReviewReqDto dto) {
+        reviewService.updateReview(dto.getId(), dto.getTitle(), dto.getContent());
+    }
     @DeleteMapping("/api/v1/reviews/{id}")
     public void deleteReview(@PathVariable Long id) {
         reviewService.removeReview(id);

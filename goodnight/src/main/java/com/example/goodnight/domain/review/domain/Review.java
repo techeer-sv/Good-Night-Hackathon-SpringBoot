@@ -25,6 +25,10 @@ public class Review {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
     @Builder
     public Review(String title, String content, Restaurant restaurant) {
         this.title = title;

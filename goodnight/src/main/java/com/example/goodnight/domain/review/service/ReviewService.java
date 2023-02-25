@@ -43,4 +43,9 @@ public class ReviewService {
         Review review = reviewRepository.findById(id).orElseThrow(null);
         reviewRepository.delete(review);
     }
+
+    public void updateReview(Long id, String title, String content) {
+        Review review = reviewRepository.findById(id).orElseThrow(null);
+        review.update(title,content);
+    }
 }
