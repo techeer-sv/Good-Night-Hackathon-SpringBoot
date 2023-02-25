@@ -1,0 +1,31 @@
+db.type: mysql
+db.host: localhost
+db.port: 3306
+db.database:
+db.timezone: Asia/Seoul
+
+
+spring:
+  datasource:
+    tomcat:
+      jmx-enabled: true
+  application:
+    name: api
+    debug: true
+
+spring.datasource:
+  username: user
+  password: password
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}?serverTimezone=${db.timezone}&characterEncoding=UTF-8
+
+spring.jpa:
+  database: mysql
+  show-sql: false
+  hibernate:
+    dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+    ddl-auto: create
+
+
+server:
+  port: 8000
