@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "restaurant")
 public class Restaurant{
-
     @Id // 이 멤버변수는 primary key라는 것을 나타내며 없으면 에러남
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id를 autoincrement로 설정
     private Long id;
