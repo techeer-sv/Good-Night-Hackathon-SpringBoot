@@ -1,5 +1,6 @@
 package com.techeer.hackathon.domain.restaurant.controller;
 
+import com.techeer.hackathon.domain.restaurant.dto.RestaurantChange;
 import com.techeer.hackathon.domain.restaurant.dto.RestaurantCreate;
 import com.techeer.hackathon.domain.restaurant.service.RestaurantService;
 import com.techeer.hackathon.global.result.ResultCode;
@@ -7,10 +8,7 @@ import com.techeer.hackathon.global.result.ResultResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/restaurant")
@@ -24,5 +22,12 @@ public class RestaurantController {
             @RequestBody RestaurantCreate request) {
         restaurantService.createRestaurant(request);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.RESTAURANT_CREATE_SUCCESS));
+    }
+
+    @PatchMapping
+    public ResponseEntity<ResultResponse> changeRestaurantCategory(
+            @RequestBody RestaurantChange request) {
+        restaurantService.changeCategory(request);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.CHANGE_CATEGORY_SUCCESS));
     }
 }
