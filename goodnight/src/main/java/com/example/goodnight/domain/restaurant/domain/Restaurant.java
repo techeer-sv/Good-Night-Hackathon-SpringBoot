@@ -38,7 +38,7 @@ public class Restaurant extends BaseEntity {
         this.reviews = reviews;
         this.isActivated = true;
     }
-
+    public void update(String category) {this.category = category;}
     public void delete() {
         this.isActivated = false;
     }

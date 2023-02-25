@@ -2,6 +2,7 @@ package com.example.goodnight.domain.restaurant.controller;
 
 import com.example.goodnight.domain.restaurant.domain.Restaurant;
 import com.example.goodnight.domain.restaurant.dto.request.RestaurantDto;
+import com.example.goodnight.domain.restaurant.dto.request.RestaurantReqDto;
 import com.example.goodnight.domain.restaurant.dto.response.RestaurantResDto;
 import com.example.goodnight.domain.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -24,18 +25,23 @@ public class RestaurantController {
         return restaurantService.findAll();
     }
 
-    @GetMapping("/api/v1/restaurants/category")
+    @GetMapping("/api/v1/restaurants/categorys")
     public List<Restaurant> getByCategoryRestaurantV1(@RequestParam(value = "category") String category) {
         return restaurantService.findAllByCategory(category);
     }
 
     @PostMapping("/api/v1/restaurants")
-    public void 료(@RequestBody RestaurantDto dto) {
+    public void createRestaurant(@RequestBody RestaurantDto dto) {
         restaurantService.registration(dto);
+    }
+
+    @PutMapping("/api/v1/restaurants")
+    public void updateRestaurant(@RequestBody RestaurantReqDto dto) {
+        restaurantService.update(dto.getId(),dto.getCategory());
     }
 
     @DeleteMapping("/api/v1/restaurants/{id}")
     public void deleteRestaurantV1(@PathVariable Long id) {
-        restaurantService.delete(id);
+        restaurantService.remove(id);
     }
 }

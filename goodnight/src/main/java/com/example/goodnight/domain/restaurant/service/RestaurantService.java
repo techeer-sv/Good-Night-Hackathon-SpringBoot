@@ -47,9 +47,14 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public void delete(Long id) {
+    public void remove(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(null);
         restaurant.delete();
+    }
+
+    public void update(Long id, String category) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(null);
+        restaurant.update(category);
     }
 
 }
