@@ -24,32 +24,40 @@ public class RestaurantService {
     }
 
 //    @Transactional(readOnly = true)
-//    public RestaurantInfo getRestaurants(Long id) {
-//        Restaurant foundRestaurant = restaurantRepository.findById(id)
-//                .orElseThrow(EntityNotFoundException::new);
+//    public RestaurantInfo getRestaurants() {
+//        Restaurant foundRestaurant = restaurantRepository.findAll();
 //
-//        return mapRestaurantEntityToRestaurantInfo(foundRestaurant);
+//        return
 //    }
 
     @Transactional(readOnly = true)
     public RestaurantInfo getRestaurantDetail(Long id) {
-        Restaurant foundRestaurant = restaurantRepository.findById(id)
+        Restaurant findRestaurant = restaurantRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
-        return mapRestaurantEntityToRestaurantInfo(foundRestaurant);
+        return mapRestaurantEntityToRestaurantInfo(findRestaurant);
     }
 
     @Transactional
     public RestaurantInfo updateRestaurant(RestaurantUpdateRequest restaurantUpdateRequest) {
-        Restaurant foundRestaurant = restaurantRepository.findById(restaurantUpdateRequest.getId())
+        Restaurant findRestaurant = restaurantRepository.findById(restaurantUpdateRequest.getId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        foundRestaurant.update(restaurantUpdateRequest);
+        findRestaurant.update(restaurantUpdateRequest);
 
-        Restaurant savedRestaurant = restaurantRepository.save(foundRestaurant);
+        Restaurant savedRestaurant = restaurantRepository.save(findRestaurant);
 
         return mapRestaurantEntityToRestaurantInfo(savedRestaurant);
     }
+
+    @Transactional
+    public void deleteRestaurant(Long id) {
+        Restaurant findRestaurant = restaurantRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        findRestaurant.deleteRestaurant();
+        restaurantRepository.save(findRestaurant);
+    }
+
 
     public Restaurant mapRestaurantEntityCreateRequestToRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
         return Restaurant.builder()

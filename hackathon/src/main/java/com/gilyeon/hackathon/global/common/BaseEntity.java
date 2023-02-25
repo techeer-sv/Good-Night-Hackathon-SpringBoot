@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,6 +23,19 @@ public abstract class BaseEntity {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime modifiedAt;
+
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted;
+
+    @PrePersist
+    public void prePersist() {
+        this.isDeleted = this.isDeleted == null ? false : this.isDeleted;
+    }
+
+    protected void delete() {
+        this.isDeleted = true;
+    }
+
 }
 
 //@CreatedDate

@@ -35,9 +35,8 @@ public class RestaurantController {
     }
 
 //    @GetMapping("/restaurants")
-//    public ResponseEntity<RestaurantInfo> getRestaurants(@PathVariable Long id) {
-//        RestaurantInfo restaurantInfo = restaurantService.getRestaurants(id);
-//
+//    public ResponseEntity<RestaurantInfo> getRestaurants() {
+//        RestaurantInfo restaurantInfo = restaurantService.getRestaurants();
 //        return ResponseEntity.ok(restaurantInfo);
 //    }
 
@@ -45,5 +44,11 @@ public class RestaurantController {
     public ResponseEntity<RestaurantInfo> updateRestaurant(@RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
         RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
+    }
+
+    @DeleteMapping("restaurant/{id}")
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
+        restaurantService.deleteRestaurant(id);
+        return ResponseEntity.ok(id+"번 식당이 삭제되었습니다.");
     }
 }
