@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Builder
 @AllArgsConstructor
-public class updateRestaurantDTO {
+public class UpdateRestaurantDTO {
     @NotNull
     private final String category;
 }
