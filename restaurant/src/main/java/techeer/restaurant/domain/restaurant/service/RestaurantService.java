@@ -1,6 +1,7 @@
 package techeer.restaurant.domain.restaurant.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import techeer.restaurant.domain.restaurant.dto.RestaurantCreateRequest;
 import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
@@ -9,8 +10,11 @@ import techeer.restaurant.domain.restaurant.entity.Category;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.domain.restaurant.repository.RestaurantRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -86,4 +90,9 @@ public class RestaurantService {
     }
 
 
+    public void updateRestaurantInfo(Long id, Category category) {
+        Restaurant restaurant = restaurantRepository.findRestaurantById(id);
+        restaurant.updateCategory(category);
+        restaurantRepository.save(restaurant);
+    }
 }

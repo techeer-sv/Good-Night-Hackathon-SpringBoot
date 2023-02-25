@@ -57,6 +57,7 @@ public class Restaurant extends BaseEntity {
     public void deleteRestaurant() {
         this.activeOff();
     }
+    public void updateCategory(Category category){ this.category = category; }
 
 
 }

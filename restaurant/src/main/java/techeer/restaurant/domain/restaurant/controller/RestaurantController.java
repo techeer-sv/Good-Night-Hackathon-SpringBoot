@@ -14,6 +14,8 @@ import techeer.restaurant.global.domain.response.ResultResponse;
 import javax.validation.Valid;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static techeer.restaurant.global.domain.response.code.ResultCode.*;
 
@@ -28,7 +30,7 @@ public class RestaurantController {
     public ResponseEntity<ResultResponse> createRestaurant(
             @Valid @RequestBody RestaurantCreateRequest request) {
         RestaurantInfo restaurantInfo = restaurantService.createRestaurant(request);
-        return ResponseEntity.ok(ResultResponse.of(RESTAURANT_CREATE_SUCCESS, restaurantInfo));
+        return ResponseEntity.ok(ResultResponse.of(CREATE_RESTAURANT_SUCCESS, restaurantInfo));
     }
 
     @GetMapping
@@ -43,7 +45,6 @@ public class RestaurantController {
         return ResponseEntity.ok(ResultResponse.of(GET_CATEGORY_RESTAURANT_SUCCESS, restaurantInfoList));
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<ResultResponse> findRestaurantById(@PathVariable Long id) {
         RestaurantInfo restaurantInfo = restaurantService.findRestaurantInfoById(id);
@@ -55,4 +56,13 @@ public class RestaurantController {
         return ResponseEntity.ok(ResultResponse.of(DELETE_RESTAURANT_SUCCESS, ""));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<ResultResponse> updateRestaurantCategory(
+            @PathVariable Long id,
+            @RequestBody Map<String,String> request
+            ) {
+        String category = request.get("category");
+        restaurantService.updateRestaurantInfo(id, Category.valueOf(category));
+        return ResponseEntity.ok(ResultResponse.of(UPDATE_RESTAURANT_SUCCESS, ""));
+    }
 }
