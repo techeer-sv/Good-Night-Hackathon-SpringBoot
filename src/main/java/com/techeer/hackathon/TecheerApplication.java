@@ -1,4 +1,4 @@
-package com.example.techeer;
+package com.techeer.hackathon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

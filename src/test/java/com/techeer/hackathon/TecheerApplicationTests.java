@@ -1,4 +1,4 @@
-package com.example.techeer;
+package com.techeer.hackathon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
