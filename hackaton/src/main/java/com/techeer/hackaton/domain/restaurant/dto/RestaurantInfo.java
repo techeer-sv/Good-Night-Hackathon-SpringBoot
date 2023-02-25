@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 public class RestaurantInfo {
-    private String name;
-    private RestaurantCategory category;
+    private final String name;
+    private final RestaurantCategory category;
 
-    private LocalDateTime createdDate;
+    private final LocalDateTime createdDate;
 }

@@ -1,6 +1,5 @@
 package com.techeer.hackaton.domain.review.repository;
 
-import com.techeer.hackaton.domain.restaurant.entity.Restaurant;
 import com.techeer.hackaton.domain.review.entity.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
