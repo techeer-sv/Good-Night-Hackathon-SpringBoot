@@ -1,7 +1,9 @@
 package com.techeergroup2.goodnight.domain.review.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.techeergroup2.goodnight.domain.restaurant.domain.Restaurant;
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateResponse;
+import com.techeergroup2.goodnight.global.domain.AuditableEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +21,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Review {
+public class Review extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,7 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
+    @JsonBackReference
     private Restaurant restaurant;
 
 

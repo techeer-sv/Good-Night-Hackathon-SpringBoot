@@ -5,10 +5,14 @@ import com.techeergroup2.goodnight.domain.restaurant.repository.RestaurantReposi
 import com.techeergroup2.goodnight.domain.review.domain.Review;
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateRequest;
 import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateResponse;
-import com.techeergroup2.goodnight.domain.review.dto.ReviewGetResponse;
 import com.techeergroup2.goodnight.domain.review.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -49,5 +53,9 @@ public class ReviewService {
         reviewRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("No review is found. id=" + id));
         reviewRepository.deleteById(id);
+    }
+
+    public List<Review> getAllReviews(Pageable pageable) {
+        return reviewRepository.findAll(pageable).getContent();
     }
 }
