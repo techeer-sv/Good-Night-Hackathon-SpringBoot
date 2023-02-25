@@ -8,7 +8,13 @@ import com.techeer.persistence.review.dto.request.ReviewReq;
 import com.techeer.persistence.review.dto.response.ReviewDTO;
 import com.techeer.persistence.review.entity.Review;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +32,12 @@ public class ReviewService {
     reviewRepository.save(review);
 
     return new ReviewDTO(review, restaurant);
+  }
+
+  @Transactional(readOnly = true)
+  public Page<ReviewDTO> findAll(Pageable pageable, Optional<String> keyword) {
+    Page<Review> reviews = reviewRepository.findAllWithKeyword(pageable, keyword);
+
+    return reviews.map(review -> new ReviewDTO(review, review.getRestaurant()));
   }
 }

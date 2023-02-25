@@ -7,14 +7,16 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @Tag(name = "reviews", description = "리뷰 API")
 @Slf4j
@@ -25,6 +27,15 @@ public class ReviewController {
 
     @Resource(name = "reviewService")
     private final ReviewService reviewService;
+
+    @Operation(operationId = "getReviews", description = "리뷰 목록 조회")
+    @GetMapping()
+    public ResponseEntity<Page<ReviewDTO>> getReviews(
+            @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable,
+            @RequestParam(value = "keyword", required = false) Optional<String> keyword
+    ) {
+        return new ResponseEntity<>(reviewService.findAll(pageable, keyword), HttpStatus.OK);
+    }
 
 
     @Operation(operationId = "createReview", description = "리뷰 생성")
