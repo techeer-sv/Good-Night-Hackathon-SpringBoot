@@ -35,6 +35,10 @@ public class RestaurantService {
     return new RestaurantDTO(restaurant);
   }
 
+  public Restaurant findByIdInner(long id) {
+    return restaurantRepository.findById(id).orElseThrow(RestaurantIdNotFoundException::new);
+  }
+
   public RestaurantDTO patchById(long id, PatchRestaurantReq patchRestaurantReq) {
     Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(RestaurantIdNotFoundException::new);
 
