@@ -1,4 +1,4 @@
 package com.gilyeon.hackathon.domain.review;
 
-public class Service {
+public class ReviewService {
 }
