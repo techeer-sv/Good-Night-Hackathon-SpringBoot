@@ -50,6 +50,7 @@ public class Restaurant {
         return RestaurantDtoResponse.builder()
                 .name(name)
                 .category(category)
+                .createDateTime(createDateTime)
                 .build();
     }
 }

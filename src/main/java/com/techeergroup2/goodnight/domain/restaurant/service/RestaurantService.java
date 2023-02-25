@@ -17,4 +17,8 @@ public class RestaurantService {
     public RestaurantDtoResponse createRestaurant(CreatedRestaurantRequest createdRestaurantRequest) {
         return restaurantRepository.save(createdRestaurantRequest.toEntity()).toDto();
     }
+
+    public RestaurantDtoResponse getRestaurant(Long id) {
+        return restaurantRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No restaurant with id " + id)).toDto();
+    }
 }

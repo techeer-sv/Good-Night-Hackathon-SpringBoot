@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class RestaurantDtoResponse {
     private String name;
     private String category;
+    private LocalDateTime createDateTime;
 
 
 }
