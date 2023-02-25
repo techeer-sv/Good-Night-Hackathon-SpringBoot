@@ -19,4 +19,12 @@ public enum RestaurantCategory {
         }
         return false;
     }
+
+    public static RestaurantCategory getCategory(String category) {
+        for (RestaurantCategory cat : RestaurantCategory.values()) {
+            System.out.println(cat.getCategory());
+            if(cat.toString().equals(category)) return cat;
+        }
+        return null;
+    }
 }
