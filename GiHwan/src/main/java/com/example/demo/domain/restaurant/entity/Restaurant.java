@@ -1,5 +1,7 @@
 package com.example.demo.domain.restaurant.entity;
 
+import com.example.demo.domain.restaurant.dto.RestaurantCreateRequest;
+import com.example.demo.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.example.demo.domain.restaurant.entity.RestaurantCategory;
 import com.example.demo.global.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -37,4 +39,10 @@ public class Restaurant extends BaseEntity {
         this.category = category;
     }
 
+    public void update(RestaurantCategory category){
+        this.category = category;
+    }
+    public void deleteRestaurant() {
+        this.delete();
+    }
 }
