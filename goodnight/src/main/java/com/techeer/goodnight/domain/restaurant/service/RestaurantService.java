@@ -31,7 +31,7 @@ public class RestaurantService {
         testRepository.deleteById(id);
     }
 
-    public Restaruant updateContent(RestaruantUpdateRequestDto dto) {
+    public Restaruant update(RestaruantUpdateRequestDto dto) {
         Restaruant newTestData = findRestaruantById(dto.getId());
         newTestData.update(dto.getName(), dto.getContent(), dto.getActivated());
         return testRepository.save(newTestData);
