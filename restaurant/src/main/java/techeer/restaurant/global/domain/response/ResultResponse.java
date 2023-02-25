@@ -1,9 +1,9 @@
-package techeer.restaurant.global.response;
+package techeer.restaurant.global.domain.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import techeer.restaurant.global.response.code.ResultCode;
+import techeer.restaurant.global.domain.response.code.ResultCode;
 
 @Getter
 @AllArgsConstructor

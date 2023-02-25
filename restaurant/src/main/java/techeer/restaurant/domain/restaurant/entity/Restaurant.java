@@ -44,15 +44,15 @@ public class Restaurant extends BaseEntity {
         this.isActive = true;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Restaurant restaurant = (Restaurant) o;
-        return Objects.equals(id, restaurant.id)
-                && Objects.equals(name, restaurant.name)
-                && Objects.equals(category, restaurant.category);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Restaurant restaurant = (Restaurant) o;
+//        return Objects.equals(id, restaurant.id)
+//                && Objects.equals(name, restaurant.name)
+//                && Objects.equals(category, restaurant.category);
+//    }
 
     public void deleteRestaurant() {
         this.activeOff();
