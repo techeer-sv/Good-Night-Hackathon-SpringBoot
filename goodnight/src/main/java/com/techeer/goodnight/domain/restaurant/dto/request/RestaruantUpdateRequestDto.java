@@ -18,6 +18,4 @@ public class RestaruantUpdateRequestDto {
     private String name;
 
     private String content;
-
-    private Boolean activated;
 }

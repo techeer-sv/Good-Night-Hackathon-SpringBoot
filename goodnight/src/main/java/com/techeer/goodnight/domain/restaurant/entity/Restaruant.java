@@ -30,8 +30,13 @@ public class Restaruant extends BaseTimeEntity {
     @Column(name = "category")
     private String content;
 
+    public void update(String name, String content){
+        this.name = name;
+        this.content = content;
+    }
 
     public void delete(){
         this.activeOff();
     }
+
 }

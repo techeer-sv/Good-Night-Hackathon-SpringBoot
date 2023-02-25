@@ -38,13 +38,19 @@ public class RestaurantController {
                 .ok(mapper.toResponseDto(service.findById(id)));
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        service.deleteById(id);
+    @PutMapping("/{id}")
+    public ResponseEntity<RestaruantResponseDto> update(
+            @RequestBody RestaruantUpdateRequestDto dto
+    ) {
         return ResponseEntity
-                .noContent()
-                .build();
+                .ok(mapper.toResponseDto(service.update(dto)));
     }
+
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<RestaruantResponseDto> delete(@PathVariable UUID id) {
+//        return ResponseEntity
+//                .ok(mapper.toResponseDto(service.deleteById()));
+//    }
 
 }
