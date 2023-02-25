@@ -72,7 +72,7 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public List<ReviewInfo> getReviewListWithTitleByPagination(int page, int size, String title) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        return reviewRepository.findContainingTitlePostWithPagination(pageRequest, title).stream()
+        return reviewRepository.findReviewContainingTitleWithPagination(pageRequest, title).stream()
                 .map(this::mapReviewEntityToReviewInfo)
                 .collect(Collectors.toList());
     }
@@ -80,7 +80,7 @@ public class ReviewService {
     @Transactional(readOnly = true)
     public List<ReviewInfo> getReviewListWithContentByPagination(int page, int size, String content) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        return reviewRepository.findContainingContentPostWithPagination(pageRequest, content).stream()
+        return reviewRepository.findReviewContainingContentWithPagination(pageRequest, content).stream()
                 .map(this::mapReviewEntityToReviewInfo)
                 .collect(Collectors.toList());
     }

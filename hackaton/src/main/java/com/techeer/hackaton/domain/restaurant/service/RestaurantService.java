@@ -37,22 +37,6 @@ public class RestaurantService {
         return mapRestaurantEntityToRestaurantInfo(foundRestaurant);
     }
 
-    @Transactional(readOnly = true)
-    public List<RestaurantInfo> getRestaurantListByPagination(int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        return restaurantRepository.findRestaurantsWithPagination(pageRequest).stream()
-                .map(this::mapRestaurantEntityToRestaurantInfo)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional(readOnly = true)
-    public List<RestaurantInfo> getRestaurantsByCategoryWithPagination(int page, int size, RestaurantCategory category) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        return restaurantRepository.findRestaurantsByCategoryWithPagination(pageRequest, category).stream()
-                .map(this::mapRestaurantEntityToRestaurantInfo)
-                .collect(Collectors.toList());
-    }
-
     @Transactional
     public RestaurantInfo updateRestaurant(RestaurantUpdateRequest restaurantUpdateRequest) {
         Restaurant foundRestaurant = restaurantRepository.findById(restaurantUpdateRequest.getId())
@@ -71,6 +55,22 @@ public class RestaurantService {
                 .orElseThrow(EntityNotFoundException::new);
         foundRestaurant.deleteRestaurant();
         restaurantRepository.save(foundRestaurant);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantInfo> getRestaurantListByPagination(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return restaurantRepository.findRestaurantsWithPagination(pageRequest).stream()
+                .map(this::mapRestaurantEntityToRestaurantInfo)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantInfo> getRestaurantsByCategoryWithPagination(int page, int size, RestaurantCategory category) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return restaurantRepository.findRestaurantsByCategoryWithPagination(pageRequest, category).stream()
+                .map(this::mapRestaurantEntityToRestaurantInfo)
+                .collect(Collectors.toList());
     }
 
     public Restaurant mapRestaurantCreateRequestToRestaurantEntity(RestaurantCreateRequest restaurantCreateRequest) {
