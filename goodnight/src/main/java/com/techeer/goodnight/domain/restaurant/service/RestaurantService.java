@@ -24,20 +24,20 @@ public class RestaurantService {
     }
 
     public Restaruant findById(UUID id) {
-        return findTestDataById(id);
+        return findRestaruantById(id);
     }
 
     public void deleteById(UUID id){
         testRepository.deleteById(id);
     }
 
-    public Restaruant update(RestaruantUpdateRequestDto dto) {
-        Restaruant newTestData = findTestDataById(dto.getId());
+    public Restaruant updateContent(RestaruantUpdateRequestDto dto) {
+        Restaruant newTestData = findRestaruantById(dto.getId());
         newTestData.update(dto.getName(), dto.getContent(), dto.getActivated());
         return testRepository.save(newTestData);
     }
 
-    private Restaruant findTestDataById(UUID id) {
+    private Restaruant findRestaruantById(UUID id) {
         return testRepository.findById(id).orElseThrow(
                 NotFoundTestDataEntityException::new
         );
