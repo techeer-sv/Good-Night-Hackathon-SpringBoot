@@ -1,64 +1,64 @@
 package com.techeer.goodnight.domain.restaurant.controller;
 
-import com.techeer.goodnight.domain.restaurant.repository.RestaurantRepository;
+import com.techeer.goodnight.domain.restaurant.service.RestaurantService;
 import com.techeer.goodnight.domain.restaurant.dto.request.RestaruantCreateRequestDto;
 import com.techeer.goodnight.domain.restaurant.dto.request.RestaruantUpdateRequestDto;
 import com.techeer.goodnight.domain.restaurant.dto.response.RestaruantResponseDto;
-import com.techeer.goodnight.domain.restaurant.entity.Restaurant;
-import com.techeer.goodnight.domain.restaurant.exception.RestaurantIdNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import javax.annotation.Resource;
 import java.util.Optional;
 
-@Service
+@Slf4j
+@RestController
 @RequiredArgsConstructor
-public class RestaurantService {
-    private final RestaurantRepository restaurantRepository;
+@RequestMapping("/api/restaurants")
+public class RestaurantController {
 
-    public Page<RestaruantResponseDto> getRestaurants(Pageable pageable, Optional<String> categoryName) {
-        Page<Restaurant> restaurants = restaurantRepository.findAllWithCategoryName(pageable, categoryName);
+    @Resource(name = "restaurantService")
+    private final RestaurantService restaurantService;
 
-        return restaurants.map(RestaruantResponseDto::new);
-    }
-
-    public RestaruantResponseDto create(RestaruantCreateRequestDto createRestaurantReq) {
-        Restaurant restaurant = createRestaurantReq.toEntity();
-        restaurantRepository.save(restaurant);
-
-        return new RestaruantResponseDto(restaurant);
-    }
-
-    public RestaruantResponseDto findById(long id) {
-        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(RestaurantIdNotFoundException::new);
-
-        return new RestaruantResponseDto(restaurant);
-    }
-
-    public Restaurant findByIdInner(long id) {
-        return restaurantRepository.findById(id).orElseThrow(RestaurantIdNotFoundException::new);
-    }
-
-    public RestaruantResponseDto patchById(long id, RestaruantUpdateRequestDto patchRestaurantReq) {
-        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(RestaurantIdNotFoundException::new);
-
-        restaurant.setCategoryName(patchRestaurantReq.getCategoryName());
-        restaurantRepository.save(restaurant);
-
-        return new RestaruantResponseDto(restaurant);
+    @GetMapping()
+    public ResponseEntity<Page<RestaruantResponseDto>> get(
+            @PageableDefault(sort ="id", direction = Sort.Direction.DESC)
+            Pageable pageable,
+            @RequestParam(value = "categoryName", required = false) Optional<String> categoryName
+    ) {
+        return new ResponseEntity<>(restaurantService.getRestaurants(pageable, categoryName), HttpStatus.OK);
     }
 
 
-    public void deleteById(long id) {
-        Restaurant restaurant = this.findByIdInner(id);
+    @PostMapping()
+    public ResponseEntity<RestaruantResponseDto> create(
+            @RequestBody final RestaruantCreateRequestDto createRestaurantReq
+    ) {
+        return new ResponseEntity<>(restaurantService.create(createRestaurantReq), HttpStatus.CREATED);
+    }
 
-        restaurant.setIsDeleted(true);
-        restaurant.setDeletedAt(LocalDateTime.now());
+    @GetMapping("/{id}")
+    public ResponseEntity<RestaruantResponseDto> getRestaurantById(@PathVariable final long id) {
+        return new ResponseEntity<>(restaurantService.findById(id), HttpStatus.OK);
+    }
 
-        restaurantRepository.save(restaurant);
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<RestaruantResponseDto> patchRestaurantById(
+            @PathVariable final long id,
+            @RequestBody final RestaruantUpdateRequestDto patchRestaurantReq) {
+        return new ResponseEntity<>(restaurantService.patchById(id, patchRestaurantReq), HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteRestaurantById(@PathVariable final long id) {
+        restaurantService.deleteById(id);
     }
 }
