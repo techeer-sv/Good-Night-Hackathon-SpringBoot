@@ -7,6 +7,7 @@ import techeer.restaurant.domain.restaurant.entity.Restaurant;
 import techeer.restaurant.domain.restaurant.repository.RestaurantRepository;
 import techeer.restaurant.domain.review.dto.ReviewInfo;
 import techeer.restaurant.domain.review.dto.ReviewRequest;
+import techeer.restaurant.domain.review.dto.UpdateReviewRequest;
 import techeer.restaurant.domain.review.entity.Review;
 import techeer.restaurant.domain.review.repository.ReviewRepository;
 
@@ -47,5 +48,12 @@ public class ReviewService {
 
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
+    }
+
+    public void updateReviewInfo(Long id, UpdateReviewRequest request) {
+        Review review = reviewRepository.findReviewById(id);
+        review.updateTitle(request.getTitle());
+        review.updateContent(request.getContent());
+        reviewRepository.save(review);
     }
 }

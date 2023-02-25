@@ -3,14 +3,18 @@ package techeer.restaurant.domain.review.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import techeer.restaurant.domain.restaurant.entity.Category;
 import techeer.restaurant.domain.review.dto.ReviewInfo;
 import techeer.restaurant.domain.review.dto.ReviewRequest;
+import techeer.restaurant.domain.review.dto.UpdateReviewRequest;
 import techeer.restaurant.domain.review.entity.Review;
 import techeer.restaurant.domain.review.service.ReviewService;
 import techeer.restaurant.global.domain.response.ResultResponse;
 import techeer.restaurant.global.domain.response.code.ResultCode;
 
 import javax.validation.Valid;
+
+import java.util.Map;
 
 import static techeer.restaurant.global.domain.response.code.ResultCode.*;
 
@@ -26,6 +30,15 @@ public class ReviewController {
     ) {
         ReviewInfo reviewInfo = reviewService.createReview(request);
         return ResponseEntity.ok(ResultResponse.of(CREATE_REVIEW_SUCCESS, reviewInfo));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ResultResponse> updateReview(
+            @PathVariable Long id,
+            @RequestBody UpdateReviewRequest request
+    ) {
+        reviewService.updateReviewInfo(id, request);
+        return ResponseEntity.ok(ResultResponse.of(UPDATE_RESTAURANT_SUCCESS, ""));
     }
 
     @DeleteMapping("/{id}")
