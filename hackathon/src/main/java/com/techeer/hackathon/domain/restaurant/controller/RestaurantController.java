@@ -1,6 +1,6 @@
 package com.techeer.hackathon.domain.restaurant.controller;
 
-import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
+import com.techeer.hackathon.domain.restaurant.dto.RestaurantCreate;
 import com.techeer.hackathon.domain.restaurant.service.RestaurantService;
 import com.techeer.hackathon.global.result.ResultCode;
 import com.techeer.hackathon.global.result.ResultResponse;
@@ -21,8 +21,8 @@ public class RestaurantController {
 
     @PostMapping
     public ResponseEntity<ResultResponse> registerRestaurant(
-            @RequestBody Restaurant restaurant) {
-        restaurantService.createRestaurant(restaurant);
+            @RequestBody RestaurantCreate request) {
+        restaurantService.createRestaurant(request);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.RESTAURANT_CREATE_SUCCESS));
     }
 }

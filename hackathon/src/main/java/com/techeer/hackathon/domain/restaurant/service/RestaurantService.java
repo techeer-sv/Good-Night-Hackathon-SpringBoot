@@ -1,6 +1,7 @@
 package com.techeer.hackathon.domain.restaurant.service;
 
-import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
+import com.techeer.hackathon.domain.restaurant.RestaurantMapper;
+import com.techeer.hackathon.domain.restaurant.dto.RestaurantCreate;
 import com.techeer.hackathon.domain.restaurant.error.RestaurantDuplicateException;
 import com.techeer.hackathon.domain.restaurant.repository.RestaurantRepository;
 import lombok.AccessLevel;
@@ -11,11 +12,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
+    private final RestaurantMapper restaurantMapper;
 
-    public void createRestaurant(Restaurant restaurant) {
-        if(restaurantRepository.existsByName(restaurant.getName())) {
+    public void createRestaurant(RestaurantCreate restaurantCreate) {
+        if(restaurantRepository.existsByName(restaurantCreate.getName())) {
             throw new RestaurantDuplicateException();
         }
-        restaurantRepository.save(restaurant);
+        restaurantRepository.save(restaurantMapper.toEntity(restaurantCreate));
     }
 }
