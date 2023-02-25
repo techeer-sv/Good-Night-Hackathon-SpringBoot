@@ -59,4 +59,8 @@ public class ReviewService {
 
     return new ReviewDTO(review, review.getRestaurant());
   }
+
+  public void deleteById(long id) {
+    reviewRepository.deleteById(id);
+  }
 }

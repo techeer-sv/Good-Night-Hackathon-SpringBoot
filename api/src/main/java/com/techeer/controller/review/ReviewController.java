@@ -58,4 +58,10 @@ public class ReviewController {
             @RequestBody PatchReviewReq patchReviewReq) {
         return new ResponseEntity<>(reviewService.patchById(id, patchReviewReq), HttpStatus.OK);
     }
+
+    @Operation(operationId = "deleteReview", description = "리뷰 삭제")
+    @DeleteMapping("/{id}")
+    public void deleteReview(@PathVariable long id) {
+        reviewService.deleteById(id);
+    }
 }
