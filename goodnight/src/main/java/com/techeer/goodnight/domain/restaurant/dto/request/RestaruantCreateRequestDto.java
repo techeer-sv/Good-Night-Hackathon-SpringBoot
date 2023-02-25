@@ -12,7 +12,6 @@ public class RestaruantCreateRequestDto {
     @NonNull
     private String name;
 
+    @NonNull
     private String content;
-
-    private Boolean activated;
 }

@@ -31,12 +31,6 @@ public class RestaurantService {
         testRepository.deleteById(id);
     }
 
-    public Restaruant update(RestaruantUpdateRequestDto dto) {
-        Restaruant newTestData = findRestaruantById(dto.getId());
-        newTestData.update(dto.getName(), dto.getContent(), dto.getActivated());
-        return testRepository.save(newTestData);
-    }
-
     private Restaruant findRestaruantById(UUID id) {
         return testRepository.findById(id).orElseThrow(
                 NotFoundTestDataEntityException::new

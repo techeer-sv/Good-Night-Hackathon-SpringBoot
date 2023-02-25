@@ -38,13 +38,6 @@ public class RestaurantController {
                 .ok(mapper.toResponseDto(service.findById(id)));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<RestaruantResponseDto> update(
-            @RequestBody RestaruantUpdateRequestDto dto
-    ) {
-        return ResponseEntity
-                .ok(mapper.toResponseDto(service.update(dto)));
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {

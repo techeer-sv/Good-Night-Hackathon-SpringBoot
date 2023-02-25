@@ -24,16 +24,14 @@ public class Restaruant extends BaseTimeEntity {
     @Builder.Default
     private UUID id = UUID.randomUUID();
 
-    @NotNull
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "category")
     private String content;
 
-    private Boolean activated;
 
-    public void update(String name, String content, Boolean activated){
-        this.name = name;
-        this.content = content;
-        this.activated = activated;
+    public void delete(){
+        this.activeOff();
     }
 }

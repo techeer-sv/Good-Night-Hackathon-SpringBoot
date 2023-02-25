@@ -18,6 +18,4 @@ public class RestaruantResponseDto {
     private String name;
 
     private String content;
-
-    private Boolean activated;
 }

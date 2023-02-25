@@ -15,7 +15,6 @@ public class RestaruantMapper {
                 .id(data.getId())
                 .name(data.getName())
                 .content(data.getContent())
-                .activated(data.getActivated())
                 .build();
     }
 
@@ -24,7 +23,6 @@ public class RestaruantMapper {
                 .id(dto.getId())
                 .name(dto.getName())
                 .content(dto.getContent())
-                .activated(dto.getActivated())
                 .build();
     }
 
@@ -32,7 +30,6 @@ public class RestaruantMapper {
         return Restaruant.builder()
                 .name(dto.getName())
                 .content(dto.getContent())
-                .activated(dto.getActivated())
                 .build();
     }
 }
