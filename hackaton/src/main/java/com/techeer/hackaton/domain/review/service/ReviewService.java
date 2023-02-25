@@ -3,6 +3,7 @@ package com.techeer.hackaton.domain.review.service;
 import com.techeer.hackaton.domain.restaurant.entity.Restaurant;
 import com.techeer.hackaton.domain.restaurant.repository.RestaurantRepository;
 import com.techeer.hackaton.domain.review.dto.ReviewCreateRequest;
+import com.techeer.hackaton.domain.review.dto.ReviewInfo;
 import com.techeer.hackaton.domain.review.entity.Review;
 import com.techeer.hackaton.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +29,27 @@ public class ReviewService {
         reviewRepository.save(foundReview);
     }
 
+    @Transactional(readOnly = true)
+    public ReviewInfo getReviewDetail(Long id) {
+        Review foundReview = reviewRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        return mapReviewEntityToReviewInfo(foundReview);
+    }
+
     public Review mapReviewCreateRequestToReviewEntity(ReviewCreateRequest reviewCreateRequest, Restaurant restaurant) {
         return Review.builder()
                 .title(reviewCreateRequest.getTitle())
                 .content(reviewCreateRequest.getContent())
                 .restaurant(restaurant)
+                .build();
+    }
+
+    public ReviewInfo mapReviewEntityToReviewInfo(Review review) {
+        return ReviewInfo.builder()
+                .title(review.getTitle())
+                .content(review.getContent())
+                .restaurantName(review.getRestaurant().getName())
                 .build();
     }
 }

@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    @Query("select r from Restaurant r where r.id = :id and r.isActive = true")
+    @Query("select r from Review r where r.id = :id and r.isActive = true")
     Optional<Review> findById(@Param("id") Long id);
 }

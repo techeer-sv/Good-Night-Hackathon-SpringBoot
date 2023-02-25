@@ -1,14 +1,13 @@
 package com.techeer.hackaton.domain.review.controller;
 
 import com.techeer.hackaton.domain.review.dto.ReviewCreateRequest;
+import com.techeer.hackaton.domain.review.dto.ReviewCreateResponse;
 import com.techeer.hackaton.domain.review.dto.ReviewInfo;
+import com.techeer.hackaton.domain.review.repository.ReviewRepository;
 import com.techeer.hackaton.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -16,14 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final ReviewRepository reviewRepository;
 
     @PostMapping("/reviews")
-    public ResponseEntity<ReviewInfo> createReview(@RequestBody ReviewCreateRequest reviewCreateRequest) {
+    public ResponseEntity<ReviewCreateResponse> createReview(@RequestBody ReviewCreateRequest reviewCreateRequest) {
         reviewService.createReview(reviewCreateRequest);
-        return ResponseEntity.ok(ReviewInfo.builder()
+        return ResponseEntity.ok(ReviewCreateResponse.builder()
                         .content(reviewCreateRequest.getContent())
                         .title(reviewCreateRequest.getTitle())
-                        .restaurantId(reviewCreateRequest.getRestaurantId())
                 .build());
+    }
+
+    @GetMapping("/reviews/{id}")
+    public ResponseEntity<ReviewInfo> getReviewDetail(@PathVariable Long id) {
+        ReviewInfo reviewInfo = reviewService.getReviewDetail(id);
+
+        return ResponseEntity.ok(reviewInfo);
+
     }
 }
