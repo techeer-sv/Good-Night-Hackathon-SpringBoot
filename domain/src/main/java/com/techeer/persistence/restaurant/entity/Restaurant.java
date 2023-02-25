@@ -36,4 +36,8 @@ public class Restaurant extends BaseEntity {
     this.name = name;
     this.categoryName = categoryName;
   }
+
+  public void setCategoryName(String categoryName) {
+    this.categoryName = categoryName;
+  }
 }

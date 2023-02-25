@@ -3,6 +3,7 @@ package com.techeer.controller.restaurant;
 import com.techeer.persistence.restaurant.application.RestaurantService;
 
 import com.techeer.persistence.restaurant.dto.request.CreateRestaurantReq;
+import com.techeer.persistence.restaurant.dto.request.PatchRestaurantReq;
 import com.techeer.persistence.restaurant.dto.response.RestaurantDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -49,5 +50,13 @@ public class RestaurantController {
   @GetMapping("/{id}")
   public ResponseEntity<RestaurantDTO> getRestaurantById(@PathVariable final long id) {
     return new ResponseEntity<>(restaurantService.findById(id), HttpStatus.OK);
+  }
+
+  @Operation(summary = "patchRestaurantById", description = "레스토랑 수정")
+  @PatchMapping("/{id}")
+  public ResponseEntity<RestaurantDTO> patchRestaurantById(
+          @PathVariable final long id,
+          @RequestBody final PatchRestaurantReq patchRestaurantReq) {
+    return new ResponseEntity<>(restaurantService.patchById(id, patchRestaurantReq), HttpStatus.OK);
   }
 }
