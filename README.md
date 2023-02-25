@@ -1,4 +1,3 @@
-# Good Night Hackathon - Spring Boot
 # 레스토랑 리뷰 앱
 
 ## 안내사항
