@@ -44,7 +44,6 @@ public class Restaurant extends BaseEntity{
             String title,
             Category category
     ) {
-        this.id = id;
         this.title = title;
         this.category = category;
         this.isRemoved = false;

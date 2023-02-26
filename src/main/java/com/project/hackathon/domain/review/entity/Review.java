@@ -1,5 +1,6 @@
 package com.project.hackathon.domain.review.entity;
 
+import com.project.hackathon.domain.restaurant.entity.Category;
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.global.entity.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import static javax.persistence.FetchType.LAZY;
 
@@ -32,9 +34,12 @@ public class Review extends BaseEntity {
     private String content;
 
     // 특정 레스토랑명
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "restaurant")
-    private Restaurant restaurant;
+//    @ManyToOne(fetch = LAZY)
+//    @JoinColumn(name = "restaurant")
+//    private String restaurant;
+    @Column(name = "restaurant", nullable = false)
+    private String restaurant;
+
 
     @Column(name = "is_removed", nullable = false)
     private boolean isRemoved;
@@ -43,14 +48,24 @@ public class Review extends BaseEntity {
     public Review(
             String title,
             String content,
-            Restaurant restaurant){
+            String restaurant){
         this.title = title;
         this.content = content;
         this.restaurant = restaurant;
         this.isRemoved = false;
     }
 
-    public void deleteRestaurant() { //soft delete
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+    public void setUpdatedAt() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void deleteReview() { //soft delete
         this.isRemoved = true;
     }
 
