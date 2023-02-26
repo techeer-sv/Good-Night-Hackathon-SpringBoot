@@ -3,15 +3,11 @@ package techeer.restaurant.domain.review.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
-import techeer.restaurant.domain.restaurant.entity.Category;
 import techeer.restaurant.domain.review.dto.ReviewInfo;
 import techeer.restaurant.domain.review.dto.ReviewRequest;
 import techeer.restaurant.domain.review.dto.UpdateReviewRequest;
-import techeer.restaurant.domain.review.entity.Review;
 import techeer.restaurant.domain.review.service.ReviewService;
 import techeer.restaurant.global.domain.response.ResultResponse;
-import techeer.restaurant.global.domain.response.code.ResultCode;
 
 import javax.validation.Valid;
 
@@ -40,11 +36,12 @@ public class ReviewController {
     }
 
     @GetMapping
-    public ResponseEntity<ResultResponse> getReviews(@RequestParam(required = false, defaultValue = "1") int page,
-                                   @RequestParam(required = false) String title,
-                                   @RequestParam(required = false) String content,
-                                   @RequestParam(required = false, defaultValue = "desc") String sort) {
-        List<ReviewInfo> reviewInfos = reviewService.getReviews(page, title, content, sort);
+    public ResponseEntity<ResultResponse> getReviews(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                                     @RequestParam(required = false, defaultValue = "3") Integer size,
+                                                     @RequestParam(required = false, defaultValue = "") String title,
+                                                     @RequestParam(required = false, defaultValue = "") String content,
+                                                     @RequestParam(required = false, defaultValue = "false") String descending) {
+        List<ReviewInfo> reviewInfos = reviewService.findAllWithPagination(page, size, title, content, Boolean.parseBoolean(descending));
         return ResponseEntity.ok(ResultResponse.of(GET_ALL_REVIEW_SUCCESS, reviewInfos));
     }
 
