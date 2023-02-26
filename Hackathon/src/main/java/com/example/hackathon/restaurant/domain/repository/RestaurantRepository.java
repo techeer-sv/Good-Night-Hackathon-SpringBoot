@@ -14,6 +14,9 @@ import java.util.Optional;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     boolean existsByName(String name);
     //레스토랑 카테고리에 따른 레스토랑 목록 조회
+
+    /*
+
     @Query("select r from Restaurant r where r.category In :categories")
     List<Restaurant> findByCategory(@Param("category")List<Category> categories);
 
@@ -32,4 +35,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     // 레스토랑 전제 목록 조회
     @Query
     Optional<Restaurant> findByName(String restaurantName);
+
+    */
 }
