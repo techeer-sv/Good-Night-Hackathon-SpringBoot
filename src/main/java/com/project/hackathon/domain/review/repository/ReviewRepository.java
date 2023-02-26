@@ -17,16 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     Optional<Review> findReviewById(@Param("id") Long id);
     List<Review> findAll();
 
-    @Query("select r from Review r where r.title like :title and r.isActive = true")
-    Optional<Review> findReviewByTitle(@Param("title") String title);
-
-    @Query("select r from Review r where r.content like :content and r.isActive = true")
-    Optional<Review> findReviewByContent(@Param("content") String content);
-
-    @Query("select r from Review r where r.isActive = true")
-    Page<Review> findReviewWithPagination(Pageable pageable);
-
-    @Query("select r from Review r where r.isActive = true and r.title like %:keyword%")
-    Page<Review> findContainingTitleReviewWithPagination(
+    @Query("select r from Review r where r.isActive = true and (r.title like %:keyword% or r.content like %:keyword%)")
+    Page<Review> findContainingTitleOrContentReviewWithPagination(
             Pageable pageable, @Param("keyword") String keyword);
 }

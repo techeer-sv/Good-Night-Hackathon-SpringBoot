@@ -51,22 +51,15 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-//    @Transactional(readOnly = true)
-//    public List<ReviewDetailResponse> getReviewsByTitle(String title) {
-//        Optional<Review> reviews = reviewRepository.findReviewByTitle(title);
-//        if (reviews.isPresent()) {
-//            List<ReviewDetailResponse> reviewDetailResponses = new ArrayList<>();
-//            for(Review review : reviews) {
-//                reviewDetailResponses.add(ReviewDetailResponse.builder()
-//                        .id(review.getId())
-//                        .title(review.getTitle())
-//                        .content(review.getContent())
-//                        .build());
-//            }
-//            return reviewDetailResponses;
-//        }
-//        return new ArrayList<>(); // 오류가 발생했을 때 반환할 값
-//    }
+    @Transactional(readOnly = true)
+    public Page<ReviewDetailResponse> search(String keyword, Pageable pageable) {
+        Page<Review> reviews = reviewRepository.findContainingTitleOrContentReviewWithPagination(pageable, keyword);
+        return reviews.map(review -> ReviewDetailResponse.builder()
+                .id(review.getId())
+                .title(review.getTitle())
+                .content(review.getContent())
+                .build());
+    }
 
     @Builder
     @Transactional

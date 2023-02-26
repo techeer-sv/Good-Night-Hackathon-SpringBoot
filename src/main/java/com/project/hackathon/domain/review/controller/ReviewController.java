@@ -14,6 +14,10 @@ import com.project.hackathon.domain.review.entity.Review;
 import com.project.hackathon.domain.review.service.ReviewService;
 import com.project.hackathon.global.dto.ResultResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -41,11 +45,13 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
-//    @GetMapping("/list/{category}")
-//    public ResponseEntity<List<RestaurantDetailResponse>> loadRestaurantByCategory(@PathVariable Category category) {
-//        List<RestaurantDetailResponse> restaurantDetailResponses = restaurantService.getRestaurantsByCategory(category);
-//        return ResponseEntity.ok(restaurantDetailResponses);
-//    }
+    @GetMapping("/search/{keyword}?page=0&size=10&sort=id,desc")
+    public ResponseEntity<Page<ReviewDetailResponse>> searchReviews(
+            @PathVariable String keyword,
+            @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<ReviewDetailResponse> reviews = reviewService.search(keyword, pageable);
+        return ResponseEntity.ok(reviews);
+    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<ReviewDetailResponse> updateReview(
