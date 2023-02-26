@@ -5,7 +5,7 @@ import com.example.demo.domain.restaurant.entity.Restaurant;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ToEntity {
+public class ToRestaurantEntity {
 
     public Restaurant toCreateEntity(RestaurantCreateRequest restaurant) {
         return Restaurant.builder()

@@ -5,7 +5,7 @@ import com.example.demo.domain.review.entity.Review;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ToResponse {
+public class ToReviewResponse {
     public ReviewResponse toResponse(Review review) {
         return ReviewResponse.builder()
                 .id(review.getId())

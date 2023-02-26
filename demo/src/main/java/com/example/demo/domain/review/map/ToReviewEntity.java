@@ -7,7 +7,7 @@ import com.example.demo.domain.review.entity.Review;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ToEntity {
+public class ToReviewEntity {
 
     public Review toCreateEntity(ReviewCreateRequest review, Restaurant restaurant) {
         return Review.builder()

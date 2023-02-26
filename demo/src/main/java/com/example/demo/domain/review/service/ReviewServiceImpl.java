@@ -7,8 +7,8 @@ import com.example.demo.domain.review.dto.request.ReviewSearchRequest;
 import com.example.demo.domain.review.dto.request.ReviewUpdateRequest;
 import com.example.demo.domain.review.dto.response.ReviewResponse;
 import com.example.demo.domain.review.entity.Review;
-import com.example.demo.domain.review.map.ToEntity;
-import com.example.demo.domain.review.map.ToResponse;
+import com.example.demo.domain.review.map.ToReviewEntity;
+import com.example.demo.domain.review.map.ToReviewResponse;
 import com.example.demo.domain.review.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +26,11 @@ public class ReviewServiceImpl implements ReviewService{
     @Autowired
     ReviewRepository reviewRepository;
 
-    private final ToEntity entity;
+    private final ToReviewEntity entity;
 
-    private final ToResponse response;
+    private final ToReviewResponse response;
 
-    public ReviewServiceImpl(ToEntity entity, ToResponse response){
+    public ReviewServiceImpl(ToReviewEntity entity, ToReviewResponse response){
         this.entity = entity;
         this.response = response;
     }

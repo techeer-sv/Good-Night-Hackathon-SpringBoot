@@ -5,8 +5,8 @@ import com.example.demo.domain.restaurant.dto.response.RestaurantResponse;
 import com.example.demo.domain.restaurant.dto.request.RestaurantSearchRequest;
 import com.example.demo.domain.restaurant.dto.request.RestaurantUpdateRequest;
 import com.example.demo.domain.restaurant.entity.Restaurant;
-import com.example.demo.domain.restaurant.map.ToEntity;
-import com.example.demo.domain.restaurant.map.ToResponse;
+import com.example.demo.domain.restaurant.map.ToRestaurantEntity;
+import com.example.demo.domain.restaurant.map.ToRestaurantResponse;
 import com.example.demo.domain.restaurant.repository.RestaurantRepository;
 import javax.persistence.EntityNotFoundException;
 
@@ -25,11 +25,11 @@ public class RestaurantServiceImpl implements RestaurantService{
     @Autowired
     RestaurantRepository repository;
 
-    private final ToEntity entity;
+    private final ToRestaurantEntity entity;
 
-    private final ToResponse response;
+    private final ToRestaurantResponse response;
 
-    public RestaurantServiceImpl(ToEntity entity, ToResponse response){
+    public RestaurantServiceImpl(ToRestaurantEntity entity, ToRestaurantResponse response){
         this.entity = entity;
         this.response = response;
     }
