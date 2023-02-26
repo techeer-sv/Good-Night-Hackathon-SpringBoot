@@ -4,8 +4,10 @@ import com.example.hackathon.global.dto.ResultResponse;
 import com.example.hackathon.global.dto.code.ResultCode;
 import com.example.hackathon.restaurant.dto.RestaurantChange;
 import com.example.hackathon.restaurant.dto.RestaurantCreateDTO;
+import com.example.hackathon.restaurant.dto.RestaurantResponse;
 import com.example.hackathon.restaurant.service.RestaurantService;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +28,11 @@ public class RestaurantController {
     public ResponseEntity<ResultResponse> changeRestaurantCategory (@RequestBody RestaurantChange request){
         restaurantService.changeRestaurantCategory(request);
         return  ResponseEntity.ok(ResultResponse.of(ResultCode.RESTAURANT_CATEGORY_CHANGE_SUCCESS));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<ResultResponse> getAllRestaurantByCategory(@RequestBody String categories) {
+        restaurantService.getRestaurantResponse(categories);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_RESTAURANT_BY_CATEGORY_SUCCESS));
     }
 }

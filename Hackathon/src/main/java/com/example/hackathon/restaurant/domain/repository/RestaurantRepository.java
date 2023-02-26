@@ -20,11 +20,10 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Query("update Restaurant r set r.category = :category where r.id = :id")
     void updateCategory(@Param("id") Long id ,@Param("category") Category category);
 
-    /*
     //레스토랑 카테고리에 따른 레스토랑 목록 조회
     @Query("select r from Restaurant r where r.category In :categories")
     List<Restaurant> findByCategory(@Param("category")List<Category> categories);
-
+    /*
 
     // 레스토랑 삭제
     @Modifying
