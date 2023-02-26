@@ -6,10 +6,12 @@ import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.project.hackathon.domain.restaurant.entity.Category;
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,26 +56,28 @@ public class RestaurantService {
         return restaurantDetailResponses;
     }
 
+    @Builder
     @Transactional
-    public RestaurantDetailResponse update(RestaurantUpdateRequest restaurantUpdateRequest) {
-        Restaurant restaurant =
-                Restaurant.builder()
-                        .title(restaurantUpdateRequest.getTitle())
-                        .category(restaurantUpdateRequest.getCategory())
-                        .build();
-        restaurantRepository.save(restaurant);
+    public RestaurantDetailResponse update(Long id, RestaurantUpdateRequest restaurantUpdateRequest) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(null);
+        restaurant.setTitle(restaurantUpdateRequest.getTitle());
+        restaurant.setCategory(restaurantUpdateRequest.getCategory());
+        restaurant.setUpdatedAt();
 
+        Restaurant savedRestaurant = restaurantRepository.save(restaurant);
         return new RestaurantDetailResponse(
-                restaurant.getId(),
-                restaurant.getTitle(),
-                restaurant.getCategory(),
-                restaurant.getCreatedAt(),
-                restaurant.getUpdatedAt());
+                savedRestaurant.getId(),
+                savedRestaurant.getTitle(),
+                savedRestaurant.getCategory(),
+                savedRestaurant.getCreatedAt(),
+                savedRestaurant.getUpdatedAt()
+        );
     }
 
-//    public void deleteRestaurant(Long restaurantId) {
-//        Restaurant restaurant = RestaurantRepository.findRestaurantById(restaurantId).orElseThrow(null);
-//        restaurant.deleteRestaurant();
-//        restaurantRepository.save(restaurant);
-//    }
+    @Transactional
+    public void delete(Long id) {
+        Restaurant restaurant = restaurantRepository.findRestaurantById(id).orElseThrow(null);
+        restaurant.deleteRestaurant();
+        restaurantRepository.save(restaurant);
+    }
 }

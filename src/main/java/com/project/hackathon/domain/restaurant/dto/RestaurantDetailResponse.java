@@ -20,4 +20,9 @@ public class RestaurantDetailResponse {
     // 레스토랑 생성일자
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public RestaurantDetailResponse(String message) {
+        // 메시지만 필요한 경우에 사용하는 생성자
+        this.title = message;
+    }
 }

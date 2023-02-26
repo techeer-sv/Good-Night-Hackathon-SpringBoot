@@ -8,6 +8,7 @@ import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.project.hackathon.domain.restaurant.entity.Category;
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.restaurant.service.RestaurantService;
+import com.project.hackathon.global.dto.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -41,20 +42,20 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantDetailResponses);
     }
 
-    @PatchMapping("/patch")
+    @PatchMapping("/{id}")
     public ResponseEntity<RestaurantDetailResponse> updateRestaurant(
-            @Validated @RequestBody RestaurantUpdateRequest request
-    ) {
-        RestaurantDetailResponse restaurantDetailResponse = restaurantService.update(request);
+            @PathVariable Long id,
+            @Valid @RequestBody RestaurantUpdateRequest request) {
+        RestaurantDetailResponse restaurantDetailResponse = restaurantService.update(id, request);
         return ResponseEntity.ok(restaurantDetailResponse);
     }
 
-
-//    @DeleteMapping("/{boardId}")
-//    public ResponseEntity<ResultResponse> deleteBoard(
-//            @PathVariable Long boardId, @RequestParam Long userId) {
-//        boardService.deleteBoard(boardId, userId);
-//
-//        return ResponseEntity.ok(ResultResponse.of(ResultCode.BOARD_DELETE_SUCCESS, new Object()));
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RestaurantDetailResponse> deleteRestaurant(
+            @PathVariable Long id) {
+        restaurantService.delete(id);
+        String message = ResultResponse.RESTAURANT_DELETE_SUCCESS.getMessage();
+        RestaurantDetailResponse response = new RestaurantDetailResponse(message);
+        return ResponseEntity.ok(response);
+    }
 }

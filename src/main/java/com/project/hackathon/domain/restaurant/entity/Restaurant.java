@@ -49,7 +49,15 @@ public class Restaurant extends BaseEntity{
         this.category = category;
         this.isRemoved = false;
     }
-
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    public void setUpdatedAt() {
+        this.updatedAt = LocalDateTime.now();
+    }
     public void deleteRestaurant() { //soft delete
         this.isRemoved = true;
     }
