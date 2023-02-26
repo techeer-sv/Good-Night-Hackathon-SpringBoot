@@ -12,8 +12,6 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-    List<Restaurant> findAllByActivatedIsTrue();
-    List<Restaurant> findByCategory(String category);
 
     @Query("select r from Restaurant r where r.activated is true")
     Page<Restaurant> findRestaurants(Pageable pageable);

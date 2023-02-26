@@ -26,6 +26,7 @@ public class RestaurantMapper {
                 .id(restaurant.getId())
                 .name(restaurant.getName())
                 .category(restaurant.getCategory())
+                .createdAt(restaurant.getCreatedAt())
                 .build();
     }
 

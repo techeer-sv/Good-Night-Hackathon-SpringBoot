@@ -42,7 +42,7 @@ public class RestaurantController {
 
     @GetMapping("/page")
     public ResponseEntity<List<RestaurantResponseDto>> getAllRestaurant(
-            @RequestParam(defaultValue = "3") Integer size, @RequestParam(defaultValue = "0") Integer offset) {
+            @RequestParam(defaultValue = "5") Integer size, @RequestParam(defaultValue = "0") Integer offset) {
         return ResponseEntity.ok(R_Service.findAllRestaurant(size, offset));
     }
 //
