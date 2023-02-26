@@ -37,6 +37,12 @@ public class ReviewService {
 
   @Transactional(readOnly = true)
   public Page<ReviewDTO> findAll(Pageable pageable, Optional<String> keyword) {
+    if(keyword.isEmpty()) {
+      Page<Review> reviews = reviewRepository.findAll(pageable);
+
+      return reviews.map(review -> new ReviewDTO(review, review.getRestaurant()));
+    }
+
     Page<Review> reviews = reviewRepository.findAllWithKeyword(pageable, keyword);
 
     return reviews.map(review -> new ReviewDTO(review, review.getRestaurant()));

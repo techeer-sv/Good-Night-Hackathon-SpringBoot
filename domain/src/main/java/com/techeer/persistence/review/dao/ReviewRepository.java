@@ -11,6 +11,6 @@ import java.util.Optional;
 
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Long>, JpaRepository<Review, Long> {
 
-  @Query("select r from Review r where r.title LIKE %:keyword or r.description LIKE %:keyword and r.isDeleted is false")
+  @Query("select r from Review r where r.title LIKE %:keyword% or r.description LIKE %:keyword% and r.isDeleted is false")
   Page<Review> findAllWithKeyword(Pageable pageable, Optional<String> keyword);
 }
