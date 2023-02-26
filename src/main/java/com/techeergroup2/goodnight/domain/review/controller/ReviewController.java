@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/api/v1/reviews")
 @AllArgsConstructor
@@ -56,7 +57,7 @@ public class ReviewController {
 
 //    GET ALL
     @GetMapping
-    public List<Review> getAllReviews(Pageable pageable) {
-        return reviewService.getAllReviews(pageable);
+    public List<Review> getAllReviews(Pageable pageable, Optional<String> title, Optional<String> content) {
+        return reviewService.getAllReviews(pageable, title, content);
     }
 }

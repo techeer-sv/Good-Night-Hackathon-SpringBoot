@@ -8,11 +8,11 @@ import com.techeergroup2.goodnight.domain.review.dto.ReviewCreateResponse;
 import com.techeergroup2.goodnight.domain.review.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -55,7 +55,10 @@ public class ReviewService {
         reviewRepository.deleteById(id);
     }
 
-    public List<Review> getAllReviews(Pageable pageable) {
+    public List<Review> getAllReviews(Pageable pageable, Optional<String> title, Optional<String> content) {
+        if (title.isPresent() || content.isPresent()) {
+            return reviewRepository.findAllSearch(title.orElse("-"), content.orElse("-"), pageable);
+        }
         return reviewRepository.findAll(pageable).getContent();
     }
 }
