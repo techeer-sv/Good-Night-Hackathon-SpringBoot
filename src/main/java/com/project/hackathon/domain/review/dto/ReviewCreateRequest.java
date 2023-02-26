@@ -1,12 +1,9 @@
 package com.project.hackathon.domain.review.dto;
 
-import com.project.hackathon.domain.restaurant.entity.Restaurant;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Builder

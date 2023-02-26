@@ -1,4 +1,5 @@
 package com.project.hackathon.domain.restaurant.service;
+
 import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
 import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;

@@ -15,7 +15,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(value = {AuditingEntityListener.class})
 @Getter
 @DynamicInsert
-
 public abstract class BaseEntity {
     @CreatedDate
     @Column(name = "created_at", updatable = false)

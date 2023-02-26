@@ -1,13 +1,10 @@
 package com.project.hackathon.domain.restaurant.entity;
 
-import com.project.hackathon.domain.review.entity.Review;
 import com.project.hackathon.global.entity.BaseEntity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Getter
 @Entity
@@ -19,10 +16,6 @@ public class Restaurant extends BaseEntity{
     @Column(name = "id")
     private Long id;
 
-    // 레스토랑명
-//    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL) // (1)
-//    @JoinColumn(name="title")
-//    private ArrayList<Review> title = new ArrayList<>();
     @Column(name = "title", nullable = false)
     private String title;
 
