@@ -4,6 +4,7 @@ import com.techeer.hackathon.domain.restaurant.dto.InquiryRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.RegisterRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
+import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import com.techeer.hackathon.domain.restaurant.service.ServiceRestaurant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,8 @@ public class ControllerRestaurant {
     private final ServiceRestaurant Res_Service;
     private final RestaurantMapper Res_Mapper;
 
+    private final RepositoryRestaurant Res_Repo;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<InquiryRestaurantDTO> createRestaurant(
@@ -32,10 +35,25 @@ public class ControllerRestaurant {
         return new ResponseEntity(Res_Mapper.DtoFromEntity(insertRestaurant), HttpStatus.CREATED);
     }
 
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<InquiryRestaurantDTO> getAllRestaurants() {
+//        List<Restaurant> restaurants = Res_Service.getAllRestaurants();
+//        return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
+//    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InquiryRestaurantDTO> getAllRestaurants() {
-        List<Restaurant> restaurants = Res_Service.getAllRestaurants();
-        return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
+        List<Restaurant> restaurants = Res_Repo.findByDeletedFalse();
+        return restaurants.stream()
+                .map(Res_Mapper::DtoFromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
+        Res_Service.deleteRestaurant(id);
+        return ResponseEntity.noContent().build();
     }
 }
