@@ -15,6 +15,7 @@ public enum Category {
     // 카테고리가 있는지 판별
     public static boolean isVaildCategory(String category) {
         for(Category cat: Category.values()) {
+            System.out.println(cat.getCategory());
             if(cat.toString().equals(category)) return true;
         }
         return false;
@@ -23,6 +24,7 @@ public enum Category {
     // 카테고리 이름 가져오기
     public static Category getCategory(String category) {
         for(Category cat: Category.values()) {
+            System.out.println(cat.getCategory());
             if(cat.toString().equals(category)) return cat;
         }
         return null;
