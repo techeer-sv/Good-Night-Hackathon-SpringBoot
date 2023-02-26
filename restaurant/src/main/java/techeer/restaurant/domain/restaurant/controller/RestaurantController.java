@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static techeer.restaurant.global.domain.response.code.ResultCode.*;
 
-@RequestMapping("/api/v1/restaurant")
+@RequestMapping("/api/v1/restaurants")
 @RestController
 @RequiredArgsConstructor
 public class RestaurantController {

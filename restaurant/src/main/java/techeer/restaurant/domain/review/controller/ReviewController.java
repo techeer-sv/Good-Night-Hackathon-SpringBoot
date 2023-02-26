@@ -19,7 +19,7 @@ import java.util.List;
 
 import static techeer.restaurant.global.domain.response.code.ResultCode.*;
 
-@RequestMapping("/api/v1/review")
+@RequestMapping("/api/v1/reviews")
 @RestController
 @RequiredArgsConstructor
 public class ReviewController {
@@ -41,8 +41,8 @@ public class ReviewController {
 
     @GetMapping
     public ResponseEntity<ResultResponse> getReviews(@RequestParam(required = false, defaultValue = "1") int page,
-                                   @RequestParam(required = false, defaultValue = "") String title,
-                                   @RequestParam(required = false, defaultValue = "") String content,
+                                   @RequestParam(required = false) String title,
+                                   @RequestParam(required = false) String content,
                                    @RequestParam(required = false, defaultValue = "desc") String sort) {
         List<ReviewInfo> reviewInfos = reviewService.getReviews(page, title, content, sort);
         return ResponseEntity.ok(ResultResponse.of(GET_ALL_REVIEW_SUCCESS, reviewInfos));
