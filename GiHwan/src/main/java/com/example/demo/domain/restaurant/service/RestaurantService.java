@@ -24,7 +24,6 @@ public class RestaurantService {
     public void createRestaurant(RestaurantCreateRequest restaurantCreateRequest) {
         Restaurant restaurant = mapRestaurantEntityCreateRequestToRestaurant(restaurantCreateRequest);
         restaurantRepository.save(restaurant);
-
     }
 
     @Transactional

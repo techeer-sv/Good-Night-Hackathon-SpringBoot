@@ -25,7 +25,13 @@ public class ReviewService {
                 .orElseThrow(EntityNotFoundException::new);
         Review review = mapReviewEntityReviewCreateResponseToReview(reviewCreateResponse,restaurant);
         reviewRepository.save(review);
-        return reviewCreateResponse;
+
+        return reviewCreateResponse.builder()
+                .createdAt(review.getCreatedAt())
+                .title(review.getTitle())
+                .content(review.getContent())
+                .restaurantId(review.getRestaurant().getId())
+                .build();
     }
 
     @Transactional(readOnly = true)
@@ -42,6 +48,13 @@ public class ReviewService {
         review.update(reviewUpdateRequest);
         reviewRepository.save(review);
         return mapReviewEntityToReviewInfo(review);
+    }
+
+    @Transactional
+    public void deleteReview(Long id){
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        reviewRepository.delete(review);
     }
 
 
