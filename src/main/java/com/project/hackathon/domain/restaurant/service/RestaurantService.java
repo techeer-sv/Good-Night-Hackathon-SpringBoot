@@ -2,22 +2,16 @@ package com.project.hackathon.domain.restaurant.service;
 
 import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
-import com.project.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.project.hackathon.domain.restaurant.entity.Category;
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -60,23 +54,21 @@ public class RestaurantService {
         return restaurantDetailResponses;
     }
 
-    public RestaurantDetailResponse getBoardListPage(int page, int size) {
-        final Pageable pageable = PageRequest.of(page, size);
-        Page<Restaurant> restaurantPageInfoList =
-                restaurantRepository.findRestaurantWithPagination(pageable);
-        return new RestaurantDetailResponse();
-    }
-
     @Transactional
-    public RestaurantDetailResponse updateRestaurant(RestaurantUpdateRequest restaurantUpdateRequest) {
-        Long id = restaurantUpdateRequest.getId();
+    public RestaurantDetailResponse update(RestaurantUpdateRequest restaurantUpdateRequest) {
         Restaurant restaurant =
-                restaurantRepository.findRestaurantById(id).orElseThrow(null);
+                Restaurant.builder()
+                        .title(restaurantUpdateRequest.getTitle())
+                        .category(restaurantUpdateRequest.getCategory())
+                        .build();
+        restaurantRepository.save(restaurant);
 
-        return RestaurantDetailResponse.builder()
-                .title(restaurant.getTitle())
-                .category(restaurant.getCategory())
-                .build();
+        return new RestaurantDetailResponse(
+                restaurant.getId(),
+                restaurant.getTitle(),
+                restaurant.getCategory(),
+                restaurant.getCreatedAt(),
+                restaurant.getUpdatedAt());
     }
 
 //    public void deleteRestaurant(Long restaurantId) {

@@ -19,4 +19,5 @@ public class RestaurantDetailResponse {
     private Category category;
     // 레스토랑 생성일자
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

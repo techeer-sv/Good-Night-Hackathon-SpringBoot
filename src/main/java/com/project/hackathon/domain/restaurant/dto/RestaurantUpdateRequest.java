@@ -12,14 +12,11 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class RestaurantUpdateRequest {
-    @NotNull(message = "레스토랑 Id는 공백이 올 수 없습니다.")
-    private final Long id;
-
     @NotBlank(message = "레스토랑 제목은 빈칸일 수 없습니다.")
     private final String title;
 
     @NotNull(message = "레스토랑 카테고리는 공백이 올 수 없습니다.")
-    private final Category restaurantCategory;
+    private final Category category;
 
     private final LocalDateTime createdAt;
 }
