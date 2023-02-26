@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}">
+    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 리스트 조회 api 생성 &#10;- get: /review/list">
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" afterDir="false" />
@@ -239,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677362117843</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat: 리뷰 리스트 조회 api 생성 &#10;- get: /review/list">
+      <created>1677388735497</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1677388735497</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,6 +273,7 @@
     <MESSAGE value="feat: 리뷰 생성 api 생성&#10;- post: /review" />
     <MESSAGE value="feat: 리뷰 수정 api 생성&#10;- put: /review" />
     <MESSAGE value="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}" />
+    <MESSAGE value="feat: 리뷰 리스트 조회 api 생성 &#10;- get: /review/list" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 리스트 조회 api 생성 &#10;- get: /review/list" />
   </component>
 </project>

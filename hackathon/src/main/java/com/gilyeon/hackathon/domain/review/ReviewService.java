@@ -74,4 +74,12 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<ReviewInfo> getReviewListWithTitleOrContentByPagination(int page, int size, String title) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return reviewRepository.findReviewContainTitleOrContentWithPagination(pageRequest, title).stream()
+                .map(this::mapReviewEntityToReviewInfo)
+                .collect(Collectors.toList());
+    }
+
 }

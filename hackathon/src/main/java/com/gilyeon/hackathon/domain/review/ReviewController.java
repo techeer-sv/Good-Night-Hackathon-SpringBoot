@@ -54,5 +54,14 @@ public class ReviewController {
         return ResponseEntity.ok(reviewInfoList);
     }
 
+    @GetMapping("/reviews/search")
+    public ResponseEntity<List<ReviewInfo>> getReviewListWithTitleOrContentByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "") String keyword) {
+        List<ReviewInfo> reviewInfoList =
+                reviewService.getReviewListWithTitleOrContentByPagination(page, size, keyword);
+        return ResponseEntity.ok(reviewInfoList);
+    }
 
 }

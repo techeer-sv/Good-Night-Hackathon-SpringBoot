@@ -20,11 +20,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r FROM Review r WHERE r.isDeleted is false")
     Page<Review> findReviewWithPagination(Pageable pageable);
 
-    @Query("SELECT r FROM Review r WHERE r.isDeleted is false AND r.title LIKE %:keyword%")
-    Page<Review> findReviewContainingTitleWithPagination(
-            Pageable pageable, @Param("keyword") String keyword);
-
-    @Query("SELECT r FROM Review r WHERE r.isDeleted is false AND r.content LIKE %:keyword%")
-    Page<Review> findReviewContainingContentWithPagination(
+    @Query("SELECT r FROM Review r WHERE r.isDeleted is false AND (r.title LIKE %:keyword% OR r.content LIKE %:keyword%)")
+    Page<Review> findReviewContainTitleOrContentWithPagination(
             Pageable pageable, @Param("keyword") String keyword);
 }
