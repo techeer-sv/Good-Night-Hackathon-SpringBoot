@@ -1,5 +1,6 @@
 package com.techeer.hackathon.domain.restaurant.service;
 
+import com.techeer.hackathon.domain.restaurant.error.RestaurantNotFoundException;
 import com.techeer.hackathon.domain.restaurant.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.dto.RestaurantChange;
 import com.techeer.hackathon.domain.restaurant.dto.RestaurantCreate;
@@ -54,5 +55,9 @@ public class RestaurantService {
 
     public void deleteRestaurant(Long id) {
         restaurantRepository.softDeleteById(id);
+    }
+
+    public RestaurantResponse getRestaurant(Long id) {
+        return restaurantMapper.toDto(restaurantRepository.findById(id).orElseThrow(RestaurantNotFoundException::new));
     }
 }

@@ -39,13 +39,19 @@ public class RestaurantController {
             @RequestParam String categories) {
         List<RestaurantResponse> restaurants = restaurantService.getRestaurantResponse(categories);
 
-        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_RESTAURANTS_SUCCESS, restaurants));
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_ALL_RESTAURANTS_SUCCESS, restaurants));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<ResultResponse> deleteRestaurant(
             @PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
-        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_RESTAURANTS_SUCCESS));
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.DELETE_RESTAURANTS_SUCCESS));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> getRestaurant(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_RESTAURANTS_SUCCESS, restaurantService.getRestaurant(id)));
     }
 }
