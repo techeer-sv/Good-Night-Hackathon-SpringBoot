@@ -11,7 +11,10 @@ import com.example.hackathon.review.dto.ReviewInfo;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -45,5 +48,10 @@ public class ReviewService {
         reviewRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
         reviewRepository.deleteById(id);
+    }
+
+    public List<ReviewInfo> getReviews(PageRequest pageRequest){
+        List<Review> reviews = reviewRepository.findAll(pageRequest).getContent();
+        return reviewMapper.toDtoList(reviews);
     }
 }

@@ -7,6 +7,9 @@ import com.example.hackathon.review.dto.ReviewCreateDTO;
 import com.example.hackathon.review.dto.ReviewInfo;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Component
 public class ReviewMapper {
@@ -34,18 +37,8 @@ public class ReviewMapper {
                 .build();
     }
 
-    /*
-    public RestaurantResponse toDto(Restaurant restaurant) {
-        return RestaurantResponse.builder()
-                .name(restaurant.getName())
-                .category(restaurant.getCategory().name())
-                .createdAt(restaurant.getCreatedDate())
-                .build();
-    }
-
-    public List<RestaurantResponse> toDtoList (List<Restaurant> list) {
-        // 스트림내 요소들에 대해 함수가 적용된 결과의 새로운 요소로 매핑해준다.
+    public List<ReviewInfo> toDtoList(List<Review> list){
         return list.stream().map(this::toDto).collect(Collectors.toList());
     }
-     */
+
 }
