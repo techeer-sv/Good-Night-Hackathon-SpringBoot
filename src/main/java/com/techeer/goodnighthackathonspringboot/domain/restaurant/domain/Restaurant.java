@@ -28,6 +28,7 @@ public class Restaurant extends BaseEntity {
     public Restaurant(String name, Category category){
         this.name = name;
         this.category = category;
+        this.isActivated = true;
     }
 
     public void delete(){
