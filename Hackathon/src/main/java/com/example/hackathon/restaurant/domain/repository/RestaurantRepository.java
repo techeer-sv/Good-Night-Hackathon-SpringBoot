@@ -18,7 +18,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Modifying // insert, update , delete 등 db에 변화가 발생하는 작업에는 필수
     @Transactional // 이 과정 중 다른 연산이 끼어들 수 없게 하는 어노테이션
     @Query("update Restaurant r set r.category = :category where r.id = :id")
-    void updateCategory(@Param("restaurant_id") Long id ,@Param("category") Category category);
+    void updateCategory(@Param("id") Long id ,@Param("category") Category category);
 
     /*
     //레스토랑 카테고리에 따른 레스토랑 목록 조회
