@@ -1,7 +1,10 @@
 package com.techeer.hackathon.domain.restaurant.entity;
 
 import com.techeer.hackathon.global.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
