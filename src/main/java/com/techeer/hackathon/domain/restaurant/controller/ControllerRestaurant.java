@@ -31,16 +31,7 @@ public class ControllerRestaurant {
         Restaurant insertRestaurant = Res_Service.insertRestaurant(registerRestaurantDTO);
         return new ResponseEntity(Res_Mapper.DtoFromEntity(insertRestaurant), HttpStatus.CREATED);
     }
-//    @GetMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<List<InquiryRestaurantDTO>> getRestaurantList(){
-//        List<Restaurant> restaurants = Res_Service.getRestaurantList();
-//        //for문 사용
-//        return new ResponseEntity<>(
-//                restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList())
-//                , HttpStatus.OK);
-//        //return new ResponseEntity<>(restaurants, HttpStatus.OK);
-//    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InquiryRestaurantDTO> getAllRestaurants() {
