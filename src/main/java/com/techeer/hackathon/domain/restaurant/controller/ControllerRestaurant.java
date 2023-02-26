@@ -2,23 +2,17 @@ package com.techeer.hackathon.domain.restaurant.controller;
 
 import com.techeer.hackathon.domain.restaurant.dto.InquiryRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.RegisterRestaurantDTO;
-import com.techeer.hackathon.domain.restaurant.dto.UpdateRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import com.techeer.hackathon.domain.restaurant.service.ServiceRestaurant;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.GeneratorType;
-import org.hibernate.sql.Update;
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
