@@ -46,14 +46,18 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    @Transactional
-    public RestaurantDetailResponse getCategoryDetail(Category category) {
-        Restaurant restaurant = restaurantRepository.findRestaurantByCategory(category).orElseThrow(null);
-        return
-                RestaurantDetailResponse.builder()
-                .title(restaurant.getTitle())
-                .category(restaurant.getCategory())
-                .build();
+    @Transactional(readOnly = true)
+    public List<RestaurantDetailResponse> getRestaurantsByCategory(Category category) {
+        List<Restaurant> restaurants = restaurantRepository.findByCategory(category);
+        List<RestaurantDetailResponse> restaurantDetailResponses = new ArrayList<>();
+        for(Restaurant restaurant : restaurants) {
+            restaurantDetailResponses.add(RestaurantDetailResponse.builder()
+                    .id(restaurant.getId())
+                    .title(restaurant.getTitle())
+                    .category(restaurant.getCategory())
+                    .build());
+        }
+        return restaurantDetailResponses;
     }
 
     public RestaurantDetailResponse getBoardListPage(int page, int size) {

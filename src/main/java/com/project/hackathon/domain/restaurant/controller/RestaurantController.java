@@ -40,9 +40,9 @@ public class RestaurantController {
     }
 
     @GetMapping("/list/{category}")
-    public ResponseEntity<RestaurantDetailResponse> loadCategory(@PathVariable Category category) {
-        RestaurantDetailResponse restaurantDetailResponse = restaurantService.getCategoryDetail(category);
-        return ResponseEntity.ok(restaurantDetailResponse);
+    public ResponseEntity<List<RestaurantDetailResponse>> loadRestaurantByCategory(@PathVariable Category category) {
+        List<RestaurantDetailResponse> restaurantDetailResponses = restaurantService.getRestaurantsByCategory(category);
+        return ResponseEntity.ok(restaurantDetailResponses);
     }
 //
 //    @GetMapping("/{boardId}")
