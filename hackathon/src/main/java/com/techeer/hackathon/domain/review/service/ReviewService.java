@@ -29,4 +29,9 @@ public class ReviewService {
         Review review = reviewRepository.findById(id).orElseThrow(ReviewNotFoundException::new);
         return reviewMapper.toDto(review);
     }
+
+    public void deleteReview(Long id) {
+        reviewRepository.findById(id).orElseThrow(ReviewNotFoundException::new);
+        reviewRepository.deleteById(id);
+    }
 }

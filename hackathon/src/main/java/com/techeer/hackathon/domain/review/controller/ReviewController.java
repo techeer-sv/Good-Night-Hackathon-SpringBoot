@@ -28,4 +28,11 @@ public class ReviewController {
             @PathVariable Long id) {
         return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_REVIEW_SUCCESS, reviewService.getReview(id)));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResultResponse> deleteReview(
+            @PathVariable Long id) {
+        reviewService.deleteReview(id);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.DELETE_REVIEW_SUCCESS));
+    }
 }
