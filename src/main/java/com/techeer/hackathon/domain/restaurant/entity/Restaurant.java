@@ -1,5 +1,6 @@
 package com.techeer.hackathon.domain.restaurant.entity;
 
+import com.techeer.hackathon.domain.restaurant.dto.RestaurantUpdateDto;
 import com.techeer.hackathon.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name="restaurant")
 public class Restaurant extends BaseEntity {
     @Id
@@ -29,5 +28,14 @@ public class Restaurant extends BaseEntity {
     public Restaurant(String category, String name) {
         this.category = category;
         this.name = name;
+        this.activated = true;
+    }
+
+    public void update(RestaurantUpdateDto restaurantUpdate){
+        this.category = restaurantUpdate.getCategory();
+    }
+
+    public void delete() { //soft delete
+        this.activated = false;
     }
 }

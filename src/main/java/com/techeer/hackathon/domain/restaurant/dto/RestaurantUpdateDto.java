@@ -9,5 +9,8 @@ import javax.validation.constraints.NotNull;
 @RequiredArgsConstructor
 public class RestaurantUpdateDto {
     @NotNull
+    private Long id;
+
+    @NotNull
     private String category;
 }
