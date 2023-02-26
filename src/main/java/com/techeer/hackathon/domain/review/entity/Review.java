@@ -43,4 +43,12 @@ public class Review extends BaseEntity {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

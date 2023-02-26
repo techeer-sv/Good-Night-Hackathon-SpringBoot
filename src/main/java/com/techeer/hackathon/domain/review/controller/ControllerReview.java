@@ -2,6 +2,7 @@ package com.techeer.hackathon.domain.review.controller;
 
 import com.techeer.hackathon.domain.review.dto.CreateReviewDTO;
 import com.techeer.hackathon.domain.review.dto.InquiryReviewDTO;
+import com.techeer.hackathon.domain.review.dto.UpdateReviewDTO;
 import com.techeer.hackathon.domain.review.dto.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.entity.Review;
 import com.techeer.hackathon.domain.review.service.ServiceReview;
@@ -39,5 +40,11 @@ public class ControllerReview {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteReview(@PathVariable("id") Long id) {
         Rev_Serv.deleteReview(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<InquiryReviewDTO> updateReview(@PathVariable Long id, @RequestBody UpdateReviewDTO updateReviewDTO) {
+        InquiryReviewDTO result = Rev_Serv.updateReview(id, updateReviewDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }
