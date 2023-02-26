@@ -9,10 +9,13 @@ import com.techeer.hackathon.domain.review.dto.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.entity.Review;
 import com.techeer.hackathon.domain.review.repository.RepositoryReview;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Not;
-import org.hibernate.sql.Update;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,4 +58,18 @@ public class ServiceReview {
                 .build();
         return inquiryReviewDTO;
     }
+
+    public Object getReviewForSearch(Integer page, Integer size, String title, String content) {
+        Pageable pageable = PageRequest.of(page, size);
+        return Rev_Mapper.inquiryReviewDTOListFromEntity(Rev_Repo.findAllBySearch(title, content, pageable));
+    }
+
+    public List<Review> getReviewsByCreatedTime() {
+        return Rev_Repo.findAllByOrderByCreatedAtAsc();
+    }
+
+    public List<Review> getReviewsByReverseCreatedTime() {
+        return Rev_Repo.findAllByOrderByCreatedAtDesc();
+    }
+
 }

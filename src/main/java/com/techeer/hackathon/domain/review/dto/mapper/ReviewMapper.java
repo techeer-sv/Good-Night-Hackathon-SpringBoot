@@ -5,13 +5,12 @@ import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import com.techeer.hackathon.domain.review.dto.CreateReviewDTO;
 import com.techeer.hackathon.domain.review.dto.InquiryReviewDTO;
 import com.techeer.hackathon.domain.review.entity.Review;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Access;
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 //@NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -33,5 +32,10 @@ public class ReviewMapper {
                 .content(review.getContent())
                 .restaurantName(review.getRestaurant().getName())
                 .build();
+    }
+
+    public List<InquiryReviewDTO> inquiryReviewDTOListFromEntity(Page<Review> reviewPage) {
+        List<InquiryReviewDTO> inquiryReviewDTOList = reviewPage.stream().map(this::ReviewEntityToDto).collect(Collectors.toList());
+        return inquiryReviewDTOList;
     }
 }

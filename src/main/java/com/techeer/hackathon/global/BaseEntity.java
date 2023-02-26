@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)  // Auditing(자동으로 값 매핑)
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)

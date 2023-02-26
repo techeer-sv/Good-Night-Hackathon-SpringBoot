@@ -55,11 +55,6 @@ public class ControllerRestaurant {
         return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<InquiryRestaurantDTO> getRestaurant(@PathVariable Long id) {
-//        InquiryRestaurantDTO restaurant = Res_Service.getRestaurant(id);
-//        return ResponseEntity.ok().body(restaurant);
-//    }
     @GetMapping("/{id}")
     public InquiryRestaurantDTO getRestaurantById(@PathVariable Long id) {
         Restaurant restaurant = Res_Service.getRestaurantByIdAndDeletedIsFalse(id);

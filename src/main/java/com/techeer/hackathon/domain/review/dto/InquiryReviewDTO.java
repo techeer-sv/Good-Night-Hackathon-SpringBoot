@@ -3,8 +3,6 @@ package com.techeer.hackathon.domain.review.dto;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Builder
 @Getter
 public class InquiryReviewDTO {
