@@ -7,6 +7,8 @@ import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import com.techeer.hackathon.domain.restaurant.service.ServiceRestaurant;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.GeneratorType;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -56,4 +58,11 @@ public class ControllerRestaurant {
         List<Restaurant> restaurants = Res_Repo.findByCategoryAndDeletedFalse(category);
         return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<InquiryRestaurantDTO> getRestaurant(@PathVariable Long id) {
+        InquiryRestaurantDTO restaurant = Res_Service.getRestaurant(id);
+        return ResponseEntity.ok().body(restaurant);
+    }
+
 }

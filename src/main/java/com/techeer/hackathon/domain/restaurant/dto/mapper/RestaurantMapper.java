@@ -25,12 +25,8 @@ public class RestaurantMapper {
                 .id(restaurant.getId())
                 .name(restaurant.getName())
                 .category(restaurant.getCategory())
+                .createdAt(restaurant.getCreatedAt())
                 .build();
     }
 
-    public List<InquiryRestaurantDTO> listEntityToListDto(List<Restaurant> restaurantList) {
-        return restaurantList.stream()
-                .map(this::DtoFromEntity)
-                .collect(Collectors.toList());
-    }
 }

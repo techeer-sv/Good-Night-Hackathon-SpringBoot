@@ -7,10 +7,12 @@ import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import org.webjars.NotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +47,13 @@ public class ServiceRestaurant {
         return restaurants.stream()
                 .map(Res_Mapper::DtoFromEntity)
                 .collect(Collectors.toList());
+    }
+
+    public InquiryRestaurantDTO getRestaurant(Long id) {
+        Restaurant restaurant = Res_Repo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Restaurant not found"));
+
+        return Res_Mapper.DtoFromEntity(restaurant);
     }
 
 }
