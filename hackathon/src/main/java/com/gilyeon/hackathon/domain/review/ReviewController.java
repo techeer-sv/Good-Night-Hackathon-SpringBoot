@@ -45,7 +45,7 @@ public class ReviewController {
         return ResponseEntity.ok(id+"번 리뷰가 삭제되었습니다.");
     }
 
-    @GetMapping("/review/list")
+    @GetMapping("/reviews")
     public ResponseEntity<List<ReviewInfo>> getReviewListByPagination(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {

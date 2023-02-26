@@ -59,15 +59,17 @@ public class ReviewService {
         reviewRepository.delete(findReview);
     }
 
-    public Review mapReviewEntityCreateRequestToReview(ReviewCreateRequest reviewCreateRequest) {
-        return Review.builder()
-                .content(reviewCreateRequest.getContent())
-                .title(reviewCreateRequest.getTitle())
-                .build();
-    }
+//    public Review mapReviewEntityCreateRequestToReview(ReviewCreateRequest reviewCreateRequest) {
+//        return Review.builder()
+//                .content(reviewCreateRequest.getContent())
+//                .title(reviewCreateRequest.getTitle())
+//                .build();
+//    }
 
     public ReviewInfo mapReviewEntityToReviewInfo(Review review) {
         return ReviewInfo.builder()
+                .createdAt(review.getCreatedAt())
+                .updatedAt(review.getModifiedAt())
                 .content(review.getContent())
                 .title(review.getTitle())
                 .build();
