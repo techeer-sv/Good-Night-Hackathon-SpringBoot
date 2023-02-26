@@ -1,0 +1,70 @@
+plugins {
+//	id 'java'
+//	id 'org.springframework.boot' version '3.1.0-SNAPSHOT'
+//	id 'io.spring.dependency-management' version '1.1.0'
+//	id 'org.asciidoctor.jvm.convert' version '3.3.2'
+
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+
+//repositories {
+//	mavenCentral()
+//	maven { url 'https://repo.spring.io/milestone' }
+//	maven { url 'https://repo.spring.io/snapshot' }
+//}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+//	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+
+//	implementation 'org.postgresql:postgresql'
+	compileOnly 'org.projectlombok:lombok'
+//	compile('javax.xml.bind:jaxb-api:2.3.0')
+//	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}
+//
+//tasks.named('test') {
+//	outputs.dir snippetsDir
+//	useJUnitPlatform()
+//}
+//
+//tasks.named('asciidoctor') {
+//	inputs.dir snippetsDir
+//	dependsOn test
+//}
+//
+
+test {
+	useJUnitPlatform()
+}
