@@ -1,18 +1,14 @@
 package com.techeer.goodnighthackathonspringboot.domain.restaurant.controller;
 
-import com.techeer.goodnighthackathonspringboot.domain.restaurant.domain.Restaurant;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantPageInfo;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantCreateRequest;
-import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantInfo;
-import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.response.RestaurantResponseDto;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantInfo;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantUpdateRequest;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -24,9 +20,24 @@ public class RestaurantController {
     private final RestaurantMapper mapper;
 
     @PostMapping
-    public ResponseEntity<RestaurantResponseDto> registerRestaurant(
+    public ResponseEntity<RestaurantInfo> register(
             @Valid @RequestBody RestaurantCreateRequest request) {
-        Restaurant entity = restaurantService.create(mapper.toInfo(request));
-        return ResponseEntity.ok(mapper.toResponseDto(entity));
+        return ResponseEntity.ok(restaurantService.create(mapper.mapCreateRequestToInfo(request)));
     }
+
+    @PutMapping
+    public ResponseEntity<RestaurantInfo> update(
+            @Valid @RequestBody RestaurantUpdateRequest request
+    ){
+        return ResponseEntity.ok(restaurantService.update(mapper.mapUpdateRequestToInfo(request)));
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<RestaurantPageInfo> getRestaurantByPagination(
+            @RequestParam(defaultValue = "0") int offset, @RequestParam(defaultValue = "10") int size){
+        RestaurantPageInfo restaurantPageInfo = restaurantService.getRestaurantByPagination(offset, size);
+        return ResponseEntity.ok(restaurantPageInfo);
+    }
+
+
 }

@@ -1,4 +1,4 @@
-package com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request;
+package com.techeer.goodnighthackathonspringboot.domain.restaurant.dto;
 
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.domain.Category;
 import lombok.*;
@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RestaurantInfo {
+
+    private Long id;
     private String name;
     private Category category;
 }

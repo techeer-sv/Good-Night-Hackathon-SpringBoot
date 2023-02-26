@@ -1,5 +1,6 @@
 package com.techeer.goodnighthackathonspringboot.domain.restaurant.domain;
 
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantInfo;
 import com.techeer.goodnighthackathonspringboot.global.domain.BaseEntity;
 import lombok.*;
 
@@ -31,6 +32,10 @@ public class Restaurant extends BaseEntity {
 
     public void delete(){
         this.activeOff();
+    }
+
+    public void update(RestaurantInfo restaurantInfo){
+        this.category = restaurantInfo.getCategory();
     }
 
 }
