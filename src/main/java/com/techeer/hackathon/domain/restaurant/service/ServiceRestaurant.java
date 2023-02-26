@@ -2,6 +2,7 @@ package com.techeer.hackathon.domain.restaurant.service;
 
 import com.techeer.hackathon.domain.restaurant.dto.InquiryRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.RegisterRestaurantDTO;
+import com.techeer.hackathon.domain.restaurant.dto.UpdateRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.webjars.NotFoundException;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +56,14 @@ public class ServiceRestaurant {
                 .orElseThrow(() -> new NotFoundException("Restaurant not found"));
 
         return Res_Mapper.DtoFromEntity(restaurant);
+    }
+
+    public UpdateRestaurantDTO updateRestaurantCategory(Long id, String newCategory){
+        Restaurant restaurant = Res_Repo.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Restaurant not found with id " + id));
+        restaurant.setCategory(newCategory);
+        Res_Repo.save(restaurant);
+        return Res_Mapper.UpdateFromEntity(restaurant);
     }
 
 }

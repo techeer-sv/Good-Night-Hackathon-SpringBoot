@@ -2,12 +2,14 @@ package com.techeer.hackathon.domain.restaurant.controller;
 
 import com.techeer.hackathon.domain.restaurant.dto.InquiryRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.RegisterRestaurantDTO;
+import com.techeer.hackathon.domain.restaurant.dto.UpdateRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.repository.RepositoryRestaurant;
 import com.techeer.hackathon.domain.restaurant.service.ServiceRestaurant;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GeneratorType;
+import org.hibernate.sql.Update;
 import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +65,11 @@ public class ControllerRestaurant {
     public ResponseEntity<InquiryRestaurantDTO> getRestaurant(@PathVariable Long id) {
         InquiryRestaurantDTO restaurant = Res_Service.getRestaurant(id);
         return ResponseEntity.ok().body(restaurant);
+    }
+
+    @PutMapping("/id/{id}/{category}")
+    public ResponseEntity updateRestaurantCategory(@PathVariable("id") Long id, @PathVariable("category") String category) {
+        return ResponseEntity.ok(Res_Service.updateRestaurantCategory(id,category));
     }
 
 }
