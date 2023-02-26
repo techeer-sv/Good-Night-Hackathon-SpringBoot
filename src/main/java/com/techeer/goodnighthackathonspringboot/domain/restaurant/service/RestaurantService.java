@@ -49,4 +49,11 @@ public class RestaurantService {
         return mapper.mapEntityToInfo(foundRestaurant);
     }
 
+    public void delete(Long id) {
+        Restaurant foundRestaurant =
+                restaurantRepository.findById(id)
+                        .orElseThrow(NotFoundRestaurantException::new);
+        foundRestaurant.delete();
+    }
+
 }
