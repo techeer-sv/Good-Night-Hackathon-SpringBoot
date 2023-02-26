@@ -51,4 +51,8 @@ public class RestaurantService {
         List<Restaurant> restaurants = restaurantRepository.findByCategory(categoriesList);
         return restaurantMapper.toDtoList(restaurants);
     }
+
+    public void deleteRestaurant(Long id) {
+        restaurantRepository.softDeleteById(id);
+    }
 }

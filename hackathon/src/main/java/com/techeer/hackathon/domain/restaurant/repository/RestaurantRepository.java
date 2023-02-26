@@ -20,4 +20,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     @Query("SELECT r FROM Restaurant r WHERE r.category IN :categories")
     List<Restaurant> findByCategory(@Param("categories") List<RestaurantCategory> categories);
+
+    @Modifying
+    @Transactional
+    @Query("update Restaurant r set r.isDeleted = 1 where r.id = :id")
+    void softDeleteById(Long id);
 }
