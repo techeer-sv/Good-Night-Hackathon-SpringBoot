@@ -4,13 +4,16 @@ import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
 import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
+import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -25,19 +28,20 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-//    @Transactional(readOnly = true)
-//    public RestaurantInfo getRestaurants() {
-//        Restaurant foundRestaurant = restaurantRepository.findAll();
-//
-//        return
-//    }
-
     @Transactional(readOnly = true)
     public RestaurantInfo getRestaurantDetail(Long id) {
         Restaurant findRestaurant = restaurantRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
         return mapRestaurantEntityToRestaurantInfo(findRestaurant);
+    }
+
+    @Transactional(readOnly = true)
+    public List<RestaurantInfo> getRestaurantListByPagination(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return restaurantRepository.findRestaurantWithPagination(pageRequest).stream()
+                .map(this::mapRestaurantEntityToRestaurantInfo)
+                .collect(Collectors.toList());
     }
     
 

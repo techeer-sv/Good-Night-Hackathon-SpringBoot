@@ -3,10 +3,13 @@ package com.gilyeon.hackathon.domain.restaurant;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
+import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -31,11 +34,13 @@ public class RestaurantController {
         return ResponseEntity.ok(restaurantInfo);
     }
 
-//    @GetMapping("/restaurants")
-//    public ResponseEntity<RestaurantInfo> getRestaurants() {
-//        RestaurantInfo restaurantInfo = restaurantService.getRestaurants();
-//        return ResponseEntity.ok(restaurantInfo);
-//    }
+    @GetMapping("/restaurants")
+    public ResponseEntity<List<RestaurantInfo>> getRestaurantListByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<RestaurantInfo> restaurantInfoList = restaurantService.getRestaurantListByPagination(page, size);
+        return ResponseEntity.ok(restaurantInfoList);
+    }
 
     @PutMapping("/restaurant/edit")
     public ResponseEntity<RestaurantInfo> updateRestaurant(@RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
