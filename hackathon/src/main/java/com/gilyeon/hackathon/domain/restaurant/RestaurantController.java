@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
@@ -22,7 +20,8 @@ public class RestaurantController {
         return ResponseEntity.ok(RestaurantInfo.builder()
                 .name(restaurantCreateRequest.getName())
                 .category(restaurantCreateRequest.getCategory())
-                .createdDate(restaurantCreateRequest.getCreateDate())
+                .createdAt(restaurantCreateRequest.getCreatedAt())
+                .updatedAt(restaurantCreateRequest.getUpdatedAt())
                 .build());
     }
 

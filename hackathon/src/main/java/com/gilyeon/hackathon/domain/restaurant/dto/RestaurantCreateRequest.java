@@ -14,5 +14,6 @@ import java.time.LocalDateTime;
 public class RestaurantCreateRequest {
     private final String name;
     private final RestaurantCategory category;
-    private final LocalDateTime createDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

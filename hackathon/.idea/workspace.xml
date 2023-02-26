@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 검색 api 생성 &#10;- get: /review/search">
+    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="refactor: api명 변경">
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" afterDir="false" />
@@ -13,19 +13,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadME.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadME.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/RestaurantService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/entity/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/entity/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/entity/RestaurantCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/entity/RestaurantCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantCreateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/restaurant/dto/RestaurantUpdateRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/dto/ReviewCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/dto/ReviewCreateRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/dto/ReviewInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/dto/ReviewInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/entity/Review.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677389430139</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: entity join에 따른 파라미터 수정">
+      <created>1677399050273</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1677399050273</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: api명 변경">
+      <created>1677399093452</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1677399093452</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +301,8 @@
     <MESSAGE value="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}" />
     <MESSAGE value="feat: 리뷰 리스트 조회 api 생성 &#10;- get: /review/list" />
     <MESSAGE value="feat: 리뷰 검색 api 생성 &#10;- get: /review/search" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 검색 api 생성 &#10;- get: /review/search" />
+    <MESSAGE value="feat: entity join에 따른 파라미터 수정" />
+    <MESSAGE value="refactor: api명 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: api명 변경" />
   </component>
 </project>

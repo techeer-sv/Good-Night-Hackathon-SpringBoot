@@ -34,9 +34,10 @@ public class ReviewService {
 
     @Transactional
     public void createReview(ReviewCreateRequest reviewCreateRequest) {
-        Optional<Restaurant> findRestaurant = restaurantRepository.findById(reviewCreateRequest.getRestaurantId());
-        Review review = mapReviewEntityCreateRequestToReview(reviewCreateRequest);
-        reviewRepository.save(review);
+        Restaurant restaurant = restaurantRepository.findById(reviewCreateRequest.getRestaurantId())
+            .orElseThrow(EntityNotFoundException::new);
+
+        reviewRepository.save(reviewCreateRequest.toEntity(restaurant));
     }
 
     @Transactional

@@ -71,7 +71,8 @@ public class RestaurantService {
 
     public RestaurantInfo mapRestaurantEntityToRestaurantInfo(Restaurant restaurant) {
         return RestaurantInfo.builder()
-                .createdDate(restaurant.getCreatedAt())
+                .createdAt(restaurant.getCreatedAt())
+                .updatedAt(restaurant.getModifiedAt())
                 .category(restaurant.getCategory())
                 .name(restaurant.getName())
                 .build();

@@ -1,5 +1,6 @@
 package com.gilyeon.hackathon.domain.review.dto;
 
+import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
