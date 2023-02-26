@@ -40,4 +40,10 @@ public class ReviewService {
                 () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
         return reviewMapper.toDto(review);
     }
+
+    public void deleteReview(Long id) {
+        reviewRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
+        reviewRepository.deleteById(id);
+    }
 }
