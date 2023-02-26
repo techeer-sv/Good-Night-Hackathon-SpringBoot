@@ -8,10 +8,12 @@ import com.techeergroup2.goodnight.domain.restaurant.dto.RestaurantUpdateRespons
 import com.techeergroup2.goodnight.domain.restaurant.repository.RestaurantRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class RestaurantService {
@@ -32,6 +34,7 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
         return restaurant.toUpdateDto();
     }
+
 
     public void deleteRestaurant(Long id) {
         restaurantRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No restaurant with id " + id));
