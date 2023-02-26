@@ -14,6 +14,10 @@ import java.util.Optional;
 public interface RestaurantRepository extends PagingAndSortingRepository<Restaurant, Long>,
     JpaRepository<Restaurant, Long> {
 
-    @Query("select r from Restaurant r where r.categoryName = :categoryName and r.isDeleted is false")
+    @Query("select r from Restaurant r where r.isDeleted = false")
+    @Override
+    Page<Restaurant> findAll(Pageable pageable);
+
+    @Query("select r from Restaurant r where r.categoryName = :categoryName and r.isDeleted = false")
     Page<Restaurant> findAllWithCategoryName(Pageable pageable, Optional<String> categoryName);
 }
