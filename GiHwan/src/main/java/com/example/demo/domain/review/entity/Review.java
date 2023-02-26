@@ -1,7 +1,9 @@
 package com.example.demo.domain.review.entity;
 
 import com.example.demo.domain.restaurant.entity.Restaurant;
+import com.example.demo.domain.restaurant.entity.RestaurantCategory;
 import com.example.demo.domain.review.dao.ReviewRepository;
+import com.example.demo.domain.review.dto.ReviewUpdateRequest;
 import com.example.demo.global.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +20,6 @@ import javax.persistence.*;
 public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
     private Long id;
 
     @Column(name = "title", nullable = false)
@@ -36,6 +37,11 @@ public class Review extends BaseEntity {
         this.title=title;
         this.content=content;
         this.restaurant=restaurant;
+    }
+
+    public void update(ReviewUpdateRequest reviewUpdateRequest){
+        this.title = reviewUpdateRequest.getTitle();
+        this.content = reviewUpdateRequest.getContent();
     }
 
 }

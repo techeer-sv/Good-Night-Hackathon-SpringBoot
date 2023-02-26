@@ -5,18 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-
 import java.time.LocalDateTime;
 
 @Getter
 @Builder
 @AllArgsConstructor
-public class ReviewCreateResponse {
-    private final LocalDateTime createdAt;
-
+public class ReviewInfo {
     private final String title;
 
     private final String content;
 
-    private final Long restaurantId;
+    private final String restaurantName;
 }
