@@ -12,6 +12,8 @@ public enum ErrorCode {
     INPUT_INVALID_VALUE(400, "G002", "잘못된 입력"),
     // Restaurant
     NOT_FOUND_RESTAURANT_ENTITY(400, "R001", "존재하지 않는 restaurant 입니다."),
+    // Review
+    NOT_FOUND_REVIEW_ENTITY(400,"R101","존재하지 않는 review 입니다.")
     ;
 
     private final int status;

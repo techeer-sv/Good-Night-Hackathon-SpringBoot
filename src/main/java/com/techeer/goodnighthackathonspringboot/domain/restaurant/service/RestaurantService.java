@@ -1,10 +1,13 @@
 package com.techeer.goodnighthackathonspringboot.domain.restaurant.service;
 
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dao.RestaurantRepository;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.domain.Category;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.domain.Restaurant;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantPageInfo;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantInfo;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantCreateRequest;
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantUpdateRequest;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.exception.NotFoundRestaurantException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,19 +21,19 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final RestaurantMapper mapper;
 
-    public RestaurantInfo create(RestaurantInfo restaurantInfo){
+    public RestaurantInfo create(RestaurantCreateRequest request){
         Restaurant entity = Restaurant.builder()
-                .name(restaurantInfo.getName())
-                .category(restaurantInfo.getCategory())
+                .name(request.getName())
+                .category(Category.valueOf(request.getCategory()))
                 .build();
         return mapper.mapEntityToInfo(restaurantRepository.save(entity));
     }
 
-    public RestaurantInfo update(RestaurantInfo restaurantInfo) {
+    public RestaurantInfo update(RestaurantUpdateRequest request) {
         Restaurant foundRestaurant = restaurantRepository
-                .findById(restaurantInfo.getId())
+                .findById(request.getId())
                 .orElseThrow(NotFoundRestaurantException::new);
-        foundRestaurant.update(restaurantInfo);
+        foundRestaurant.update(mapper.mapUpdateRequestToInfo(request));
         return mapper.mapEntityToInfo(restaurantRepository.save(foundRestaurant));
     }
 
@@ -38,6 +41,13 @@ public class RestaurantService {
     public RestaurantPageInfo getRestaurantByPagination(int offset, int size) {
         PageRequest pageRequest = PageRequest.of(offset, size);
         Page<Restaurant> restaurantByPagination = restaurantRepository.findRestaurantWithPagination(pageRequest);
+        return mapper.mapEntityToRestaurantPageInfo(restaurantByPagination);
+    }
+
+    @Transactional(readOnly = true)
+    public RestaurantPageInfo getRestaurantByCategoryAndPagination(int offset, int size, Category category) {
+        PageRequest pageRequest = PageRequest.of(offset, size);
+        Page<Restaurant> restaurantByPagination = restaurantRepository.findRestaurantWithCategoryAndPagination(category, pageRequest);
         return mapper.mapEntityToRestaurantPageInfo(restaurantByPagination);
     }
 

@@ -1,5 +1,6 @@
 package com.techeer.goodnighthackathonspringboot.domain.restaurant.controller;
 
+import com.techeer.goodnighthackathonspringboot.domain.restaurant.domain.Category;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.RestaurantPageInfo;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.goodnighthackathonspringboot.domain.restaurant.dto.request.RestaurantCreateRequest;
@@ -22,21 +23,29 @@ public class RestaurantController {
     @PostMapping
     public ResponseEntity<RestaurantInfo> register(
             @Valid @RequestBody RestaurantCreateRequest request) {
-        return ResponseEntity.ok(restaurantService.create(mapper.mapCreateRequestToInfo(request)));
+        return ResponseEntity.ok(restaurantService.create(request));
     }
 
     @PutMapping
     public ResponseEntity<RestaurantInfo> update(
             @Valid @RequestBody RestaurantUpdateRequest request
     ){
-        System.out.println("hi");
-        return ResponseEntity.ok(restaurantService.update(mapper.mapUpdateRequestToInfo(request)));
+        return ResponseEntity.ok(restaurantService.update(request));
     }
 
     @GetMapping("/page")
     public ResponseEntity<RestaurantPageInfo> getRestaurantByPagination(
             @RequestParam(defaultValue = "0") int offset, @RequestParam(defaultValue = "10") int size){
         RestaurantPageInfo restaurantPageInfo = restaurantService.getRestaurantByPagination(offset, size);
+        return ResponseEntity.ok(restaurantPageInfo);
+    }
+
+    @GetMapping("/page/{category}")
+    public ResponseEntity<RestaurantPageInfo> getRestaurantByCategoryAndPagination(
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "10") int size,
+            @PathVariable String category){
+        RestaurantPageInfo restaurantPageInfo = restaurantService.getRestaurantByCategoryAndPagination(offset, size, Category.valueOf(category));
         return ResponseEntity.ok(restaurantPageInfo);
     }
 
@@ -47,7 +56,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         restaurantService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RestaurantInfo {
 
-    private Long id;
     private String name;
     private Category category;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime createdOn;
 }

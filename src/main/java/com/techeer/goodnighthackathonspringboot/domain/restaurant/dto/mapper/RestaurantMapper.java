@@ -32,7 +32,6 @@ public class RestaurantMapper {
 
     public RestaurantInfo mapUpdateRequestToInfo(RestaurantUpdateRequest request) {
         return RestaurantInfo.builder()
-                .id(request.getId())
                 .category(Category.valueOf(request.getCategory()))
                 .build();
     }
@@ -46,9 +45,9 @@ public class RestaurantMapper {
 
     public RestaurantInfo mapEntityToInfo(Restaurant entity) {
         return RestaurantInfo.builder()
-                .id(entity.getId())
                 .name(entity.getName())
                 .category(entity.getCategory())
+                .createdOn(entity.getCreateOn())
                 .build();
     }
 
