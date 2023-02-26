@@ -21,7 +21,7 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
     public Page<RestaruantResponseDto> getRestaurants(Pageable pageable, Optional<String> categoryName) {
-        if(categoryName.isEmpty()) {
+        if(categoryName.isEmpty()) { // Optional은 지양해야 된다. 용량을 많이 차지한다.
             Page<Restaurant> restaurants = restaurantRepository.findAll(pageable);
 
             return restaurants.map(RestaruantResponseDto::new);
