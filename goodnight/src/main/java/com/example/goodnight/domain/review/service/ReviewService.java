@@ -9,9 +9,14 @@ import com.example.goodnight.domain.review.dto.response.ReviewAllResDto;
 import com.example.goodnight.domain.review.dto.response.ReviewResDto;
 import com.example.goodnight.domain.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +38,11 @@ public class ReviewService {
         return dto;
     }
 
-    public List<ReviewAllResDto> getReviews(String title, String content) {
-        return reviewRepository.findAllByTitleOrContent(title, content).stream().map(this::mapReviewEntityToReviewAllResDto).collect(Collectors.toList());
+    public List<ReviewAllResDto> getReviews(String title, String content, int orderType) {
+        PageRequest pageRequest = PageRequest.of(0, 20);
+        List<ReviewAllResDto> result;
+        result = orderType == 0 ? reviewRepository.findAllByTitleOrContent(pageRequest,title, content).stream().sorted(Comparator.comparing(Review::getCreatedAt)).map(this::mapReviewEntityToReviewAllResDto).collect(Collectors.toList()) : reviewRepository.findAllByTitleOrContent(pageRequest,title, content).stream().sorted(Comparator.comparing(Review::getCreatedAt).reversed()).map(this::mapReviewEntityToReviewAllResDto).collect(Collectors.toList());
+        return result;
     }
 
 

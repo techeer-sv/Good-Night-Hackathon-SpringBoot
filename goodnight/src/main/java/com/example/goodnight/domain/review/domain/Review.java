@@ -1,6 +1,7 @@
 package com.example.goodnight.domain.review.domain;
 
 import com.example.goodnight.domain.restaurant.domain.Restaurant;
+import com.example.goodnight.global.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Table(name = "review")
-public class Review {
+public class Review extends BaseEntity implements Comparable<Review>{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -35,5 +36,10 @@ public class Review {
         this.title = title;
         this.content = content;
         this.restaurant = restaurant;
+    }
+
+    @Override
+    public int compareTo(Review o) {
+        return 0;
     }
 }

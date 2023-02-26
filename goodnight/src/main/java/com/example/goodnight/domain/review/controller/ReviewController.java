@@ -18,8 +18,8 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("/api/v1/reviews")
-    public List<ReviewAllResDto> getAllReviews(@RequestParam(value = "title") String title, @RequestParam(value = "content") String content) {
-        return reviewService.getReviews(title, content);
+    public List<ReviewAllResDto> getAllReviews(@RequestParam(value = "title") String title, @RequestParam(value = "content") String content, @RequestParam(value = "orderType") int orderType) {
+        return reviewService.getReviews(title, content, orderType);
     }
 
 
