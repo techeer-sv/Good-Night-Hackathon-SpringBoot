@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface RepositoryRestaurant extends JpaRepository<Restaurant, Long> {
     Optional<Restaurant> findByIdAndDeletedIsFalse(Long id);
     List<Restaurant> findByDeletedFalse();
+    List<Restaurant> findByCategoryAndDeletedFalse(String category);
 }

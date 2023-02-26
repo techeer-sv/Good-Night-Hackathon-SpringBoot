@@ -1,5 +1,6 @@
 package com.techeer.hackathon.domain.restaurant.service;
 
+import com.techeer.hackathon.domain.restaurant.dto.InquiryRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.RegisterRestaurantDTO;
 import com.techeer.hackathon.domain.restaurant.dto.mapper.RestaurantMapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
@@ -10,6 +11,7 @@ import org.webjars.NotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class ServiceRestaurant {
     }
 
     public List<Restaurant> getAllRestaurants(){
+
         return Res_Repo.findAll();
     }
 
@@ -35,6 +38,13 @@ public class ServiceRestaurant {
     private Restaurant getRestaurantById(Long id) {
         return Res_Repo.findByIdAndDeletedIsFalse(id)
                 .orElseThrow(() -> new NotFoundException("Restaurant no found"));
+    }
+
+    public List<InquiryRestaurantDTO> getRestaurantsByCategory(String category) {
+        List<Restaurant> restaurants = Res_Repo.findByCategoryAndDeletedFalse(category);
+        return restaurants.stream()
+                .map(Res_Mapper::DtoFromEntity)
+                .collect(Collectors.toList());
     }
 
 }

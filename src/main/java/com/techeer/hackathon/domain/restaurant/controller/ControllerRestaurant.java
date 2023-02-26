@@ -12,8 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,13 +36,6 @@ public class ControllerRestaurant {
         return new ResponseEntity(Res_Mapper.DtoFromEntity(insertRestaurant), HttpStatus.CREATED);
     }
 
-//    @GetMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<InquiryRestaurantDTO> getAllRestaurants() {
-//        List<Restaurant> restaurants = Res_Service.getAllRestaurants();
-//        return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
-//    }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InquiryRestaurantDTO> getAllRestaurants() {
@@ -55,5 +49,11 @@ public class ControllerRestaurant {
     public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id) {
         Res_Service.deleteRestaurant(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/category")
+    public List<InquiryRestaurantDTO> getRestaurantsByCategory(String category) {
+        List<Restaurant> restaurants = Res_Repo.findByCategoryAndDeletedFalse(category);
+        return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
     }
 }

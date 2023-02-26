@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Component
 public class RestaurantMapper {
@@ -25,4 +28,9 @@ public class RestaurantMapper {
                 .build();
     }
 
+    public List<InquiryRestaurantDTO> listEntityToListDto(List<Restaurant> restaurantList) {
+        return restaurantList.stream()
+                .map(this::DtoFromEntity)
+                .collect(Collectors.toList());
+    }
 }
