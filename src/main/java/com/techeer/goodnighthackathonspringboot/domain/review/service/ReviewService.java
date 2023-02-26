@@ -39,7 +39,9 @@ public class ReviewService {
     public ReviewInfo update(ReviewUpdateRequest request){
         Review review = reviewRepository.findById(request.getId())
                 .orElseThrow(NotFoundReviewException::new);
-        review.update(request.getTitle(), request.getContents());
+        Restaurant restaurant = restaurantRepository.findById(request.getRestaurantId())
+                .orElseThrow(NotFoundRestaurantException::new);
+        review.update(restaurant, request.getTitle(), request.getContents());
         return mapper.mapEntityToInfo(reviewRepository.save(review));
     }
 

@@ -33,7 +33,8 @@ public class Review extends BaseEntity {
         this.isActivated = true;
     }
 
-    public void update(String title, String contents){
+    public void update(Restaurant restaurant, String title, String contents){
+        this.restaurant = restaurant;
         this.title = title;
         this.contents = contents;
     }

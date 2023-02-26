@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 @RequiredArgsConstructor
 public class ReviewUpdateRequest {
+    @NotNull(message = "레스토랑 id는 필수입니다.")
+    private Long restaurantId;
     @NotNull(message = "리뷰 id는 필수입니다.")
     private Long id;
     @NotBlank(message = "리뷰 제목은 필수입니다.")
