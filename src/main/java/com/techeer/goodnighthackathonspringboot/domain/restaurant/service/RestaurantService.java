@@ -41,4 +41,12 @@ public class RestaurantService {
         return mapper.mapEntityToRestaurantPageInfo(restaurantByPagination);
     }
 
+    @Transactional(readOnly = true)
+    public RestaurantInfo getOneRestaurant(Long id) {
+        Restaurant foundRestaurant =
+                restaurantRepository.findById(id)
+                        .orElseThrow(NotFoundRestaurantException::new);
+        return mapper.mapEntityToInfo(foundRestaurant);
+    }
+
 }
