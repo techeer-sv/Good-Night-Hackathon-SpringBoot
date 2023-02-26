@@ -20,6 +20,10 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
     public RestaurantDtoResponse createRestaurant(CreatedRestaurantRequest createdRestaurantRequest) {
+        restaurantRepository.findByName(createdRestaurantRequest.getName()).ifPresent(
+                restaurant -> {
+                    throw new IllegalArgumentException("Restaurant with name " + restaurant.getName() + " already exists");
+                });
         return restaurantRepository.save(createdRestaurantRequest.toEntity()).toDto();
     }
 
