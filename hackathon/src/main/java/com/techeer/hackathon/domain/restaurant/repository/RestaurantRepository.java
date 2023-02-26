@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     boolean existsByName(String name);
@@ -25,4 +26,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Transactional
     @Query("update Restaurant r set r.isDeleted = 1 where r.id = :id")
     void softDeleteById(Long id);
+
+    Optional<Restaurant> findByName(String restaurantName);
 }

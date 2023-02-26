@@ -11,7 +11,9 @@ public enum ResultCode {
     CHANGE_CATEGORY_SUCCESS("R002", "카테고리 변경 성공"),
     GET_ALL_RESTAURANTS_SUCCESS("R003", "전체 카테고리 조회 성공"),
     DELETE_RESTAURANTS_SUCCESS("R004", "레스토랑 삭제 성공"),
-    GET_RESTAURANTS_SUCCESS("R005", "카테고리 조회 성공");
+    GET_RESTAURANTS_SUCCESS("R005", "카테고리 조회 성공"),
+
+    REVIEW_CREATE_SUCCESS("V001", "리뷰 등록 성공");
 
     private final String code;
     private final String message;
