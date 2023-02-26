@@ -13,6 +13,7 @@ import org.webjars.NotFoundException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,11 +50,18 @@ public class ServiceRestaurant {
                 .collect(Collectors.toList());
     }
 
-    public InquiryRestaurantDTO getRestaurant(Long id) {
-        Restaurant restaurant = Res_Repo.findById(id)
-                .orElseThrow(() -> new NotFoundException("Restaurant not found"));
-
-        return Res_Mapper.DtoFromEntity(restaurant);
+//    public InquiryRestaurantDTO getRestaurant(Long id) {
+//        Restaurant restaurant = Res_Repo.findById(id)
+//                .orElseThrow(() -> new NotFoundException("Restaurant not found"));
+//
+//        return Res_Mapper.DtoFromEntity(restaurant);
+//    }
+    public Restaurant getRestaurantByIdAndDeletedIsFalse(Long id) {
+        Optional<Restaurant> optionalRestaurant = Res_Repo.findByIdAndDeletedIsFalse(id);
+        if (optionalRestaurant.isEmpty()) {
+            throw new RuntimeException();
+        }
+        return optionalRestaurant.get();
     }
 
     public UpdateRestaurantDTO updateRestaurantCategory(Long id, String newCategory){
