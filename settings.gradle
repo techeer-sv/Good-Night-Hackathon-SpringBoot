@@ -1,0 +1,5 @@
+rootProject.name = 'Good-Night-Hackathon'
+include 'domain'
+include 'application'
+include 'api'
+
