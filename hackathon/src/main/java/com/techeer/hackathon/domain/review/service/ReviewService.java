@@ -12,7 +12,10 @@ import com.techeer.hackathon.domain.review.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.repository.ReviewRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
@@ -40,5 +43,10 @@ public class ReviewService {
         Review findReview = reviewRepository.findById(reviewUpdateRequest.getId()).orElseThrow(ReviewNotFoundException::new);
         Review review = reviewMapper.toEntity(reviewUpdateRequest, findReview.getRestaurant());
         reviewRepository.save(review);
+    }
+
+    public List<ReviewInfo> getReviews(PageRequest pageRequest) {
+        List<Review> reviews = reviewRepository.findAll(pageRequest).getContent();
+        return reviewMapper.toDtoList(reviews);
     }
 }

@@ -7,6 +7,9 @@ import com.techeer.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.techeer.hackathon.domain.review.entity.Review;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ReviewMapper {
     public Review toEntity(ReviewCreate request, Restaurant restaurant) {
@@ -35,16 +38,7 @@ public class ReviewMapper {
                 .build();
     }
 
-//    public RestaurantResponse toDto(Restaurant restaurant) {
-//
-//        return RestaurantResponse.builder()
-//                .category(restaurant.getCategory().name())
-//                .name(restaurant.getName())
-//                .createdAt(restaurant.getCreatedAt())
-//                .build();
-//    }
-//
-//    public List<RestaurantResponse> toDtoList(List<Restaurant> list) {
-//        return list.stream().map(this::toDto).collect(Collectors.toList());
-//    }
+    public List<ReviewInfo> toDtoList(List<Review> list) {
+        return list.stream().map(this::toDto).collect(Collectors.toList());
+    }
 }
