@@ -33,7 +33,7 @@ public class Review extends BaseEntity {
 
     // 특정 레스토랑명
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "restaurant", nullable = false)
+    @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
     @Column(name = "is_removed", nullable = false)
@@ -43,7 +43,7 @@ public class Review extends BaseEntity {
     public Review(
             String title,
             String content,
-            Restaurant restaurant) {
+            Restaurant restaurant){
         this.title = title;
         this.content = content;
         this.restaurant = restaurant;

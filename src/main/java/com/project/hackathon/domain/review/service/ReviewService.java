@@ -1,47 +1,45 @@
-//package com.project.hackathon.domain.review.service;
-//
-//import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
-//import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
-//import com.project.hackathon.domain.restaurant.dto.RestaurantInfo;
-//import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
-//import com.project.hackathon.domain.restaurant.entity.Restaurant;
-//import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
-//import com.project.hackathon.domain.review.repository.ReviewRepository;
-//import lombok.RequiredArgsConstructor;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.PageRequest;
-//import org.springframework.data.domain.Pageable;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@RequiredArgsConstructor
-//@Service
-//@Slf4j
-//public class ReviewService {
-//    private final ReviewRepository reviewRepository;
-//
-//    @Transactional
-//    public RestaurantDetailResponse create(RestaurantCreateRequest restaurantCreateRequest) {
-//
-//        final Restaurant newReview =
-//                Restaurant.builder()
-//                        .title(restaurantCreateRequest.getTitle())
-//                        .category(restaurantCreateRequest.getCategory())
-//                        .createdAt(restaurantCreateRequest.getCreatedAt())
-//                        .build();
-//
-//        reviewRepository.save(newReview);
-//
-//        return RestaurantDetailResponse.builder()
-//                .title(newReview.getTitle())
-//                .category(newReview.getCategory())
-//                .createdAt(newReview.getCreatedAt())
-//                .build();
-//    }
+package com.project.hackathon.domain.review.service;
+
+import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
+import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
+import com.project.hackathon.domain.restaurant.dto.RestaurantInfo;
+import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
+import com.project.hackathon.domain.restaurant.entity.Restaurant;
+import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
+import com.project.hackathon.domain.review.dto.ReviewCreateRequest;
+import com.project.hackathon.domain.review.dto.ReviewDetailResponse;
+import com.project.hackathon.domain.review.entity.Review;
+import com.project.hackathon.domain.review.repository.ReviewRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ReviewService {
+    private final ReviewRepository reviewRepository;
+
+    public ReviewDetailResponse create(ReviewCreateRequest reviewCreateRequest) {
+        Review newReview =
+                Review.builder()
+                        .title(reviewCreateRequest.getTitle())
+                        .content(reviewCreateRequest.getContent())
+                        .build();
+
+        reviewRepository.save(newReview);
+
+        return ReviewDetailResponse.builder()
+                .title(reviewCreateRequest.getTitle())
+                .content(reviewCreateRequest.getContent())
+                .build();
+    }
 //
 //    public RestaurantDetailResponse getRestaurantDetail(Long restaurantId) {
 //        Restaurant restaurant =
@@ -79,4 +77,4 @@
 //        restaurant.deleteRestaurant();
 //        restaurantRepository.save(restaurant);
 //    }
-//}
+}

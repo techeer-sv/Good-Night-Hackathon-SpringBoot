@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
-
     @PostMapping("/create")
     public ResponseEntity<RestaurantDetailResponse> createRestaurant(
             @Validated @RequestBody RestaurantCreateRequest request

@@ -28,7 +28,6 @@ public class RestaurantService {
                 Restaurant.builder()
                         .title(restaurantCreateRequest.getTitle())
                         .category(restaurantCreateRequest.getCategory())
-//                        .createdAt(restaurantCreateRequest.getCreatedAt())
                         .build();
 
         restaurantRepository.save(newRestaurant);
