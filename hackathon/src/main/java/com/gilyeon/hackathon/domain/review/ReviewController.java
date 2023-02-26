@@ -1,6 +1,5 @@
 package com.gilyeon.hackathon.domain.review;
 
-import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.gilyeon.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import com.gilyeon.hackathon.domain.review.dto.ReviewUpdateRequest;
@@ -24,29 +23,29 @@ public class ReviewController {
         return ResponseEntity.ok(reviewInfo);
     }
 
-    @PostMapping("/review")
+    @PostMapping("/review/create")
     public ResponseEntity<ReviewInfo> craeteReview(@RequestBody ReviewCreateRequest reviewCreateRequest){
         reviewService.createReview(reviewCreateRequest);
         return ResponseEntity.ok(ReviewInfo.builder()
                 .title(reviewCreateRequest.getTitle())
                 .content(reviewCreateRequest.getContent())
-                .createdDate(reviewCreateRequest.getCreateDate())
+                .restaurantId(reviewCreateRequest.getRestaurantId())
                 .build());
     }
 
-    @PutMapping("/review")
+    @PutMapping("/review/edit")
     public ResponseEntity<ReviewInfo> updateReview(@RequestBody ReviewUpdateRequest reviewUpdateRequest) {
         ReviewInfo reviewInfo = reviewService.updateRestaurant(reviewUpdateRequest);
         return ResponseEntity.ok(reviewInfo);
     }
 
-    @DeleteMapping("/reviews/{id}")
+    @DeleteMapping("/review/delete/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable Long id) {
         reviewService.deleteReview(id);
         return ResponseEntity.ok(id+"번 리뷰가 삭제되었습니다.");
     }
 
-    @GetMapping("/reviews/list")
+    @GetMapping("/review/list")
     public ResponseEntity<List<ReviewInfo>> getReviewListByPagination(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -54,7 +53,7 @@ public class ReviewController {
         return ResponseEntity.ok(reviewInfoList);
     }
 
-    @GetMapping("/reviews/search")
+    @GetMapping("/review/search")
     public ResponseEntity<List<ReviewInfo>> getReviewListWithTitleOrContentByPagination(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
