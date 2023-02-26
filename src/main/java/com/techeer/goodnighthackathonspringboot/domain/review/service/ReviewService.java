@@ -7,6 +7,7 @@ import com.techeer.goodnighthackathonspringboot.domain.review.dao.ReviewReposito
 import com.techeer.goodnighthackathonspringboot.domain.review.domain.Review;
 import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewCreateRequest;
 import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewInfo;
+import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewUpdateRequest;
 import com.techeer.goodnighthackathonspringboot.domain.review.dto.mapper.ReviewMapper;
 import com.techeer.goodnighthackathonspringboot.domain.review.exception.NotFoundReviewException;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,13 @@ public class ReviewService {
                 .title(request.getTitle())
                 .contents(request.getContents())
                 .build();
+        return mapper.mapEntityToInfo(reviewRepository.save(review));
+    }
+
+    public ReviewInfo update(ReviewUpdateRequest request){
+        Review review = reviewRepository.findById(request.getId())
+                .orElseThrow(NotFoundReviewException::new);
+        review.update(request.getTitle(), request.getContents());
         return mapper.mapEntityToInfo(reviewRepository.save(review));
     }
 
