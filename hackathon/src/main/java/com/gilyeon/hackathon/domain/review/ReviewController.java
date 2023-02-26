@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @RestController
@@ -42,6 +44,14 @@ public class ReviewController {
     public ResponseEntity<String> deleteReview(@PathVariable Long id) {
         reviewService.deleteReview(id);
         return ResponseEntity.ok(id+"번 리뷰가 삭제되었습니다.");
+    }
+
+    @GetMapping("/reviews/list")
+    public ResponseEntity<List<ReviewInfo>> getReviewListByPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<ReviewInfo> reviewInfoList = reviewService.getReviewListByPagination(page, size);
+        return ResponseEntity.ok(reviewInfoList);
     }
 
 

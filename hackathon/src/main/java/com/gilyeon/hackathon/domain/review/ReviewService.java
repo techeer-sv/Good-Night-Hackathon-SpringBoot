@@ -1,16 +1,17 @@
 package com.gilyeon.hackathon.domain.review;
 
-import com.gilyeon.hackathon.domain.restaurant.dto.RestaurantInfo;
-import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
 import com.gilyeon.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import com.gilyeon.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.gilyeon.hackathon.domain.review.entity.Review;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,14 @@ public class ReviewService {
                 .content(review.getContent())
                 .title(review.getTitle())
                 .build();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ReviewInfo> getReviewListByPagination(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return reviewRepository.findReviewWithPagination(pageRequest).stream()
+                .map(this::mapReviewEntityToReviewInfo)
+                .collect(Collectors.toList());
     }
 
 }

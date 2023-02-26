@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 수정 api 생성&#10;- put: /review">
+    <list default="true" id="f56a8202-4642-47ba-89f5-63c7861d15a5" name="Changes" comment="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}">
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.bin" afterDir="false" />
@@ -13,11 +13,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReadME.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadME.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gilyeon/hackathon/domain/review/ReviewService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677359098321</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}">
+      <created>1677362117843</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1677362117843</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +265,7 @@
     <MESSAGE value="feat: 리뷰 조회 api 생성&#10;- get: /review/{id}" />
     <MESSAGE value="feat: 리뷰 생성 api 생성&#10;- post: /review" />
     <MESSAGE value="feat: 리뷰 수정 api 생성&#10;- put: /review" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 수정 api 생성&#10;- put: /review" />
+    <MESSAGE value="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 리뷰 삭제 api 생성 (Hard Delete)&#10;- delete: /review/{id}" />
   </component>
 </project>
