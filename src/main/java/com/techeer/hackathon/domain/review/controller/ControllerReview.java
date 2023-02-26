@@ -34,4 +34,10 @@ public class ControllerReview {
         InquiryReviewDTO review = Rev_Serv.getReview(id);
         return ResponseEntity.ok().body(review);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReview(@PathVariable("id") Long id) {
+        Rev_Serv.deleteReview(id);
+    }
 }

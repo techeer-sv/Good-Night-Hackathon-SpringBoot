@@ -29,10 +29,18 @@ public class Review extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "deleted", nullable = false)
+    private boolean deleted;
+
     @Builder
-    public Review(String title, String content, Restaurant restaurant){
+    public Review(String title, String content, Restaurant restaurant, boolean deleted){
         this.title = title;
         this.content = content;
         this.restaurant = restaurant;
+        this.deleted = false;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
