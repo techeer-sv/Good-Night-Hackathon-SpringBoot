@@ -1,11 +1,13 @@
 package com.techeer.hackathon.domain.review.service;
 
 import com.techeer.hackathon.domain.review.dto.CreateReviewDTO;
+import com.techeer.hackathon.domain.review.dto.InquiryReviewDTO;
 import com.techeer.hackathon.domain.review.dto.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.entity.Review;
 import com.techeer.hackathon.domain.review.repository.RepositoryReview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -15,5 +17,11 @@ public class ServiceReview {
 
     public Review insertReview(CreateReviewDTO createReviewDTO) {
         return Rev_Repo.save(Rev_Mapper.ReviewDtoToEntity(createReviewDTO));
+    }
+
+    public InquiryReviewDTO getReview(Long id) {
+        Review review = Rev_Repo.findById(id)
+                .orElseThrow(() -> new NotFoundException("Review not found"));
+        return Rev_Mapper.ReviewEntityToDto(review);
     }
 }

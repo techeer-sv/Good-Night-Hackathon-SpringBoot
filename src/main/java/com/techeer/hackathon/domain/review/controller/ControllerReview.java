@@ -4,7 +4,6 @@ import com.techeer.hackathon.domain.review.dto.CreateReviewDTO;
 import com.techeer.hackathon.domain.review.dto.InquiryReviewDTO;
 import com.techeer.hackathon.domain.review.dto.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.entity.Review;
-import com.techeer.hackathon.domain.review.repository.RepositoryReview;
 import com.techeer.hackathon.domain.review.service.ServiceReview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,5 +27,11 @@ public class ControllerReview {
             @RequestBody @Valid CreateReviewDTO createReviewDTO) {
         Review insertReview = Rev_Serv.insertReview(createReviewDTO);
         return new ResponseEntity(Rev_Mapper.ReviewEntityToDto(insertReview), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<InquiryReviewDTO> getReview(@PathVariable Long id) {
+        InquiryReviewDTO review = Rev_Serv.getReview(id);
+        return ResponseEntity.ok().body(review);
     }
 }
