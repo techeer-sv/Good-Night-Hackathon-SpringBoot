@@ -2,6 +2,7 @@ package com.example.hackathon.restaurant.service;
 
 import com.example.hackathon.restaurant.RestaurantMapper;
 import com.example.hackathon.restaurant.domain.repository.RestaurantRepository;
+import com.example.hackathon.restaurant.dto.RestaurantChange;
 import com.example.hackathon.restaurant.dto.RestaurantCreateDTO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,9 @@ public class RestaurantService {
 
     public void createRestaurant(RestaurantCreateDTO restaurantCreateDTO) {
         restaurantRepository.save(restaurantMapper.toEntity(restaurantCreateDTO));
+    }
+
+    public void changeRestaurantCategory(RestaurantChange request) {
+        restaurantRepository.updateCategory(request.getId(), request.getCategory());
     }
 }
