@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RestaurantDetailResponse {
+    private Long id;
 
     // 레스토랑 이름
     private String title;

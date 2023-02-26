@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class Restaurant extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -44,6 +44,7 @@ public class Restaurant extends BaseEntity{
             String title,
             Category category
     ) {
+        this.id = id;
         this.title = title;
         this.category = category;
         this.isRemoved = false;

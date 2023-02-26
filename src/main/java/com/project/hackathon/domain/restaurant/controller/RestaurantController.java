@@ -7,12 +7,17 @@ import javax.validation.executable.ValidateOnExecution;
 
 import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
+import com.project.hackathon.domain.restaurant.entity.Category;
+import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.restaurant.service.RestaurantService;
 import com.project.hackathon.global.dto.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestMapping("/api/v1/restaurant")
 @RequiredArgsConstructor
@@ -25,6 +30,18 @@ public class RestaurantController {
             @Validated @RequestBody RestaurantCreateRequest request
             ) {
         RestaurantDetailResponse restaurantDetailResponse = restaurantService.create(request);
+        return ResponseEntity.ok(restaurantDetailResponse);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Restaurant>> getAllRestaurants() {
+        List<Restaurant> restaurants = restaurantService.getAllRestaurants();
+        return ResponseEntity.ok(restaurants);
+    }
+
+    @GetMapping("/list/{category}")
+    public ResponseEntity<RestaurantDetailResponse> loadCategory(@PathVariable Category category) {
+        RestaurantDetailResponse restaurantDetailResponse = restaurantService.getCategoryDetail(category);
         return ResponseEntity.ok(restaurantDetailResponse);
     }
 //

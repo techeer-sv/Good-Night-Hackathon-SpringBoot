@@ -4,6 +4,7 @@ import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
 import com.project.hackathon.domain.restaurant.dto.RestaurantInfo;
 import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
+import com.project.hackathon.domain.restaurant.entity.Category;
 import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,23 +34,28 @@ public class RestaurantService {
         restaurantRepository.save(newRestaurant);
 
         return RestaurantDetailResponse.builder()
+                .id(newRestaurant.getId())
                 .title(newRestaurant.getTitle())
                 .category(newRestaurant.getCategory())
                 .createdAt(newRestaurant.getCreatedAt())
                 .build();
     }
 
-//    public RestaurantDetailResponse getRestaurantDetail(Long restaurantId) {
-//        Restaurant restaurant =
-//                RestaurantRepository.findRestaurantById(restaurantId).orElseThrow(null);
-//        return RestaurantDetailResponse.builder()
-//                .title(restaurant.getTitle())
-//                .category(restaurant.getCategory())
-//                .createdAt(restaurant.getCreatedAt())
-//                .build();
-//    }
+    @Transactional
+    public List<Restaurant> getAllRestaurants() {
+        return restaurantRepository.findAll();
+    }
 
-    public List<RestaurantInfo> restaurantInfoList = new ArrayList<>();
+    @Transactional
+    public RestaurantDetailResponse getCategoryDetail(Category category) {
+        Restaurant restaurant = restaurantRepository.findRestaurantByCategory(category).orElseThrow(null);
+        return
+                RestaurantDetailResponse.builder()
+                .title(restaurant.getTitle())
+                .category(restaurant.getCategory())
+                .build();
+    }
+
     public RestaurantDetailResponse getBoardListPage(int page, int size) {
         final Pageable pageable = PageRequest.of(page, size);
         Page<Restaurant> restaurantPageInfoList =
@@ -66,7 +72,6 @@ public class RestaurantService {
         return RestaurantDetailResponse.builder()
                 .title(restaurant.getTitle())
                 .category(restaurant.getCategory())
-                .createdAt(restaurant.getCreatedAt())
                 .build();
     }
 
