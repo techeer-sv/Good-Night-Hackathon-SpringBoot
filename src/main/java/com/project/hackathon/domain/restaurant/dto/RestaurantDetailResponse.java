@@ -1,7 +1,6 @@
 package com.project.hackathon.domain.restaurant.dto;
 
 import java.time.LocalDateTime;
-
 import com.project.hackathon.domain.restaurant.entity.Category;
 import lombok.*;
 

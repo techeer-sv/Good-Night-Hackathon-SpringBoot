@@ -1,6 +1,5 @@
 package com.project.hackathon.domain.review.repository;
 
-import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.domain.review.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +19,8 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("select r from Review r where r.isActive = true and (r.title like %:keyword% or r.content like %:keyword%)")
     Page<Review> findContainingTitleOrContentReviewWithPagination(
             Pageable pageable, @Param("keyword") String keyword);
+
+    List<Review> findAllByOrderByCreatedAt();
+    List<Review> findAllByOrderByCreatedAtDesc();
+
 }

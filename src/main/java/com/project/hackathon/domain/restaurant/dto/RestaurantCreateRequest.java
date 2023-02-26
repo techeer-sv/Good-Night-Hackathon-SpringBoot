@@ -2,10 +2,8 @@ package com.project.hackathon.domain.restaurant.dto;
 
 import com.project.hackathon.domain.restaurant.entity.Category;
 import lombok.*;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Getter
 @Builder

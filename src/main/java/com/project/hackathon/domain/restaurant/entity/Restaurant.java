@@ -31,8 +31,6 @@ public class Restaurant extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    // 레스토랑 생성일자
-//    @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
 

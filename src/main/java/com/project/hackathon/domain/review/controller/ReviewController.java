@@ -1,12 +1,5 @@
 package com.project.hackathon.domain.review.controller;
 
-
-import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
-import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
-import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
-import com.project.hackathon.domain.restaurant.entity.Category;
-import com.project.hackathon.domain.restaurant.entity.Restaurant;
-import com.project.hackathon.domain.restaurant.service.RestaurantService;
 import com.project.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.project.hackathon.domain.review.dto.ReviewDetailResponse;
 import com.project.hackathon.domain.review.dto.ReviewUpdateRequest;
@@ -45,7 +38,19 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
-    @GetMapping("/search/{keyword}?page=0&size=10&sort=id,desc")
+    @GetMapping("/list/createdAt")
+    public ResponseEntity<List<Review>> getAllReviewsByCreatedAt(@PathVariable String restaurant) {
+        List<Review> reviews = reviewService.getAllReviewsByCreatedAt();
+        return ResponseEntity.ok(reviews);
+    }
+
+    @GetMapping("/list/createdAtDesc")
+    public ResponseEntity<List<Review>> getAllReviewsByCreatedAtDesc() {
+        List<Review> reviews = reviewService.getAllReviewsByCreatedAtDesc();
+        return ResponseEntity.ok(reviews);
+    }
+
+    @GetMapping("/search/{keyword}?page=0&size=10리&sort=id,desc")
     public ResponseEntity<Page<ReviewDetailResponse>> searchReviews(
             @PathVariable String keyword,
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {

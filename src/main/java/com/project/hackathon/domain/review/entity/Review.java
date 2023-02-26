@@ -1,16 +1,14 @@
 package com.project.hackathon.domain.review.entity;
 
-import com.project.hackathon.domain.restaurant.entity.Category;
-import com.project.hackathon.domain.restaurant.entity.Restaurant;
 import com.project.hackathon.global.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import static javax.persistence.FetchType.LAZY;
 
 @Getter
 @Entity
@@ -19,7 +17,7 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "review")
 public class Review extends BaseEntity {
 
-    @Id // 이 멤버변수는 primary key라는 것을 나타내며 없으면 에러남
+    @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
@@ -33,13 +31,12 @@ public class Review extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
-    // 특정 레스토랑명
-//    @ManyToOne(fetch = LAZY)
-//    @JoinColumn(name = "restaurant")
-//    private String restaurant;
     @Column(name = "restaurant", nullable = false)
     private String restaurant;
 
+    @CreationTimestamp
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "is_removed", nullable = false)
     private boolean isRemoved;
@@ -64,7 +61,6 @@ public class Review extends BaseEntity {
     public void setUpdatedAt() {
         this.updatedAt = LocalDateTime.now();
     }
-
     public void deleteReview() { //soft delete
         this.isRemoved = true;
     }

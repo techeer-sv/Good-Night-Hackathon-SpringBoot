@@ -1,29 +1,16 @@
 package com.project.hackathon.domain.review.service;
 
-import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
-import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
-import com.project.hackathon.domain.restaurant.dto.RestaurantInfo;
-import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
-import com.project.hackathon.domain.restaurant.entity.Category;
-import com.project.hackathon.domain.restaurant.entity.Restaurant;
-import com.project.hackathon.domain.restaurant.repository.RestaurantRepository;
 import com.project.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.project.hackathon.domain.review.dto.ReviewDetailResponse;
 import com.project.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.project.hackathon.domain.review.entity.Review;
 import com.project.hackathon.domain.review.repository.ReviewRepository;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +38,16 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
+    @Transactional
+    public List<Review> getAllReviewsByCreatedAt() {
+        return reviewRepository.findAllByOrderByCreatedAt();
+    }
+
+    @Transactional
+    public List<Review> getAllReviewsByCreatedAtDesc() {
+        return reviewRepository.findAllByOrderByCreatedAtDesc();
+    }
+
     @Transactional(readOnly = true)
     public Page<ReviewDetailResponse> search(String keyword, Pageable pageable) {
         Page<Review> reviews = reviewRepository.findContainingTitleOrContentReviewWithPagination(pageable, keyword);
@@ -61,7 +58,6 @@ public class ReviewService {
                 .build());
     }
 
-    @Builder
     @Transactional
     public ReviewDetailResponse update(Long id, ReviewUpdateRequest reviewUpdateRequest) {
         Review review = reviewRepository.findById(id).orElseThrow(null);
