@@ -1,6 +1,7 @@
 package com.example.goodnight.domain.review.domain;
 
 import com.example.goodnight.domain.restaurant.domain.Restaurant;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

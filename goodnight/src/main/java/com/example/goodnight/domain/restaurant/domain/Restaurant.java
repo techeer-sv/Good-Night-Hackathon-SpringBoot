@@ -29,13 +29,13 @@ public class Restaurant extends BaseEntity {
     private boolean isActivated;
 
     @OneToMany(mappedBy = "restaurant")
-    private List<Review> reviews = new ArrayList<>();
+    private List<Review> reviewList = new ArrayList<>();
 
     @Builder
     public Restaurant(String restaurantName, String category, List<Review> reviews) {
         this.restaurantName = restaurantName;
         this.category = category;
-        this.reviews = reviews;
+        this.reviewList = reviews;
         this.isActivated = true;
     }
     public void update(String category) {this.category = category;}
