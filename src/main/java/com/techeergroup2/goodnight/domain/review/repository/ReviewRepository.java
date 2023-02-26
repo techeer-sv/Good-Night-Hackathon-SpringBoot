@@ -16,6 +16,4 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     @Query(value = "SELECT r FROM Review r WHERE r.title LIKE %:title% OR r.content LIKE %:content%")
     List<Review> findAllSearch(String title, String content, Pageable pageable);
-
-
 }
