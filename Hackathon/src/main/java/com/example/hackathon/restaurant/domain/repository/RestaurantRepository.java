@@ -29,11 +29,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Transactional
     @Query("update Restaurant r set r.isActive = false where r.id = :id")
     void softDeleteById(Long id);
-    /*
 
-    // 레스토랑 전제 목록 조회
-    @Query
+    // 레스토랑 이름으로 조회
     Optional<Restaurant> findByName(String restaurantName);
 
-    */
+
 }

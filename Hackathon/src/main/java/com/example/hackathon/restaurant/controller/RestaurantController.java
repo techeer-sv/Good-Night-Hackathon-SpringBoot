@@ -41,4 +41,10 @@ public class RestaurantController {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.DELETE_RESTAURANT_SUCCESS));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> getRestaurant(@PathVariable Long id) {
+        restaurantService.getRestaurant(id);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_FIND_BY_ID_RESTAURANT));
+    }
 }

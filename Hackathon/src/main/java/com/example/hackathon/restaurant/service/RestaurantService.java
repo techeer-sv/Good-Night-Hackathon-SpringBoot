@@ -45,4 +45,8 @@ public class RestaurantService {
     public void deleteRestaurant(Long id){
         restaurantRepository.softDeleteById(id);
     }
+
+    public void getRestaurant(Long id) {
+        restaurantRepository.findById(id);
+    }
 }
