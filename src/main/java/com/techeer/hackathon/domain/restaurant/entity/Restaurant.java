@@ -27,6 +27,7 @@ public class Restaurant extends BaseEntity {
 
     @Builder
     public Restaurant(String category, String name) {
+
         this.category = category;
         this.name = name;
     }

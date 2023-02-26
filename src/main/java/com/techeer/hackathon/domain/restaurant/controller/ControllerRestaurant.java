@@ -9,13 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/v1/restaurant")
@@ -31,5 +30,21 @@ public class ControllerRestaurant {
             @RequestBody @Valid RegisterRestaurantDTO registerRestaurantDTO) {
         Restaurant insertRestaurant = Res_Service.insertRestaurant(registerRestaurantDTO);
         return new ResponseEntity(Res_Mapper.DtoFromEntity(insertRestaurant), HttpStatus.CREATED);
+    }
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    public ResponseEntity<List<InquiryRestaurantDTO>> getRestaurantList(){
+//        List<Restaurant> restaurants = Res_Service.getRestaurantList();
+//        //for문 사용
+//        return new ResponseEntity<>(
+//                restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList())
+//                , HttpStatus.OK);
+//        //return new ResponseEntity<>(restaurants, HttpStatus.OK);
+//    }
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<InquiryRestaurantDTO> getAllRestaurants() {
+        List<Restaurant> restaurants = Res_Service.getAllRestaurants();
+        return restaurants.stream().map(Res_Mapper::DtoFromEntity).collect(Collectors.toList());
     }
 }
