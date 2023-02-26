@@ -31,6 +31,6 @@ public class ReviewService {
         Review findReview = reviewRepository.findById(request.getId()).orElseThrow(
                 () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
         Review review = reviewMapper.toEntity(request, findReview.getRestaurant());
-        reviewRepository.save(review);
+        reviewRepository.updateReview(findReview.getId(), review.getTitle(), review.getContent());
     }
 }
