@@ -28,4 +28,10 @@ public class ReviewController {
         return ResponseEntity.ok(ResultResponse.of(ResultCode.UPDATE_REVIEW_SUCCESS));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> getReview(@PathVariable Long id) {
+        reviewService.getReview(id);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_REVIEW_SUCCESS , reviewService.getReview(id)));
+    }
+
 }

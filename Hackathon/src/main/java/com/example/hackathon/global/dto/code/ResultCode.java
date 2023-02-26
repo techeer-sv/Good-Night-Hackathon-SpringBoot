@@ -14,7 +14,8 @@ public enum ResultCode {
     GET_FIND_BY_ID_RESTAURANT("R005", "레스토랑 조회 성공"),
 
     CREATE_REVIEW_SUCCESS("V001", "리뷰 생성 성공"),
-    UPDATE_REVIEW_SUCCESS("VOO2","리뷰 수정 성공");
+    UPDATE_REVIEW_SUCCESS("VOO2","리뷰 수정 성공"),
+    GET_REVIEW_SUCCESS("VOO3","리뷰 조회 성공");
 
 
 

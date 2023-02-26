@@ -7,6 +7,7 @@ import com.example.hackathon.review.domain.entity.Review;
 import com.example.hackathon.review.domain.repository.ReviewRepository;
 import com.example.hackathon.review.dto.ReviewChange;
 import com.example.hackathon.review.dto.ReviewCreateDTO;
+import com.example.hackathon.review.dto.ReviewInfo;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,5 +33,11 @@ public class ReviewService {
                 () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
         Review review = reviewMapper.toEntity(request, findReview.getRestaurant());
         reviewRepository.updateReview(findReview.getId(), review.getTitle(), review.getContent());
+    }
+
+    public ReviewInfo getReview(Long id) {
+        Review review = reviewRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 리뷰가 존재하지 않습니다."));
+        return reviewMapper.toDto(review);
     }
 }

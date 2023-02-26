@@ -4,6 +4,7 @@ import com.example.hackathon.restaurant.domain.entity.Restaurant;
 import com.example.hackathon.review.domain.entity.Review;
 import com.example.hackathon.review.dto.ReviewChange;
 import com.example.hackathon.review.dto.ReviewCreateDTO;
+import com.example.hackathon.review.dto.ReviewInfo;
 import org.springframework.stereotype.Component;
 
 
@@ -22,6 +23,14 @@ public class ReviewMapper {
                 .restaurant(restaurant)
                 .title(request.getTitle())
                 .content(request.getContent())
+                .build();
+    }
+
+    public ReviewInfo toDto(Review review) {
+        return ReviewInfo.builder()
+                .RestaurantName(review.getRestaurant().getName())
+                .title(review.getTitle())
+                .content(review.getContent())
                 .build();
     }
 
