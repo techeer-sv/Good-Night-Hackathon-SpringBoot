@@ -2,6 +2,11 @@ package techeer.restaurant.domain.review.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import techeer.restaurant.domain.restaurant.dto.RestaurantInfo;
 import techeer.restaurant.domain.restaurant.entity.Restaurant;
@@ -11,6 +16,9 @@ import techeer.restaurant.domain.review.dto.ReviewRequest;
 import techeer.restaurant.domain.review.dto.UpdateReviewRequest;
 import techeer.restaurant.domain.review.entity.Review;
 import techeer.restaurant.domain.review.repository.ReviewRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -66,5 +74,38 @@ public class ReviewService {
 
     public Review findReviewById(Long id) {
         return reviewRepository.findReviewById(id);
+    }
+
+    public List<ReviewInfo> getReviews(int page, String title, String content, String sort) {
+        PageRequest pageRequest = PageRequest.of(page - 1, 5, Sort.Direction.fromString(sort), "createdAt");
+
+        Page<Review> reviewsPage = null;
+
+
+        if (title != null && content != null && sort.equals("desc")) {
+            reviewsPage = reviewRepository.findByTitleContainingIgnoreCaseAndContentContainingIgnoreCaseOrderByCreatedAtDesc(title,content,pageRequest);
+        } else if (title != null && content != null && sort.equals("asc")) {
+            reviewsPage = reviewRepository.findByTitleContainingIgnoreCaseAndContentContainingIgnoreCaseOrderByCreatedAtAsc(title,content,pageRequest);
+        } else if (title != null && sort.equals("desc")) {
+            reviewsPage = reviewRepository.findByTitleContainingIgnoreCaseOrderByCreatedAtDesc(title, pageRequest);
+        } else if (title != null && sort.equals("asc")) {
+            reviewsPage = reviewRepository.findByTitleContainingIgnoreCaseOrderByCreatedAtAsc(title, pageRequest);
+        } else if (content != null && sort.equals("desc")) {
+            reviewsPage = reviewRepository.findByContentContainingIgnoreCaseOrderByCreatedAtDesc(content, pageRequest);
+        } else if (content != null && sort.equals("asc")) {
+            reviewsPage = reviewRepository.findByContentContainingIgnoreCaseOrderByCreatedAtAsc(content, pageRequest);
+        } else if (sort.equals("desc")) {
+            reviewsPage = reviewRepository.findAllByOrderByCreatedAtDesc(pageRequest);
+        } else if (sort.equals("asc")) {
+            reviewsPage = reviewRepository.findAllByOrderByCreatedAtAsc(pageRequest);
+        }
+
+
+        List<Review> reviews = reviewsPage.getContent();
+        List<ReviewInfo> reviewInfos = new ArrayList<>();
+        for(int i = 0; i < reviews.size(); i++) {
+            reviewInfos.add(mapReviewEntityToReviewInfoResponse(reviews.get(i)));
+        }
+        return reviewInfos;
     }
 }
