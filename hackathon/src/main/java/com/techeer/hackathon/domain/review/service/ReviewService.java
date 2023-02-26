@@ -4,6 +4,9 @@ import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.restaurant.error.RestaurantNotFoundException;
 import com.techeer.hackathon.domain.restaurant.repository.RestaurantRepository;
 import com.techeer.hackathon.domain.review.dto.ReviewCreate;
+import com.techeer.hackathon.domain.review.dto.ReviewInfo;
+import com.techeer.hackathon.domain.review.entity.Review;
+import com.techeer.hackathon.domain.review.exception.ReviewNotFoundException;
 import com.techeer.hackathon.domain.review.mapper.ReviewMapper;
 import com.techeer.hackathon.domain.review.repository.ReviewRepository;
 import lombok.AccessLevel;
@@ -20,5 +23,10 @@ public class ReviewService {
     public void createReview(ReviewCreate request) {
         Restaurant restaurant = restaurantRepository.findByName(request.getRestaurantName()).orElseThrow(RestaurantNotFoundException::new);
         reviewRepository.save(reviewMapper.toEntity(request, restaurant));
+    }
+
+    public ReviewInfo getReview(Long id) {
+        Review review = reviewRepository.findById(id).orElseThrow(ReviewNotFoundException::new);
+        return reviewMapper.toDto(review);
     }
 }

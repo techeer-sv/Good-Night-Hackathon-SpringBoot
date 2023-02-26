@@ -13,7 +13,9 @@ public enum ErrorCode {
     // Restaurant
     RESTAURANT_DUPLICATION_ERROR(409, "R001", "레스토랑 이름이 중복됩니다."),
     INVALID_CATEGORY_ERROR(400, "R002", "잘못된 카테고리 이름입니다."),
-    RESTAURANT_NOT_FOUND(404, "R003", "식당을 찾을 수 없습니다.");
+    RESTAURANT_NOT_FOUND(404, "R003", "식당을 찾을 수 없습니다."),
+
+    REVIEW_NOT_FOUND(404, "V001", "리뷰를 찾을 수 없습니다.");
 
     private final int status;
     private final String code;

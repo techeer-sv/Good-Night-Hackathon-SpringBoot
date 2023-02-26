@@ -7,10 +7,7 @@ import com.techeer.hackathon.global.result.ResultResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/review")
@@ -24,5 +21,11 @@ public class ReviewController {
     ) {
         reviewService.createReview(request);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.REVIEW_CREATE_SUCCESS));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultResponse> getReview(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_REVIEW_SUCCESS, reviewService.getReview(id)));
     }
 }
