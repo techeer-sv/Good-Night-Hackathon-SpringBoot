@@ -1,8 +1,9 @@
 package com.techeer.goodnighthackathonspringboot.domain.review.controller;
 
-import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewCreateRequest;
+import com.techeer.goodnighthackathonspringboot.domain.review.dto.request.ReviewCreateRequest;
 import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewInfo;
-import com.techeer.goodnighthackathonspringboot.domain.review.dto.ReviewUpdateRequest;
+import com.techeer.goodnighthackathonspringboot.domain.review.dto.request.ReviewUpdateRequest;
+import com.techeer.goodnighthackathonspringboot.domain.review.dto.response.ReviewResponse;
 import com.techeer.goodnighthackathonspringboot.domain.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping
-    public ResponseEntity<ReviewInfo> register(
+    public ResponseEntity<ReviewInfo> write(
             @Valid @RequestBody ReviewCreateRequest request
             ){
         return ResponseEntity.ok(reviewService.create(request));
@@ -33,4 +34,12 @@ public class ReviewController {
         reviewService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ReviewResponse> getOne(@PathVariable Long id){
+        return ResponseEntity.ok(reviewService.getOne(id));
+    }
+
+    @GetMapping("/page")
+    public R
 }

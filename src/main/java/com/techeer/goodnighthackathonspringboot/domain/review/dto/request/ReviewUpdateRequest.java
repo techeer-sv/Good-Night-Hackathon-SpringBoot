@@ -1,4 +1,4 @@
-package com.techeer.goodnighthackathonspringboot.domain.review.dto;
+package com.techeer.goodnighthackathonspringboot.domain.review.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
