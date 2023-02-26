@@ -3,6 +3,7 @@ package com.techeer.hackathon.domain.review.mapper;
 import com.techeer.hackathon.domain.restaurant.entity.Restaurant;
 import com.techeer.hackathon.domain.review.dto.ReviewCreate;
 import com.techeer.hackathon.domain.review.dto.ReviewInfo;
+import com.techeer.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.techeer.hackathon.domain.review.entity.Review;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,16 @@ public class ReviewMapper {
                 .title(request.getTitle())
                 .build();
     }
+
+    public Review toEntity(ReviewUpdateRequest request, Restaurant restaurant) {
+        return Review.builder()
+                .restaurant(restaurant)
+                .content(request.getContent())
+                .title(request.getTitle())
+                .build();
+    }
+
+
 
     public ReviewInfo toDto(Review review) {
         return ReviewInfo.builder()

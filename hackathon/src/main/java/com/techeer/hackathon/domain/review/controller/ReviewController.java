@@ -1,6 +1,7 @@
 package com.techeer.hackathon.domain.review.controller;
 
 import com.techeer.hackathon.domain.review.dto.ReviewCreate;
+import com.techeer.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.techeer.hackathon.domain.review.service.ReviewService;
 import com.techeer.hackathon.global.result.ResultCode;
 import com.techeer.hackathon.global.result.ResultResponse;
@@ -35,4 +36,13 @@ public class ReviewController {
         reviewService.deleteReview(id);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.DELETE_REVIEW_SUCCESS));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ResultResponse> updateReview(
+            @RequestBody ReviewUpdateRequest reviewUpdateRequest
+    ) {
+        reviewService.updateReview(reviewUpdateRequest);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.UPDATE_REVIEW_SUCCESS));
+    }
+
 }

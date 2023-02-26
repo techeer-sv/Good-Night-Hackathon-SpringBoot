@@ -5,6 +5,7 @@ import com.techeer.hackathon.domain.restaurant.error.RestaurantNotFoundException
 import com.techeer.hackathon.domain.restaurant.repository.RestaurantRepository;
 import com.techeer.hackathon.domain.review.dto.ReviewCreate;
 import com.techeer.hackathon.domain.review.dto.ReviewInfo;
+import com.techeer.hackathon.domain.review.dto.ReviewUpdateRequest;
 import com.techeer.hackathon.domain.review.entity.Review;
 import com.techeer.hackathon.domain.review.exception.ReviewNotFoundException;
 import com.techeer.hackathon.domain.review.mapper.ReviewMapper;
@@ -33,5 +34,11 @@ public class ReviewService {
     public void deleteReview(Long id) {
         reviewRepository.findById(id).orElseThrow(ReviewNotFoundException::new);
         reviewRepository.deleteById(id);
+    }
+
+    public void updateReview(ReviewUpdateRequest reviewUpdateRequest) {
+        Review findReview = reviewRepository.findById(reviewUpdateRequest.getId()).orElseThrow(ReviewNotFoundException::new);
+        Review review = reviewMapper.toEntity(reviewUpdateRequest, findReview.getRestaurant());
+        reviewRepository.save(review);
     }
 }
