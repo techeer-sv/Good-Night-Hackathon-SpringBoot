@@ -13,7 +13,7 @@ public enum ErrorCode {
     // Restaurant
     NOT_FOUND_RESTAURANT_ENTITY(400, "R001", "존재하지 않는 restaurant 입니다."),
     // Review
-    NOT_FOUND_REVIEW_ENTITY(400,"R101","존재하지 않는 review 입니다.")
+    NOT_FOUND_REVIEW_ENTITY(400,"R101","존재하지 않는 review 입니다."),
     ;
 
     private final int status;
