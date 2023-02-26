@@ -16,7 +16,8 @@ public enum ResultCode {
     REVIEW_CREATE_SUCCESS("V001", "리뷰 등록 성공"),
     GET_REVIEW_SUCCESS("V002", "리뷰 조회 성공"),
     DELETE_REVIEW_SUCCESS("V003", "리뷰 삭제 성공"),
-    UPDATE_REVIEW_SUCCESS("V004", "리뷰 수정 성공");
+    UPDATE_REVIEW_SUCCESS("V004", "리뷰 수정 성공"),
+    GET_ALL_REVIEW_SUCCESS("V005", "리뷰 페이징 조회 성공");
 
     private final String code;
     private final String message;
