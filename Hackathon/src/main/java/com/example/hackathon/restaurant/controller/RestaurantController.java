@@ -35,4 +35,10 @@ public class RestaurantController {
         restaurantService.getRestaurantResponse(categories);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.GET_RESTAURANT_BY_CATEGORY_SUCCESS));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ResultResponse> deleteRestaurant(@PathVariable Long id){
+        restaurantService.deleteRestaurant(id);
+        return ResponseEntity.ok(ResultResponse.of(ResultCode.DELETE_RESTAURANT_SUCCESS));
+    }
 }

@@ -23,13 +23,13 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     //레스토랑 카테고리에 따른 레스토랑 목록 조회
     @Query("select r from Restaurant r where r.category In :categories")
     List<Restaurant> findByCategory(@Param("categories")List<Category> categories);
-    /*
 
     // 레스토랑 삭제
     @Modifying
     @Transactional
     @Query("update Restaurant r set r.isActive = false where r.id = :id")
     void softDeleteById(Long id);
+    /*
 
     // 레스토랑 전제 목록 조회
     @Query
