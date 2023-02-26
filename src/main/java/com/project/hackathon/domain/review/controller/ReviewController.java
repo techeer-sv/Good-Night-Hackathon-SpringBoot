@@ -55,12 +55,12 @@ public class ReviewController {
         return ResponseEntity.ok(reviewDetailResponse);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<RestaurantDetailResponse> deleteRestaurant(
-//            @PathVariable Long id) {
-//        restaurantService.delete(id);
-//        String message = ResultResponse.RESTAURANT_DELETE_SUCCESS.getMessage();
-//        RestaurantDetailResponse response = new RestaurantDetailResponse(message);
-//        return ResponseEntity.ok(response);
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ReviewDetailResponse> deleteReview(
+            @PathVariable Long id) {
+        reviewService.delete(id);
+        String message = ResultResponse.REVIEW_DELETE_SUCCESS.getMessage();
+        ReviewDetailResponse response = new ReviewDetailResponse(message);
+        return ResponseEntity.ok(response);
+    }
 }
