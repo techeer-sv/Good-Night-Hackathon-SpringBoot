@@ -21,6 +21,12 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
 
     public Page<RestaruantResponseDto> getRestaurants(Pageable pageable, Optional<String> categoryName) {
+        if(categoryName.isEmpty()) {
+            Page<Restaurant> restaurants = restaurantRepository.findAll(pageable);
+
+            return restaurants.map(RestaruantResponseDto::new);
+        }
+
         Page<Restaurant> restaurants = restaurantRepository.findAllWithCategoryName(pageable, categoryName);
 
         return restaurants.map(RestaruantResponseDto::new);
