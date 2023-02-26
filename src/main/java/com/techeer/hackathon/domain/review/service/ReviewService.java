@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
@@ -40,5 +42,14 @@ public class ReviewService {
         Pageable pageable = PageRequest.of(page, size);
         return R_Mapper.reviewResponseListFromEntity(R_Repository.findAllBySearch(title, content ,pageable));
 
+    }
+
+    public List<Review> findReviewsByCreatedAt() {
+        return R_Repository.findAllByCreatedAt();
+    }
+
+
+    public List<Review> findReviewsByCreatedAtDesc() {
+        return R_Repository.findAllByCreatedAtDesc();
     }
 }

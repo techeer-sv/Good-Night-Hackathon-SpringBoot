@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
@@ -20,4 +22,10 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 //    @Query( "SELECT r FROM Review r WHERE r.title LIKE %:title% OR r.content LIKE %:content%" )
 //    Page<Review> findAllBySearch(String title, String content, Pageable pageable);
+
+    @Query( "SELECT r FROM Review r ORDER BY r.createdAt" )
+    List<Review> findAllByCreatedAt();
+
+    @Query( "SELECT r FROM Review r ORDER BY r.createdAt DESC" )
+    List<Review> findAllByCreatedAtDesc();
 }

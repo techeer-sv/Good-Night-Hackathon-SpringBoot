@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/api/v1/review")
 @RestController
@@ -58,6 +59,18 @@ public class ReviewController {
             @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(required = false) String title, @RequestParam(required = false) String content) {
         return ResponseEntity.ok(R_Service.findReviewsBySearch(page, size, title, content));
+    }
+
+    @GetMapping("/createdAt")
+    public ResponseEntity<List<Review>> findAllReviewsByCreatedAt() {
+        List<Review> reviews = R_Service.findReviewsByCreatedAt();
+        return ResponseEntity.ok(reviews);
+    }
+
+    @GetMapping("/createdAtDesc")
+    public ResponseEntity<List<Review>> findAllReviewsByCreatedAtDesc() {
+        List<Review> reviews = R_Service.findReviewsByCreatedAtDesc();
+        return ResponseEntity.ok(reviews);
     }
 
 }
