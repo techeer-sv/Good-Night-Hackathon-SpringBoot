@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hackaton
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+  properties.hibernate:
+    format_sql: true
+    hbm2ddl.auto: update
+  url:
+    base: http://localhost:8080
