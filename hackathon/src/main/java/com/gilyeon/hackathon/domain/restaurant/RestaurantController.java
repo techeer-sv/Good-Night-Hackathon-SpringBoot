@@ -16,7 +16,7 @@ import java.util.List;
 public class RestaurantController {
     private final RestaurantService restaurantService;
 
-    @PostMapping("/restaurant")
+    @PostMapping("/restaurant/create")
     public ResponseEntity<RestaurantInfo> createRestaurant(@RequestBody RestaurantCreateRequest restaurantCreateRequest) {
         restaurantService.createRestaurant(restaurantCreateRequest);
         return ResponseEntity.ok(RestaurantInfo.builder()
@@ -29,7 +29,6 @@ public class RestaurantController {
     @GetMapping("/restaurant/{id}")
     public ResponseEntity<RestaurantInfo> getRestaurant(@PathVariable Long id) {
         RestaurantInfo restaurantInfo = restaurantService.getRestaurantDetail(id);
-
         return ResponseEntity.ok(restaurantInfo);
     }
 
@@ -39,13 +38,13 @@ public class RestaurantController {
 //        return ResponseEntity.ok(restaurantInfo);
 //    }
 
-    @PutMapping("/restaurant")
+    @PutMapping("/restaurant/edit")
     public ResponseEntity<RestaurantInfo> updateRestaurant(@RequestBody RestaurantUpdateRequest restaurantUpdateRequest) {
         RestaurantInfo restaurantInfo = restaurantService.updateRestaurant(restaurantUpdateRequest);
         return ResponseEntity.ok(restaurantInfo);
     }
 
-    @DeleteMapping("restaurant/{id}")
+    @DeleteMapping("restaurant/delete/{id}")
     public ResponseEntity<String> deleteRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.ok(id+"번 식당이 삭제되었습니다.");

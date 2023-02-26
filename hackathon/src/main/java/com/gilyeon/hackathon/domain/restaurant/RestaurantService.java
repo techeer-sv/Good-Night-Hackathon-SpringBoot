@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.stream.Collectors;
+
 
 @RequiredArgsConstructor
 @Service
@@ -37,6 +39,7 @@ public class RestaurantService {
 
         return mapRestaurantEntityToRestaurantInfo(findRestaurant);
     }
+    
 
     @Transactional
     public RestaurantInfo updateRestaurant(RestaurantUpdateRequest restaurantUpdateRequest) {

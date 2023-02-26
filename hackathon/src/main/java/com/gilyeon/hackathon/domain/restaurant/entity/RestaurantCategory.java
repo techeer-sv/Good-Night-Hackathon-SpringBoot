@@ -5,5 +5,6 @@ public enum RestaurantCategory {
    중식,
    한식,
    동남아식,
+   패스트푸드,
    기타;
 }

@@ -29,14 +29,15 @@ public class Review extends BaseEntity {
     @Column(name = "content", nullable = false)
     private String content;
 
-//    @ManyToOne
-//    @JoinColumn(name = "restaurant_id")
-//    private Restaurant restaurant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     @Builder
-    public Review(String title, String content) {
+    public Review(String title, String content, Restaurant restaurant) {
         this.title = title;
         this.content = content;
+        this.restaurant = restaurant;
     }
 
     public void update(ReviewUpdateRequest reviewUpdateRequest){

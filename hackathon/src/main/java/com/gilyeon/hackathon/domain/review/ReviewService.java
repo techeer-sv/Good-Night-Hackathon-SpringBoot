@@ -1,5 +1,8 @@
 package com.gilyeon.hackathon.domain.review;
 
+import com.gilyeon.hackathon.domain.restaurant.RestaurantRepository;
+import com.gilyeon.hackathon.domain.restaurant.RestaurantService;
+import com.gilyeon.hackathon.domain.restaurant.entity.Restaurant;
 import com.gilyeon.hackathon.domain.review.dto.ReviewCreateRequest;
 import com.gilyeon.hackathon.domain.review.dto.ReviewInfo;
 import com.gilyeon.hackathon.domain.review.dto.ReviewUpdateRequest;
@@ -11,12 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository reviewRepository;
+    private final RestaurantRepository restaurantRepository;
+
 
     @Transactional(readOnly = true)
     public ReviewInfo getReviewDetail(Long id) {
@@ -28,6 +34,7 @@ public class ReviewService {
 
     @Transactional
     public void createReview(ReviewCreateRequest reviewCreateRequest) {
+        Optional<Restaurant> findRestaurant = restaurantRepository.findById(reviewCreateRequest.getRestaurantId());
         Review review = mapReviewEntityCreateRequestToReview(reviewCreateRequest);
         reviewRepository.save(review);
     }
@@ -60,7 +67,6 @@ public class ReviewService {
 
     public ReviewInfo mapReviewEntityToReviewInfo(Review review) {
         return ReviewInfo.builder()
-                .createdDate(review.getCreatedAt())
                 .content(review.getContent())
                 .title(review.getTitle())
                 .build();

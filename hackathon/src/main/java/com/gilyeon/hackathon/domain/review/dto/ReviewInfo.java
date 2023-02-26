@@ -12,5 +12,7 @@ import java.time.LocalDateTime;
 public class ReviewInfo {
     private String title;
     private String content;
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private long restaurantId;
 }
