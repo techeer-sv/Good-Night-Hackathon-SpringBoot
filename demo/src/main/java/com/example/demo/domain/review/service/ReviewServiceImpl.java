@@ -10,6 +10,8 @@ import com.example.demo.domain.review.entity.Review;
 import com.example.demo.domain.review.map.ToReviewEntity;
 import com.example.demo.domain.review.map.ToReviewResponse;
 import com.example.demo.domain.review.repository.ReviewRepository;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService{
     @Autowired
     RestaurantRepository restaurantRepository;
@@ -29,11 +32,6 @@ public class ReviewServiceImpl implements ReviewService{
     private final ToReviewEntity entity;
 
     private final ToReviewResponse response;
-
-    public ReviewServiceImpl(ToReviewEntity entity, ToReviewResponse response){
-        this.entity = entity;
-        this.response = response;
-    }
 
     @Transactional
     public ReviewResponse createReview(Long restaurantId, ReviewCreateRequest reviewDto) {

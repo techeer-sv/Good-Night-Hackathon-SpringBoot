@@ -10,7 +10,7 @@ import com.example.demo.domain.restaurant.map.ToRestaurantResponse;
 import com.example.demo.domain.restaurant.repository.RestaurantRepository;
 import javax.persistence.EntityNotFoundException;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Service
+@RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService{
 
     @Autowired
@@ -28,11 +28,6 @@ public class RestaurantServiceImpl implements RestaurantService{
     private final ToRestaurantEntity entity;
 
     private final ToRestaurantResponse response;
-
-    public RestaurantServiceImpl(ToRestaurantEntity entity, ToRestaurantResponse response){
-        this.entity = entity;
-        this.response = response;
-    }
 
     @Transactional
     public RestaurantResponse createRestaurant(RestaurantCreateRequest restaurantDto) {
@@ -55,9 +50,9 @@ public class RestaurantServiceImpl implements RestaurantService{
     public List<RestaurantResponse> getRestaurants(RestaurantSearchRequest reviewDto) {
         List<Restaurant> restaurants;
         if(reviewDto.getCategory() == null) {
-            restaurants = repository.findAllNotDeleted();
+            restaurants = repository.findAllByIsDeletedFalse();
         } else {
-            restaurants = repository.findAllByCategoryNotDeleted(reviewDto.getCategory().toString());
+            restaurants = repository.findAllByCategoryAndIsDeletedFalse(reviewDto.getCategory());
         }
         List<RestaurantResponse> restaurantResponses = new ArrayList<>();
         restaurants.forEach(s -> restaurantResponses.add(response.toResponse(s)));
@@ -66,7 +61,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     @Transactional(readOnly = true)
     public RestaurantResponse getRestaurantById(Long restaurantId) {
-        Restaurant restaurant = repository.findByIdNotDeleted(restaurantId);
+        Restaurant restaurant = repository.findByIdAndIsDeletedFalse(restaurantId);
         if (restaurant == null) {
             return null;
         }
@@ -77,7 +72,7 @@ public class RestaurantServiceImpl implements RestaurantService{
     public Boolean deleteRestaurant(Long restaurantId) {
         Restaurant restaurant = repository.findById(restaurantId).orElseThrow(EntityNotFoundException::new);
         if(restaurant != null && restaurant.isDeleted() == false) {
-            repository.deleteById(restaurantId);
+            repository.deleteByIdAndIsDeletedFalse(restaurantId);
             return true;
         }
         return false;
