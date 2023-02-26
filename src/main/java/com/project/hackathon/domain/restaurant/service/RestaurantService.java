@@ -1,5 +1,4 @@
 package com.project.hackathon.domain.restaurant.service;
-
 import com.project.hackathon.domain.restaurant.dto.RestaurantCreateRequest;
 import com.project.hackathon.domain.restaurant.dto.RestaurantDetailResponse;
 import com.project.hackathon.domain.restaurant.dto.RestaurantUpdateRequest;
@@ -10,8 +9,6 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
