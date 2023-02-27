@@ -1,76 +1,77 @@
-# 레스토랑 리뷰 앱
+# Restaurant Review Application
 
-## 안내사항
+## 안내사항 : Instructions
 
-- 본 레포지토리를 fork하여 과제를 수행하고, 완료시 PR을 보냅니다.
-- 과제의 소스코드는 본인의 GitHub 레포지토리에 **Public**으로 올려주세요.
-- 진행 간 문의사항은 이 레포지토리의 Issue로 등록해주세요.
-- 구현 내용은 README.md 하단에 이어서 작성해 주세요.
+- You must fork this repository and send a pull request when you finish the assignment.
+- Please make your repository public.
+- If you have any questions, please post it on the issue of this repository.
+- Please write the implementation content at the bottom of README.md.
 
-## 기본 요구사항
+## Basic Requirement
 
-- Spring Boot Framework를 활용하여 레스토랑 리뷰 앱을 구현합니다.
-- Spring Data JPA를 활용하여 구현합니다. 그 외의 라이브러리는 자유롭게 선택이 가능합니다.
-- 빌드 도구는 gradle를 사용해주세요.
-- 일관된 코딩 컨벤션을 유지해주세요. (camelCase)
-- REST API 규격을 맞춰주세요.
-- 기능 당 커밋은 필수입니다.
+- Use Spring Boot Framework to implement a restaurant review app.
+- Use Spring Data JPA to implement it. You can choose other libraries.
+- Use gradle as a build tool.
+- Please maintain a consistent coding convention. (camelCase)
+- Please follow the REST API specification.
+- Commit for each function is required.
 
-### 도메인
+### Domain
 
 - Restaurant
 - Review
 
-## 기능
+## Functionalities
 
-### 리뷰 목록 조회
+### Search Review List
 
-- 레스토랑 명, 리뷰 리스트를 내용을 반환합니다.
-- 리뷰 리스트는 등록 순이나 역순으로 조회할 수 있고 pagination을 지원하며, 리뷰 제목과 내용으로 검색할 수 있습니다.
+- Return the restaurant name and review list.
+- The review list can be queried in order or reverse order, supports pagination, and can be searched by review title and content.
 
-### 리뷰 조회
+### Search one Review
 
-- 하나의 레스토랑명, 리뷰 제목, 리뷰 내용이 반환합니다.
+- Return one restaurant name, review title, and review content.
 
-### 리뷰 수정
+### Update a review
 
-- 리뷰를 수정할 수 있습니다.
+- Review can be updated.
 
-### 리뷰 작성
+### Create a review
 
-- 리뷰에는 제목과 내용이 있습니다.
+- A review has a title and content.
 
-### 리뷰 삭제
+### Delete a review
 
-- 리뷰 삭제에서는 하나의 리뷰를 삭제합니다.
-- Hard Delete를 통해 데이터를 삭제합니다.
+- Delete a review.
+- Delete data using Hard Delete.
 
-### 레스토랑 등록
+### Register a restaurant
 
-- 레스토랑에는 레스토랑명, 레스토랑 카테고리 (한식, 중식, 일식 등)의 내용이 있습니다.
-- 등록한 날짜를 기록해야 합니다.
+- A restaurant has a restaurant name and restaurant category (Korean, Chinese, Japanese, etc.).
+- The date of registration must be recorded.
 
-### 레스토랑 수정
+### Update a restaurant
 
-- 레스토랑의 카테고리만 변경할 수 있습니다.
+- You can only change the category of the restaurant.
 
-### 레스토랑 목록 조회
+### 레스토랑 목록 조회 : View All Restaurants
 
-- 레스토랑의 전체 목록을 조회할 수 있습니다.
-- 레스토랑 카테고리에 따른 레스토랑 목록 조회를 할 수 있습니다.
+- The entire list of restaurants can be queried.
+- You can query the list of restaurants by restaurant category.
 
-### 레스토랑 조회
+### 레스토랑 조회 : View one restaurant
 
-- 레스토랑 명, 카테고리, 음식점의 생성 일자가 반환 되어야 합니다.
+- The restaurant name, category, and restaurant creation date must be returned.
 
-### 레스토랑 삭제
+### 레스토랑 삭제 : Delete a restaurant
 
-- 레스토랑의 삭제로 인하여 작성된 리뷰들이 삭제 되면 안됩니다. (Soft Delete)
+- Restaurant deletion should not delete written reviews. (Soft Delete)
 
-# 기여해주신 분
+# Contributors
 
 - [김기현](https://github.com/kim1387) ✨
 - [김영준](https://github.com/0BVer) ✨
 - [정길연](https://github.com/gilyeon00) ✨
 - [최세연](https://github.com/barabobBOB) ✨
 - [최우석](https://github.com/Sith-call) ✨
+
