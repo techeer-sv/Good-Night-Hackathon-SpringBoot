@@ -1,0 +1,21 @@
+spring.datasource:
+  username: user
+  password: password
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}?serverTimezone=${db.timezone}&characterEncoding=UTF-8
+
+db.type: mysql
+db.host: localhost
+db.port: 33080
+db.database: good-night-dev-db
+db.timezone: Asia/Seoul
+
+spring.jpa:
+  database: mysql
+  show-sql: false
+  hibernate:
+    dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+    ddl-auto: create # must change to update, create make table all clear
+
+server:
+  port: 8000
