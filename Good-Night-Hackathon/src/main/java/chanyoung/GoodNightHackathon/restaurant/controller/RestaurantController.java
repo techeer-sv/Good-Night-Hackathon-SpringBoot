@@ -41,4 +41,9 @@ public class RestaurantController {
         System.out.println(category);
         return service.findCategory(category);
     }
+
+    @GetMapping("/remove/{id}")
+    public void removeRestaurant (@PathVariable Long id) {
+        service.removeRestaurant(id);
+    }
 }

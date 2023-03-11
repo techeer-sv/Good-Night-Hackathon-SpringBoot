@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-    @Query (value = "SELECT r FROM Restaurant r ")
+    @Query (value = "SELECT r FROM Restaurant r WHERE r.isDeleted = FALSE" )
     List<Restaurant> findAll();
 
-    @Query (value = "SELECT r FROM Restaurant r WHERE r.category = :category")
+    @Query (value = "SELECT r FROM Restaurant r WHERE r.category = :category AND r.isDeleted = FALSE")
     List<Restaurant> findByCategory(@Param("category") String category);
 }
