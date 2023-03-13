@@ -54,17 +54,20 @@ public class ReviewService {
     }
 
     public List<ReviewResponse> sortReview(String title, String content, boolean orderType) { //orderType True인 경우 오름차순
-        PageRequest request = PageRequest.of(0, 5);
+        PageRequest request = PageRequest.of(0, 5); //of 메소드 자체에 sort 먀개변수가 있기는 하자
 
         List<ReviewResponse> orderList;
 
+        //map stream 의 값을 mapping 해줌
         if (orderType) {
-            orderList = repository.findByTitleContent(request, title, content).stream()
+            orderList = repository.findByTitleContent(request, title, content)
+                    .stream()
                     .sorted(Comparator.comparing(Review::getCreatedAt))
                     .map(this::mapToReviewResponse)
                     .collect(Collectors.toList());
         } else {
-            orderList = repository.findByTitleContent(request, title, content).stream()
+            orderList = repository.findByTitleContent(request, title, content)
+                    .stream()
                     .sorted(Comparator.comparing(Review::getCreatedAt).reversed())
                     .map(this::mapToReviewResponse)
                     .collect(Collectors.toList());
