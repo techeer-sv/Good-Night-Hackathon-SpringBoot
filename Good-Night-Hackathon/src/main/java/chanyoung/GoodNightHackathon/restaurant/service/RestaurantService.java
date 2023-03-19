@@ -33,8 +33,8 @@ public class RestaurantService {
         repository.save(restaurant.get());
     }
 
-    public Optional<Restaurant> findId (Long id) {
-        Optional<Restaurant> restaurant = repository.findById(id);
+    public Restaurant findId (Long id) {
+        Restaurant restaurant = repository.findById(id).orElseThrow(() -> new RuntimeException("레스토랑이 존재하지 않음"));
         return restaurant;
     }
 

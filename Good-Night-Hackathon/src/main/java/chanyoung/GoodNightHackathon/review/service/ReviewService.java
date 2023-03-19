@@ -7,6 +7,7 @@ import chanyoung.GoodNightHackathon.review.domin.ReviewRepository;
 import chanyoung.GoodNightHackathon.review.dto.ReviewRequest;
 import chanyoung.GoodNightHackathon.review.dto.ReviewResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +23,17 @@ public class ReviewService {
     private final RestaurantService restaurantService;
     private final ReviewRepository repository;
     public void save (ReviewRequest request) {
-        Optional<Restaurant> restaurant = restaurantService.findId(request.getRestaurant_id());
+        Restaurant restaurant = restaurantService.findId(request.getRestaurant_id());
         Review review = Review.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
-                .restaurant(restaurant.get())
+                .restaurant(restaurant)
                 .build();
         repository.save(review);
     }
 
     public ReviewResponse findId(Long id) {
-        Review review = repository.findById(id).get();
+        Review review = repository.findById(id).orElseThrow(() -> new RuntimeException("리뷰가 존재하지 않음"));
         Restaurant restaurant = review.getRestaurant();
         ReviewResponse dto = ReviewResponse.builder()
                 .title(review.getTitle())
